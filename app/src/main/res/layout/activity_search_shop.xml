@@ -1,0 +1,33 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg3"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:textColor="#fff"
+        android:text="Search Shop"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:gravity="center"/>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:stretchColumns="1">
+        <TableRow>
+            <TextView android:text="Enter Area"
+                android:textSize="20dp"
+                android:textColor="#fff"
+                android:layout_margin="35dp"/>
+            <EditText android:textSize="19dp"
+                android:layout_height="40dp"
+                android:textColor="#fff"
+                android:background="@drawable/textboxround"
+                android:layout_marginTop="33dp"/>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
