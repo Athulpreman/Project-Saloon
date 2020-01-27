@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:textSize="40dp"
         android:text="Shop Details"
-        android:textColor="#fff"
+        android:textColor="#ffffff"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_margin="20dp"/>
@@ -23,7 +23,7 @@
             <TextView
                 android:text="Shop id"
                 android:textSize="20dp"
-                android:textColor="#fff" />
+                android:textColor="#FFFFFf" />
             <EditText
                 android:layout_height="40dp"
                 android:textSize="20dp"

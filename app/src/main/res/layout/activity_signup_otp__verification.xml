@@ -1,0 +1,98 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg4"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@drawable/background_dark_blur"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginTop="6dp"
+                android:orientation="vertical"
+                android:background="#9C756969">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_margin="12dp"
+                    android:orientation="horizontal"
+                   >
+
+                    <TableRow>
+                        <TextView android:text="OTP is sent to your Mobile Number"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="30dp"
+                            android:textColor="#fff"/>
+                    </TableRow>
+
+                </TableLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="60dp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:hint="OTP"
+                        android:textColorHint="#FFFFFF"
+                        android:textSize="19dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/textbox"
+                        android:paddingLeft="23dp"
+                        android:id="@+id/signupOTP"/>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:text="verify"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18dp"
+                        android:layout_marginTop="40dp"
+                        android:background="#BFDDC9C9"
+                        android:padding="11dp"
+                        android:textStyle="bold"
+                        android:id="@+id/signupOTP_verificationButton"/>
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        android:layout_marginTop="19dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/progressbar"/>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

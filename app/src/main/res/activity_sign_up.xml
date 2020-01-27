@@ -37,13 +37,13 @@
 
                     <TableRow>
                         <Button android:layout_width="166dp"
-                            android:background="#000000"
-                            android:text="sign up"
-                            android:id="@+id/signinSignupButton"
-                            android:textColor="#fff"/>
-                        <Button  android:layout_width="166dp"
                             android:background="#BFDDC9C9"
+                            android:text="sign up"
+                            android:textColor="#fff"/>
+                        <Button  android:layout_width="165dp"
+                            android:background="#000000"
                             android:text="login"
+                            android:id="@+id/signupButtonLogin"
                             android:textColor="#fff"/>
                     </TableRow>
 
@@ -60,80 +60,55 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:hint="Mob No."
-                        android:textColorHint="#fff"
+                        android:hint="Name"
                         android:textColor="#fff"
+                        android:textColorHint="#fff"
                         android:textSize="19dp"
-                        android:inputType="phone"
-                        android:maxLength="10"
+                        android:inputType="text"
                         android:background="@drawable/textbox"
                         android:padding="11dp"
-                        android:id="@+id/loginMobNo"/>
+                        android:id="@+id/signupName"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:hint="Mob No."
+                        android:inputType="phone"
+                        android:textColor="#fff"
+                        android:maxLength="10"
+                        android:textColorHint="#FFFFFF"
+                        android:textSize="19dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/textbox"
+                        android:padding="11dp"
+                        android:id="@+id/signupMobNo"/>
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:hint="Password"
                         android:textColor="#fff"
-
                         android:inputType="textPassword"
                         android:textColorHint="#FFFFFF"
                         android:textSize="19dp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/textbox"
                         android:padding="11dp"
-                        android:id="@+id/loginPassword"
-                        android:drawableRight="@drawable/passwordvector" />
+                        android:id="@+id/signupPassword"/>
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:text="Login"
+                        android:text="Sign up"
                         android:textColor="#FFFFFF"
                         android:textSize="18dp"
                         android:layout_marginTop="40dp"
                         android:background="#BFDDC9C9"
                         android:padding="11dp"
                         android:textStyle="bold"
-                        android:id="@+id/loginButtonlogin"/>
+                        android:id="@+id/signupButtonsignup"/>
 
 
                 </LinearLayout>
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp">
 
-                    <TableRow android:gravity="center"
-                        android:layout_marginTop="10dp">
-                        <TextView android:text="Forgot Password ?"
-                            android:id="@+id/loginForgotPassword"
-                            android:textColor="#fff" />
-
-                    </TableRow>
-
-                </TableLayout>
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="20dp">
-
-                    <TableRow android:gravity="center"
-                        android:layout_marginTop="10dp">
-                        <TextView android:text="For Shop Option, "
-                            android:textColor="#fff" />
-                        <TextView android:text="Click Here"
-                            android:textColor="#fff"
-                            android:id="@+id/loginShopOption"
-                            android:layout_marginBottom="1dp"
-                            android:textStyle="bold"
-                            android:textSize="16dp"/>
-                        </TableRow>
-
-                </TableLayout>
 
 
             </LinearLayout>

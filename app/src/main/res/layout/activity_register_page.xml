@@ -1,132 +1,147 @@
-<LinearLayout android:layout_height="match_parent"
+<ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/bg3">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Let's Register"
-        android:textColor="#fff"
-        android:textSize="50dp"
-        android:textStyle="bold"
-        android:layout_margin="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp" />
-    <TableLayout
+    <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/bgregister">
-        <EditText
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/bg11">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textColor="#fff"
-            android:hint="First Name "
-            android:textColorHint="#fff"
-            android:paddingLeft="19dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/textboxregister"
-            android:id="@+id/registerFirstName"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textColorHint="#fff"
-            android:hint="Last Name"
-            android:paddingLeft="19dp"
-            android:textColor="#fff"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/textboxregister"
-            android:id="@+id/RegisterLastName"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textColor="#fff"
-            android:layout_marginLeft="10dp"
-            android:textColorHint="#fff"
-            android:paddingLeft="19dp"
-            android:hint="E-mail"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/textboxregister"
-            android:id="@+id/registerEmail"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textColor="#fff"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textColorHint="#fff"
-            android:hint="Mobile No"
-            android:paddingLeft="19dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/textboxregister"
-            android:id="@+id/registerMobileNo"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textColorHint="#fff"
-            android:paddingLeft="19dp"
-            android:textColor="#46FFFFFF"
-            android:hint="Password"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/textboxregister"
-            android:id="@+id/registerPassword"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textColor="#FFF"
-            android:textColorHint="#fff"
-            android:paddingLeft="19dp"
-            android:hint="Re-Type Password"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/textboxregister"/>
-        <TableLayout android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:stretchColumns="0">
-            <TableRow>
-                <TextView/>
-                <Button android:text="Signup"
-                    android:layout_height="45dp"
-                    android:layout_width="140dp"
-                    android:id="@+id/registerSignupButton"
-                    android:background="@drawable/textboxround"
-                    android:textSize="20dp"
-                    android:layout_margin="20dp"
-                    android:textColor="#fff"
-                    android:textStyle="bold"/>
-            </TableRow>
-        </TableLayout>
-    </TableLayout>
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp">
-        <TableRow>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/background_dark_blur">
+
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Let's Register"
+                android:textColor="#fff"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:layout_margin="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Already have an account?"
-                android:textColor="#fff"
-                android:layout_marginLeft="47dp"
-                android:textSize="17dp"/>
-            <TextView android:layout_width="match_parent"
+                android:layout_margin="20dp"
+                android:background="@drawable/bgregister">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColor="#fff"
+                    android:hint="First Name "
+                    android:textColorHint="#fff"
+                    android:paddingLeft="19dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/textboxregister"
+                    android:id="@+id/registerFirstName"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColorHint="#fff"
+                    android:hint="Last Name"
+                    android:paddingLeft="19dp"
+                    android:textColor="#fff"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/textboxregister"
+                    android:id="@+id/RegisterLastName"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColor="#fff"
+                    android:layout_marginLeft="10dp"
+                    android:textColorHint="#fff"
+                    android:paddingLeft="19dp"
+                    android:hint="E-mail"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/textboxregister"
+                    android:id="@+id/registerEmail"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColor="#fff"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textColorHint="#fff"
+                    android:hint="Mobile No"
+                    android:paddingLeft="19dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/textboxregister"
+                    android:id="@+id/registerMobileNo"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColorHint="#fff"
+                    android:paddingLeft="19dp"
+                    android:textColor="#46FFFFFF"
+                    android:hint="Password"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/textboxregister"
+                    android:id="@+id/registerPassword"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColor="#FFF"
+                    android:textColorHint="#fff"
+                    android:paddingLeft="19dp"
+                    android:hint="Re-Type Password"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/textboxregister"/>
+                <TableLayout android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:stretchColumns="0">
+                    <TableRow>
+                        <TextView/>
+                        <Button android:text="Signup"
+                            android:layout_height="45dp"
+                            android:layout_width="140dp"
+                            android:id="@+id/registerSignupButton"
+                            android:background="@drawable/textboxregister"
+                            android:textSize="20dp"
+                            android:layout_margin="20dp"
+                            android:textColor="#fff"
+                            android:textStyle="bold"/>
+                    </TableRow>
+                </TableLayout>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Click here!"
-                android:textStyle="bold"
-                android:id="@+id/registerGoToLogin"
-                android:textColor="#fff"
-                android:textSize="19dp"/>
-        </TableRow>
-    </TableLayout>
-</LinearLayout>
+                android:layout_margin="12dp">
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Already have an account?"
+                        android:textColor="#fff"
+                        android:layout_marginLeft="47dp"
+                        android:textSize="17dp"/>
+                    <TextView android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Click here!"
+                        android:textStyle="bold"
+                        android:id="@+id/registerGoToLogin"
+                        android:textColor="#fff"
+                        android:textSize="19dp"/>
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
