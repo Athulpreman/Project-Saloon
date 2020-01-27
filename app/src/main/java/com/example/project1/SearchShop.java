@@ -17,8 +17,8 @@ public class SearchShop extends AppCompatActivity
         setContentView(R.layout.activity_search_shop);
 
         Intent intent=getIntent();
-        mobno=intent.getStringExtra("mobee");
-        Toast.makeText(getApplicationContext(), mobno, Toast.LENGTH_SHORT).show();
+        mobno=intent.getStringExtra("mob1");
+
 
     }
 }

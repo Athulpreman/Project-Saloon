@@ -1,5 +1,6 @@
 package com.example.project1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity
@@ -22,6 +30,8 @@ public class MainActivity extends AppCompatActivity
     String mobno,password;
     long backpress;
     Toast backToast;
+    DatabaseReference reference;
+    Customer customer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,9 @@ public class MainActivity extends AppCompatActivity
         ephoneNo=(EditText)findViewById(R.id.loginMobNo);
         epasswoed=(EditText)findViewById(R.id.loginPassword);
 
+        customer=new Customer();
+        reference= FirebaseDatabase.getInstance().getReference().child("Customer");
+
 
         blogin.setOnClickListener(new View.OnClickListener()
         {
@@ -43,6 +56,7 @@ public class MainActivity extends AppCompatActivity
             {
                 mobno=ephoneNo.getText().toString();
                 password=epasswoed.getText().toString();
+
                 if (mobno.isEmpty()||mobno.length()<10)
                 {
                     ephoneNo.setError("Enter correct mob no");
@@ -55,7 +69,49 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
+                    String code="91";
+                    mobno="+" + code + mobno;
+                    Query query=reference.orderByChild("mobileNum").equalTo(mobno);
+                    query.addListenerForSingleValueEvent(new ValueEventListener()
+                    {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                            if (dataSnapshot.exists())
+                            {
+
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                                {
+                                    Toast.makeText(getApplicationContext(), "for", Toast.LENGTH_SHORT).show();
+                                    customer = snapshot.getValue(Customer.class);
+                                    if (password.equals(customer.password))
+                                    {
+                                        Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(), CustomerSignedIn.class);
+                                        intent.putExtra("mob2", mobno);
+                                        startActivity(intent);
+
+                                        ephoneNo.setText("");
+                                        epasswoed.setText("");
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ephoneNo.setError("User dont exists");
+                            }
+                        }
+
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
             }
         });

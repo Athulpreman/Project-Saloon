@@ -26,6 +26,8 @@
             <EditText android:textSize="19dp"
                 android:layout_height="40dp"
                 android:textColor="#fff"
+                android:paddingLeft="17dp"
+               android:layout_marginRight="20dp"
                 android:background="@drawable/textboxround"
                 android:layout_marginTop="33dp"/>
         </TableRow>

@@ -98,6 +98,11 @@ public class Sign_up extends AppCompatActivity
                                 intent.putExtra("signPassword",password);
                                 intent.putExtra("signName",name);
                                 startActivity(intent);
+
+
+                                ename.setText("");
+                                epasswoed.setText("");
+                                ephoneNo.setText("");
                             }
                         }
 
