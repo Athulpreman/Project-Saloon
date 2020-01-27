@@ -56,8 +56,10 @@
                     android:layout_height="40dp"
                     android:textColor="#fff"
                     android:hint="Owner Full Name "
+                    android:maxLines="1"
                     android:textColorHint="#fff"
                     android:paddingLeft="19dp"
+                    android:inputType="textPostalAddress"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="25dp"
@@ -70,6 +72,8 @@
                     android:hint="Shop Name"
                     android:paddingLeft="19dp"
                     android:textColor="#fff"
+                    android:maxLines="1"
+                    android:inputType="textPostalAddress"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
@@ -79,11 +83,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:textColor="#fff"
+                    android:maxLines="1"
                     android:layout_marginLeft="10dp"
                     android:textColorHint="#fff"
                     android:paddingLeft="19dp"
                     android:hint="Shop ID"
                     android:layout_marginRight="10dp"
+                    android:inputType="textPostalAddress"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/textboxregister"
                     android:id="@+id/registerShopID"/>
@@ -92,6 +98,7 @@
                     android:layout_height="40dp"
                     android:textColor="#fff"
                     android:layout_marginLeft="10dp"
+                    android:maxLines="1"
                     android:layout_marginRight="10dp"
                     android:textColorHint="#fff"
                     android:hint="Owner Mobile No"
@@ -106,11 +113,12 @@
                     android:layout_height="90dp"
                     android:textColorHint="#fff"
                     android:paddingLeft="19dp"
+                    android:lines="5"
+                    android:maxLines="5"
                     android:textColor="#FFF"
                     android:hint="Address"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:inputType="textPostalAddress"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/textboxregister"
                     android:id="@+id/registerAddress"/>
@@ -121,7 +129,9 @@
                     android:textColorHint="#fff"
                     android:paddingLeft="19dp"
                     android:hint="Employee Name"
+                    android:inputType="textPostalAddress"
                     android:layout_marginLeft="10dp"
+                    android:maxLines="1"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/textboxregister"
@@ -130,6 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:textColor="#FFF"
+                    android:maxLines="1"
                     android:textColorHint="#fff"
                     android:paddingLeft="19dp"
                     android:hint="Employee Contact Number"
@@ -143,6 +154,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:maxLines="1"
                     android:textColor="#FFF"
                     android:textColorHint="#fff"
                     android:paddingLeft="19dp"
@@ -191,8 +203,6 @@
                     </TableRow>
                 </TableLayout>
             </TableLayout>
-
-
         </LinearLayout>
     </LinearLayout>
 
