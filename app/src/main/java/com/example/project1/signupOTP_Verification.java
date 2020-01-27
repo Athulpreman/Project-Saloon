@@ -87,8 +87,8 @@ public class signupOTP_Verification extends AppCompatActivity
     }
     void signInWithCredential(PhoneAuthCredential credential)
     {
-        final String a="aa";
-        mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+        {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task)
             {

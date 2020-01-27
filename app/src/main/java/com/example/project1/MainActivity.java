@@ -38,6 +38,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences sharedPreferences=getSharedPreferences("userLogin",MODE_PRIVATE);
+        String value=sharedPreferences.getString("user",null);
+        if (value!=null)
+        {
+            Intent intent=new Intent(getApplicationContext(),CustomerSignedIn.class);
+            startActivity(intent);
+        }
+
         blogin=(Button)findViewById(R.id.loginButtonlogin);
         gotosignup=(Button)findViewById(R.id.signinSignupButton);
         tshopOption=(TextView)findViewById(R.id.loginShopOption);
@@ -86,6 +94,11 @@ public class MainActivity extends AppCompatActivity
                                     customer = snapshot.getValue(Customer.class);
                                     if (password.equals(customer.password))
                                     {
+                                        SharedPreferences.Editor editor=getSharedPreferences("userLogin",MODE_PRIVATE).edit();
+                                        editor.putString("user",mobno);
+                                        editor.commit();
+
+
                                         Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(), CustomerSignedIn.class);
                                         intent.putExtra("mob2", mobno);

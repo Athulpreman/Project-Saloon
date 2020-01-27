@@ -9,7 +9,9 @@
         android:roundIcon="@drawable/hair"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerSignedIn"></activity>
+        <activity android:name=".AdminCheckNewShopAcceptance"></activity>
+        <activity android:name=".AdminPage" />
+        <activity android:name=".CustomerSignedIn" />
         <activity android:name=".signupOTP_Verification" />
         <activity android:name=".Sign_up" />
         <activity android:name=".BookingConfirmation" />

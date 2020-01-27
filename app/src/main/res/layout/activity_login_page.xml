@@ -32,7 +32,6 @@
             android:textColor="#fff"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:inputType="phone"
             android:maxLength="10"
             android:layout_marginTop="7dp"
             android:background="@drawable/textboxregister"
