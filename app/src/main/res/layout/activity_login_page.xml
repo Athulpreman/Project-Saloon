@@ -42,7 +42,6 @@
             android:layout_marginRight="20dp"
             android:textSize="19dp"
             android:maxLength="10"
-
             android:layout_marginTop="7dp"
             android:background="@drawable/textbox"
             android:drawableLeft="@drawable/user"

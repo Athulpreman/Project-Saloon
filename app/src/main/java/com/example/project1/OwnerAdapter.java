@@ -88,6 +88,7 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
 
     @Override
     public int getItemCount()
+
     {
         return owners.size();
     }

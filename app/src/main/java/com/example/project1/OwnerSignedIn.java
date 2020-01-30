@@ -26,7 +26,7 @@ public class OwnerSignedIn extends AppCompatActivity
     Button Submit;
     String sActivity,sAmount,sTime;
     OwnerAdd ownerAdd;
-    DatabaseReference reference,reference2,ref;
+    DatabaseReference reference,ref;
     String shopID1;
 
     Query query;
@@ -48,7 +48,7 @@ public class OwnerSignedIn extends AppCompatActivity
         Intent intent=getIntent();
         shopID1=intent.getStringExtra("shopID");
 
-        reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners");
+        reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners").child(shopID1);
         Submit.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -67,9 +67,8 @@ public class OwnerSignedIn extends AppCompatActivity
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
-
-                        Toast.makeText(getApplicationContext(), reference.getKey(), Toast.LENGTH_SHORT).show();
-                        reference.push().setValue(ownerAdd).addOnSuccessListener(new OnSuccessListener<Void>()
+                        ref= FirebaseDatabase.getInstance().getReference().child("Shop_Owners").child(shopID1).child("Activity").child(sActivity);
+                        ref.setValue(ownerAdd).addOnSuccessListener(new OnSuccessListener<Void>()
                         {
                             @Override
                             public void onSuccess(Void aVoid)
@@ -77,6 +76,9 @@ public class OwnerSignedIn extends AppCompatActivity
                                 Toast.makeText(getApplicationContext(), "Added successfully", Toast.LENGTH_SHORT).show();
                                 Time.setText("");
                                 Amount.setText("");
+
+                                Intent intent1=new Intent(getApplicationContext(),OwnerPage.class);
+                                startActivity(intent1);
                             }
                         });
                     }

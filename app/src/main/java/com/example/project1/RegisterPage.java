@@ -171,7 +171,9 @@ public class RegisterPage extends AppCompatActivity
                                 owner.setImage2(sImage2);
                                 owner.setImage3(sImage3);
 
-                                reference.push().setValue(owner).addOnSuccessListener(new OnSuccessListener<Void>()
+                                ref=FirebaseDatabase.getInstance().getReference().child("Shop_Owners").child(sShopID);
+
+                                ref.setValue(owner).addOnSuccessListener(new OnSuccessListener<Void>()
                                 {
                                     @Override
                                     public void onSuccess(Void aVoid)

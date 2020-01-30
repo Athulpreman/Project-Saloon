@@ -77,7 +77,7 @@ public class LoginPage extends AppCompatActivity
                                         if (owner.status.equals(true))
                                         {
                                             Toast.makeText(getApplicationContext(), "Logged in successfuly", Toast.LENGTH_SHORT).show();
-                                            Intent intent=new Intent(getApplicationContext(),OwnerSignedIn.class);
+                                            Intent intent=new Intent(getApplicationContext(),OwnerPage.class);
                                             intent.putExtra("shopID",owner.ShopID);
                                             startActivity(intent);
                                             ownerShopID.setText("");
