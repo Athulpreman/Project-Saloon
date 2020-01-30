@@ -35,7 +35,7 @@ public class RegisterPage extends AppCompatActivity
     ImageView iimg1,iimg2,iimg3;
     Button signup;
     TextView gotologin;
-    DatabaseReference reference;
+    DatabaseReference reference,ref;
     Owner owner;
 
     @Override
@@ -140,12 +140,19 @@ public class RegisterPage extends AppCompatActivity
                 }
                 else
                 {
-                    Query query=reference.orderByChild("shopID").equalTo(sShopID);
+                    final Query query=reference.orderByChild("shopID").equalTo(sShopID);
                     query.addListenerForSingleValueEvent(new ValueEventListener()
                     {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                         {
+                            ref=reference.orderByChild("shopID").equalTo(sShopID).getRef();
+
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("shopID");
+                            String key =  myRef.push().getKey();
+                            Toast.makeText(getApplicationContext(), key, Toast.LENGTH_SHORT).show();
+
                             if (dataSnapshot.exists())
                             {
                                 eShopID.setError("Shop already Registered Try Sign in");
@@ -183,13 +190,17 @@ public class RegisterPage extends AppCompatActivity
                                         iimg1.setImageResource(R.drawable.hair);
                                         iimg2.setImageResource(R.drawable.hair);
                                         iimg3.setImageResource(R.drawable.hair);
+
+                                        Intent intent=new Intent(getApplicationContext(),OwnerPermissionCheck.class);
+                                        startActivity(intent);
                                     }
                                 });
                             }
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        public void onCancelled(@NonNull DatabaseError databaseError)
+                        {
 
                         }
                     });

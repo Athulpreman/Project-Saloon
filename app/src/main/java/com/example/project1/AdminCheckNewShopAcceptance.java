@@ -62,10 +62,6 @@ public class AdminCheckNewShopAcceptance extends AppCompatActivity
             }
         });
 
-
-
-
     }
-
 
 }

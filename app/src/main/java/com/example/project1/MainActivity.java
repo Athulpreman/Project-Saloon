@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity
 
                                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                                 {
-                                    Toast.makeText(getApplicationContext(), "for", Toast.LENGTH_SHORT).show();
                                     customer = snapshot.getValue(Customer.class);
                                     if (password.equals(customer.password))
                                     {

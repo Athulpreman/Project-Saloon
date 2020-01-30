@@ -1,0 +1,87 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg4"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background_dark_blur"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout android:layout_height="400dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="30dp"
+            android:gravity="center"
+            android:background="@drawable/bgregister"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <LinearLayout android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="20dp"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:textSize="40dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="19dp"
+                    android:layout_marginTop="40dp"
+                    android:textColor="#fff"
+                    android:textStyle="italic"
+                    android:text="You have successfuly registred.....!"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="19dp"
+                    android:textColor="#fff"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="italic"
+                    android:text="Waite for ADMIN's Responce"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="19dp"
+                    android:textColor="#fff"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="italic"
+                    android:text="Waite 24 Hr's "/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="19dp"
+                    android:textColor="#fff"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="italic"
+                    android:text="If ADDMIN didn't responded call"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="21dp"
+                    android:textColor="#fff"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="9562473440"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</LinearLayout>
+
+</LinearLayout>

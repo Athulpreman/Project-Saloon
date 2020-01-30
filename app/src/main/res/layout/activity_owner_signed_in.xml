@@ -1,0 +1,100 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg4"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/background_dark_blur"
+        android:gravity="center"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="25dp"
+            android:orientation="vertical"
+            android:background="@drawable/bgregister"
+            android:gravity="center"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="15dp">
+
+                <Spinner  android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColor="#fff"
+                    android:paddingLeft="19dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:entries="@array/ShopActivities"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/textboxregister"
+                    android:id="@+id/ownerAddSpinnerActivity"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColor="#fff"
+                    android:hint="Amount"
+                    android:maxLines="1"
+                    android:textColorHint="#fff"
+                    android:paddingLeft="19dp"
+                    android:inputType="number"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/textboxregister"
+                    android:id="@+id/ownerAddAmount" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColor="#fff"
+                    android:hint="Time Required"
+                    android:maxLines="1"
+                    android:textColorHint="#fff"
+                    android:paddingLeft="19dp"
+                    android:inputType="time"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/textboxregister"
+                    android:id="@+id/ownerAddTime" />
+                <LinearLayout android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                android:orientation="horizontal"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:src="@drawable/hair"
+                        android:layout_marginTop="15dp"/>
+                    <Button
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:text="Browse"
+                        android:background="@drawable/bgregister"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="40dp"
+                        android:textColor="#fff"
+                       />
+                </LinearLayout>
+                <Button android:layout_height="40dp"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/bgregister"
+                    android:layout_margin="30dp"
+                    android:textColor="#fff"
+                    android:text="Add"
+                    android:id="@+id/OwnerAddSubmitButton"
+                    />
+
+            </TableLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
