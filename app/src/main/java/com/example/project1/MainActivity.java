@@ -38,11 +38,19 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPreferences=getSharedPreferences("userLogin",MODE_PRIVATE);
-        String value=sharedPreferences.getString("user",null);
+        SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
+        String value=sharedPreferences.getString("MobNo",null);
         if (value!=null)
         {
             Intent intent=new Intent(getApplicationContext(),CustomerSignedIn.class);
+            startActivity(intent);
+        }
+
+        SharedPreferences sharedPreference=getSharedPreferences("OwnerLogin",MODE_PRIVATE);
+        String value1=sharedPreference.getString("shopID",null);
+        if (value1!=null)
+        {
+            Intent intent=new Intent(getApplicationContext(),OwnerPage.class);
             startActivity(intent);
         }
 
@@ -93,14 +101,13 @@ public class MainActivity extends AppCompatActivity
                                     customer = snapshot.getValue(Customer.class);
                                     if (password.equals(customer.password))
                                     {
-                                        SharedPreferences.Editor editor=getSharedPreferences("userLogin",MODE_PRIVATE).edit();
-                                        editor.putString("user",mobno);
+                                        SharedPreferences.Editor editor=getSharedPreferences("UserLogin",MODE_PRIVATE).edit();
+                                        editor.putString("MobNo",mobno);
                                         editor.commit();
 
 
                                         Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(), CustomerSignedIn.class);
-                                        intent.putExtra("mob2", mobno);
                                         startActivity(intent);
 
                                         ephoneNo.setText("");

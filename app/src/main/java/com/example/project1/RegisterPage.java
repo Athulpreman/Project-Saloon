@@ -148,11 +148,6 @@ public class RegisterPage extends AppCompatActivity
                         {
                             ref=reference.orderByChild("shopID").equalTo(sShopID).getRef();
 
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("shopID");
-                            String key =  myRef.push().getKey();
-                            Toast.makeText(getApplicationContext(), key, Toast.LENGTH_SHORT).show();
-
                             if (dataSnapshot.exists())
                             {
                                 eShopID.setError("Shop already Registered Try Sign in");

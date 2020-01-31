@@ -1,28 +1,29 @@
 
-<LinearLayout android:layout_height="350dp"
+<LinearLayout android:layout_height="match_parent"
 android:layout_width="match_parent"
 xmlns:app="http://schemas.android.com/apk/res-auto"
-android:gravity="top"
 android:orientation="horizontal"
-android:background="@drawable/bg10"
+    android:layout_margin="10dp"
+android:background="#474A50"
 xmlns:android="http://schemas.android.com/apk/res/android">
+
 
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg9"
-    app:cardBackgroundColor="#D5050505"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="25dp">
+    app:cardBackgroundColor="#000000"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="50dp">
 
     <LinearLayout android:layout_height="330dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:layout_margin="5dp"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout
             android:layout_marginLeft="15dp"
-            android:layout_width="180dp"
+            android:layout_width="160dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_gravity="left"
@@ -49,67 +50,102 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 
         </LinearLayout>
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="183dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@drawable/textboxround"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
             android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="Owner Name"
-                android:id="@+id/OwnerName"
-                android:maxWidth="180dp"
-                android:textColor="#fff"
-                android:textSize="19dp"
-                android:layout_margin="10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="Shop Name"
-                android:maxWidth="180dp"
-                android:id="@+id/ShopNamee"
-                android:textColor="#fff"
-                android:textSize="19dp"
-                android:layout_margin="10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="Shop ID"
-                android:id="@+id/ShopIDe"
-                android:maxWidth="180dp"
-                android:textColor="#fff"
-                android:textSize="19dp"
-                android:layout_margin="10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="Owner Number"
-                android:textColor="#fff"
-                android:maxWidth="180dp"
-                android:id="@+id/Owerno"
-                android:textSize="19dp"
-                android:layout_margin="10dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="Address"
-                android:maxWidth="180dp"
-                android:textColor="#fff"
-                android:id="@+id/Addresse"
-                android:maxHeight="30dp"
-                android:textSize="19dp"
-                android:layout_margin="10dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="permit"
-                android:textSize="19dp"
-                android:textColor="#fff"
-                android:background="@drawable/textboxregister"
-                android:textStyle="bold"
-                android:id="@+id/permitButton"/>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layoutDirection="inherit"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+
+                <LinearLayout
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Owner Name"
+                        android:id="@+id/OwnerName"
+                        android:maxWidth="180dp"
+                        android:textColor="#fff"
+                        android:textSize="19dp"
+                        android:layout_margin="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Shop Name"
+                        android:maxWidth="180dp"
+                        android:id="@+id/ShopNamee"
+                        android:textColor="#fff"
+                        android:textSize="19dp"
+                        android:layout_margin="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Shop ID"
+                        android:id="@+id/ShopIDe"
+                        android:maxWidth="180dp"
+                        android:textColor="#fff"
+                        android:textSize="19dp"
+                        android:layout_margin="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Owner Number"
+                        android:textColor="#fff"
+                        android:maxWidth="180dp"
+                        android:id="@+id/Owerno"
+                        android:textSize="19dp"
+                        android:layout_margin="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Address"
+                        android:maxWidth="180dp"
+                        android:textColor="#fff"
+                        android:id="@+id/Addresse"
+                        android:maxHeight="30dp"
+                        android:textSize="19dp"
+                        android:layout_margin="10dp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <Button
+                            android:layout_width="70dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_height="40dp"
+                            android:text="view"
+                            android:textSize="19dp"
+                            android:textColor="#fff"
+                            android:background="@drawable/textboxregister"
+                            android:textStyle="bold"
+                            android:id="@+id/viewOwnerDetails"/>
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="permit"
+                            android:textSize="19dp"
+                            android:textColor="#fff"
+                            android:background="@drawable/textboxregister"
+                            android:textStyle="bold"
+                            android:id="@+id/permitButton"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
 
         </LinearLayout>
 
@@ -118,5 +154,6 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 
 
 </androidx.cardview.widget.CardView>
+
 
 </LinearLayout>

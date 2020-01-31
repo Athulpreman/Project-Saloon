@@ -9,16 +9,14 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:background="@drawable/background_dark_blur"
-        android:gravity="center"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:gravity="center">
 
         <LinearLayout android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_margin="25dp"
             android:orientation="vertical"
             android:background="@drawable/bgregister"
-            android:gravity="center"
-            xmlns:android="http://schemas.android.com/apk/res/android">
+            android:gravity="center">
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -26,16 +24,17 @@
                 android:orientation="vertical"
                 android:layout_margin="15dp">
 
-                <Spinner  android:layout_width="match_parent"
+                <Spinner
+                    android:id="@+id/ownerAddSpinnerActivity"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textColor="#fff"
-                    android:paddingLeft="19dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:entries="@array/ShopActivities"
                     android:layout_marginTop="25dp"
+                    android:layout_marginRight="10dp"
                     android:background="@drawable/textboxregister"
-                    android:id="@+id/ownerAddSpinnerActivity"/>
+                    android:entries="@array/ShopActivities"
+                    android:paddingLeft="19dp"
+                    android:textColor="#fff" />
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"

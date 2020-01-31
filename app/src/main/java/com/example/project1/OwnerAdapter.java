@@ -1,6 +1,7 @@
 package com.example.project1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,8 +45,9 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
         return new OwnerViewHolder(view);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull OwnerViewHolder holder, final int position)
+    public void onBindViewHolder(@NonNull final OwnerViewHolder holder, final int position)
     {
         holder.t1.setText(owners.get(position).getOwnerName());
         holder.t2.setText(owners.get(position).getShopName());
@@ -84,6 +86,17 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
                 });
             }
         });
+        holder.viewOenerButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(v.getContext(),OwnerViewDetails_From_Cardview.class);
+                intent.putExtra("shopID",owners.get(position).getShopID());
+                v.getContext().startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -97,7 +110,7 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
     {
         TextView t1,t2,t3,t4,t5;
         ImageView imageView,imageView2;
-        Button button;
+        Button button,viewOenerButton;
 
         public OwnerViewHolder(@NonNull View ownerView) {
             super(ownerView);
@@ -109,6 +122,7 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
             imageView=(ImageView) ownerView.findViewById(R.id.cimg1);
             imageView2=(ImageView) ownerView.findViewById(R.id.cimg2);
             button=(Button)ownerView.findViewById(R.id.permitButton);
+            viewOenerButton=(Button)ownerView.findViewById(R.id.viewOwnerDetails);
 
         }
     }

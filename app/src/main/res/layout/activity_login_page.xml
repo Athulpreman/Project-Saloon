@@ -27,18 +27,20 @@
             android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_marginBottom="60dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:text="Signin with Mobile No."
-            android:textSize="16dp"
             android:textColor="#fff"
-            android:layout_marginLeft="30dp"/>
+            android:textSize="16dp" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:textColor="#fff"
             android:layout_marginLeft="20dp"
+            android:inputType="textPostalAddress"
             android:layout_marginRight="20dp"
             android:textSize="19dp"
             android:maxLength="10"

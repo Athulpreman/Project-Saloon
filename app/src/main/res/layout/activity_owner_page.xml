@@ -18,6 +18,14 @@
             android:textColor="#fff"
             android:id="@+id/OwnerPageAddActivityButton"
             android:background="@drawable/textboxregister"/>
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="130dp"
+            android:text="logout"
+            android:textColor="#fff"
+            android:layout_marginTop="15dp"
+            android:id="@+id/OwnerPageLogout"
+            android:background="@drawable/textboxregister"/>
 
     </LinearLayout>
 </LinearLayout>

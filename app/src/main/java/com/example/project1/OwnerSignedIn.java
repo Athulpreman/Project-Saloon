@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ public class OwnerSignedIn extends AppCompatActivity
     Spinner Activity;
     Button Submit;
     String sActivity,sAmount,sTime;
+
     OwnerAdd ownerAdd;
     DatabaseReference reference,ref;
     String shopID1;
@@ -37,6 +39,9 @@ public class OwnerSignedIn extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_signed_in);
 
+        SharedPreferences sharedPreferences=getSharedPreferences("OwnerLogin",MODE_PRIVATE);
+        shopID1=sharedPreferences.getString("shopID",null);
+
         ownerAdd=new OwnerAdd();
 
         Activity=(Spinner)findViewById(R.id.ownerAddSpinnerActivity);
@@ -44,9 +49,6 @@ public class OwnerSignedIn extends AppCompatActivity
         Time=(EditText)findViewById(R.id.ownerAddTime);
 
         Submit=(Button)findViewById(R.id.OwnerAddSubmitButton);
-
-        Intent intent=getIntent();
-        shopID1=intent.getStringExtra("shopID");
 
         reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners").child(shopID1);
         Submit.setOnClickListener(new View.OnClickListener()

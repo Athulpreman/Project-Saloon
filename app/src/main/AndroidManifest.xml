@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/hair"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OwnerPage"></activity>
+        <activity android:name=".OwnerViewDetails_From_Cardview"></activity>
+        <activity android:name=".OwnerPage" />
         <activity android:name=".OwnerSignedIn" />
         <activity android:name=".OwnerPermissionCheck" />
         <activity android:name=".AdminCheckNewShopAcceptance" />

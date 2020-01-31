@@ -1,0 +1,204 @@
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/bg4"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/background_dark_blur"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:text="Owner Details"
+                android:layout_margin="30dp"/>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="25dp"
+                android:stretchColumns="1"
+                android:gravity="center">
+
+                <TableRow android:layout_marginBottom="15dp">
+                    <TextView android:text="Shop ID"
+                        android:textColor="#fff"
+                        android:layout_marginRight="20dp"
+                        android:textSize="18dp"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:inputType="none"
+                        android:textSize="19dp"
+                        android:editable="false"
+                        android:background="@drawable/textboxregister"
+                        android:padding="11dp"
+                        android:id="@+id/showShopID"/>
+                </TableRow>
+                <TableRow android:layout_marginBottom="15dp">
+                    <TextView android:text="Owner Name"
+                        android:textColor="#fff"
+                        android:layout_marginRight="20dp"
+                        android:textSize="18dp"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:clickable="false"
+                        android:textSize="19dp"
+                        android:editable="false"
+                        android:inputType="none"
+                        android:background="@drawable/textboxregister"
+                        android:padding="11dp"
+                        android:id="@+id/showOwnerName"/>
+                </TableRow>
+                <TableRow android:layout_marginBottom="15dp">
+                    <TextView android:text="Owner Mobile"
+                        android:textColor="#fff"
+                        android:layout_marginRight="20dp"
+                        android:textSize="18dp"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:textSize="19dp"
+                        android:editable="false"
+                        android:inputType="none"
+                        android:background="@drawable/textboxregister"
+                        android:padding="11dp"
+                        android:id="@+id/showOwnerMobile"/>
+                </TableRow>
+                <TableRow android:layout_marginBottom="15dp">
+                    <TextView android:text="Shop Name"
+                        android:textColor="#fff"
+                        android:layout_marginRight="20dp"
+                        android:textSize="18dp"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:textSize="19dp"
+                        android:editable="false"
+                        android:inputType="none"
+                        android:background="@drawable/textboxregister"
+                        android:padding="11dp"
+                        android:id="@+id/showshopName"/>
+                </TableRow>
+                <TableRow android:layout_marginBottom="15dp">
+                    <TextView android:text="Shop Address"
+                        android:textColor="#fff"
+                        android:layout_marginRight="20dp"
+                        android:textSize="18dp"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:lines="4"
+                        android:maxLines="4"
+                        android:textColor="#FFF"
+                        android:inputType="none"
+                        android:padding="11dp"
+                        android:background="@drawable/textboxregister"
+                        android:id="@+id/showAddress"/>
+                </TableRow>
+                <TableRow android:layout_marginBottom="15dp">
+                    <TextView android:text="Emp Name"
+                        android:textColor="#fff"
+                        android:layout_marginRight="20dp"
+                        android:textSize="18dp"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:textSize="19dp"
+                        android:editable="false"
+                        android:inputType="none"
+                        android:background="@drawable/textboxregister"
+                        android:padding="11dp"
+                        android:id="@+id/showEmpName"/>
+                </TableRow>
+                <TableRow android:layout_marginBottom="15dp">
+                    <TextView android:text="Emp Mobile"
+                        android:textColor="#fff"
+                        android:layout_marginRight="20dp"
+                        android:textSize="18dp"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:textSize="19dp"
+                        android:editable="false"
+                        android:inputType="none"
+                        android:background="@drawable/textboxregister"
+                        android:padding="11dp"
+                        android:id="@+id/showEmpMobile"/>
+                </TableRow>
+
+            </TableLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView android:layout_height="100dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="100dp"
+                    android:src="@drawable/hair"
+                    android:id="@+id/img1"/>
+                <ImageView android:layout_height="100dp"
+                    android:layout_marginLeft="17dp"
+                    android:layout_width="100dp"
+                    android:src="@drawable/hair"
+                    android:id="@+id/img2"/>
+                <ImageView android:layout_height="100dp"
+                    android:layout_width="100dp"
+                    android:layout_marginLeft="17dp"
+                    android:src="@drawable/hair"
+                    android:id="@+id/img3"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="30dp"
+                android:gravity="center">
+                <Button android:text="Grant permission"
+                    android:layout_height="70dp"
+                    android:layout_width="140dp"
+                    android:id="@+id/ownerViewGrantPermisssionButton"
+                    android:background="@drawable/textboxregister"
+                    android:textSize="20dp"
+                    android:layout_margin="20dp"
+                    android:textColor="#fff"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
