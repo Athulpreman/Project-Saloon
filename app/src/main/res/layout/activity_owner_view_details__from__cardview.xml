@@ -114,6 +114,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:lines="4"
+                        android:editable="false"
                         android:maxLines="4"
                         android:textColor="#FFF"
                         android:inputType="none"

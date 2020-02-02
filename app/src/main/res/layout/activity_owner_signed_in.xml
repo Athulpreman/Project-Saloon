@@ -71,6 +71,7 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:src="@drawable/hair"
+                        android:id="@+id/ownerShowSelectedImg"
                         android:layout_marginTop="15dp"/>
                     <Button
                         android:layout_width="120dp"
@@ -79,9 +80,24 @@
                         android:background="@drawable/bgregister"
                         android:layout_marginRight="15dp"
                         android:layout_marginLeft="40dp"
+                        android:id="@+id/ownerBrowseImg"
                         android:textColor="#fff"
                        />
                 </LinearLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textColor="#fff"
+                    android:hint="Model Name"
+                    android:maxLines="1"
+                    android:textColorHint="#fff"
+                    android:paddingLeft="19dp"
+                    android:inputType="textPostalAddress"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/textboxregister"
+                    android:id="@+id/ownerModelName" />
                 <Button android:layout_height="40dp"
                     android:layout_width="match_parent"
                     android:background="@drawable/bgregister"

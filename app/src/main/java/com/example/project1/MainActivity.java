@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.wifi.hotspot2.pps.HomeSp;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     Toast backToast;
     DatabaseReference reference;
     Customer customer;
+    private static int timout=4000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,16 @@ public class MainActivity extends AppCompatActivity
             Intent intent=new Intent(getApplicationContext(),OwnerPage.class);
             startActivity(intent);
         }
+       /* new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run()
+            {
+                Intent homeintent=new Intent(getApplicationContext(), EntryToApp.class);
+                startActivity(homeintent);,
+                finish();
+            }
+        },timout);*/
+
 
         blogin=(Button)findViewById(R.id.loginButtonlogin);
         gotosignup=(Button)findViewById(R.id.signinSignupButton);

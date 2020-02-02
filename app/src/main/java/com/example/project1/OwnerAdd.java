@@ -1,18 +1,21 @@
 package com.example.project1;
 
-public class OwnerAdd
+import java.io.Serializable;
+
+public class OwnerAdd implements Serializable
 {
-    String Price,Activity,Time;
+    String Price,Activity,Time,ModelImg,ModelName;
 
     public OwnerAdd()
     {
     }
 
-    public OwnerAdd(String price, String activity, String time)
-    {
+    public OwnerAdd(String price, String activity, String time, String modelImg, String modelName) {
         Price = price;
         Activity = activity;
         Time = time;
+        ModelImg = modelImg;
+        ModelName = modelName;
     }
 
     public String getPrice() {
@@ -37,5 +40,21 @@ public class OwnerAdd
 
     public void setTime(String time) {
         Time = time;
+    }
+
+    public String getModelImg() {
+        return ModelImg;
+    }
+
+    public void setModelImg(String modelImg) {
+        ModelImg = modelImg;
+    }
+
+    public String getModelName() {
+        return ModelName;
+    }
+
+    public void setModelName(String modelName) {
+        ModelName = modelName;
     }
 }

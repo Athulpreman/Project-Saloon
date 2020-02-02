@@ -1,24 +1,123 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/bg4"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout android:layout_height="match_parent"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
-        android:background="@drawable/background_dark_blur"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:background="@drawable/background_dark_blur">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logout"
-            android:background="@drawable/bgregister"
-            android:textColor="#fff"
-            android:id="@+id/CustomerSignedInLogoutButton"/>
+        <ScrollView android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <LinearLayout android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+
+                <LinearLayout android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    xmlns:android="http://schemas.android.com/apk/res/android">
+
+                    <ScrollView android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layoutDirection="ltr"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        android:layout_centerHorizontal="true"
+                        xmlns:android="http://schemas.android.com/apk/res/android">
+                        <HorizontalScrollView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layoutDirection="inherit">
+                                <Button
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="166dp"
+                                    android:background="#000000"
+                                    android:text="sign up"
+                                    android:textColor="#fff"/>
+                                <Button
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="166dp"
+                                    android:background="#BFDDC9C9"
+                                    android:text="login"
+                                    android:textColor="#fff"/>
+                                <Button
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="166dp"
+                                    android:background="#000000"
+                                    android:text="sign up"
+                                    android:textColor="#fff"/>
+                                <Button
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="166dp"
+                                    android:background="#000000"
+                                    android:text="sign up"
+                                    android:textColor="#fff"/>
+                                <Button
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="166dp"
+                                    android:background="#000000"
+                                    android:text="sign up"
+                                    android:textColor="#fff"/>
+                                <Button
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="166dp"
+                                    android:background="#000000"
+                                    android:text="sign up"
+                                    android:textColor="#fff"/>
+
+                            </LinearLayout>
+                        </HorizontalScrollView>
+                    </ScrollView>
+
+                </LinearLayout>
+
+
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rvCustomerHome"/>
+
+
+
+
+
+                <LinearLayout android:layout_height="60dp"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:baselineAligned="true"
+                    xmlns:android="http://schemas.android.com/apk/res/android">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Logout"
+                        android:background="@drawable/bgregister"
+                        android:textColor="#fff"
+                        android:id="@+id/CustomerSignedInLogoutButton"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
 
     </LinearLayout>
 
