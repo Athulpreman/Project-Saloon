@@ -1,7 +1,8 @@
-<androidx.cardview.widget.CardView android:layout_height="190dp"
-    android:layout_width="120dp"
+<androidx.cardview.widget.CardView android:layout_height="210dp"
+    android:layout_width="116dp"
+   android:layout_margin="40dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="30dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout

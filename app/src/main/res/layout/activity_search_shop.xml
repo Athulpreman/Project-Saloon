@@ -4,32 +4,62 @@
     android:background="@drawable/bg3"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:textColor="#fff"
-        android:text="Search Shop"
-        android:textStyle="bold"
-        android:textSize="40dp"
-        android:gravity="center"/>
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:stretchColumns="1">
-        <TableRow>
-            <TextView android:text="Enter Area"
-                android:textSize="20dp"
-                android:textColor="#fff"
-                android:layout_margin="35dp"/>
-            <EditText android:textSize="19dp"
-                android:layout_height="40dp"
-                android:textColor="#fff"
-                android:paddingLeft="17dp"
-               android:layout_marginRight="20dp"
-                android:background="@drawable/textboxround"
-                android:layout_marginTop="33dp"/>
-        </TableRow>
-    </TableLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@drawable/background_dark_blur"
+       android:orientation="vertical"
+       android:gravity="center">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="20dp"
+           android:background="@drawable/textboxregister"
+           android:orientation="vertical"
+           android:gravity="center">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textColor="#fff"
+               android:text="Search Shop"
+               android:textStyle="bold"
+               android:textSize="40dp"
+               android:gravity="center"/>
+           <TableLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:layout_margin="25dp"
+               android:stretchColumns="1">
+               <TableRow>
+                   <TextView android:text="Pick Service"
+                       android:textSize="20dp"
+                       android:layout_marginRight="10dp"
+                       android:textColor="#fff" />
+                   <Spinner android:textSize="19dp"
+                       android:layout_height="40dp"
+                       android:textColor="#fff"
+                       android:entries="@array/ShopActivities"
+                       android:paddingLeft="17dp"
+                       android:background="@drawable/textbox"
+                       />
+               </TableRow >
+               <TableRow android:layout_marginTop="17dp">
+                   <TextView android:text="Shop"
+                       android:textSize="20dp"
+                       android:textColor="#fff" />
+                   <Spinner android:textSize="19dp"
+                       android:layout_height="40dp"
+                       android:textColor="#fff"
+                       android:entries="@array/ShopActivities"
+                       android:paddingLeft="17dp"
+                       android:background="@drawable/textbox" />
+               </TableRow>
+           </TableLayout>
+
+       </LinearLayout>
+
+   </LinearLayout>
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.example.project1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,6 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
         return new OwnerViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull final OwnerViewHolder holder, final int position)
     {
@@ -60,32 +60,7 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
         reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners");
 
 
-        holder.button.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Query query=reference.orderByChild("shopID").equalTo(owners.get(position).getShopID());
-                query.addListenerForSingleValueEvent(new ValueEventListener()
-                {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                    {
-                        for (DataSnapshot snapshot:dataSnapshot.getChildren())
-                        {
-                            snapshot.getRef().child("status").setValue(true);
-                            Toast.makeText(context, owners.get(position).getShopID()+" Has accepted", Toast.LENGTH_SHORT).show();
-                        }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError)
-                    {
-                        Toast.makeText(context, "Error....!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
         holder.viewOenerButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -110,7 +85,7 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
     {
         TextView t1,t2,t3,t4,t5;
         ImageView imageView,imageView2;
-        Button button,viewOenerButton;
+        Button viewOenerButton;
 
         public OwnerViewHolder(@NonNull View ownerView) {
             super(ownerView);
@@ -121,7 +96,6 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
             t5=(TextView)ownerView.findViewById(R.id.Addresse);
             imageView=(ImageView) ownerView.findViewById(R.id.cimg1);
             imageView2=(ImageView) ownerView.findViewById(R.id.cimg2);
-            button=(Button)ownerView.findViewById(R.id.permitButton);
             viewOenerButton=(Button)ownerView.findViewById(R.id.viewOwnerDetails);
 
         }

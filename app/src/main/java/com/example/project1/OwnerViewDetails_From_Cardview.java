@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,7 +56,7 @@ public class OwnerViewDetails_From_Cardview extends AppCompatActivity
         iimg2=(ImageView)findViewById(R.id.img2);
         iimg3=(ImageView)findViewById(R.id.img3);
 
-        reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners");
+        reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
         owner=new Owner();
 
         Query query=reference.orderByChild("shopID").equalTo(sShopID);
@@ -101,7 +102,7 @@ public class OwnerViewDetails_From_Cardview extends AppCompatActivity
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
                         for (DataSnapshot snapshot:dataSnapshot.getChildren())
-                        {
+                        {   Log.d("cccc","for");
                             snapshot.getRef().child("status").setValue(true);
                             Toast.makeText(getApplicationContext(), owner.getShopID()+" Has accepted", Toast.LENGTH_SHORT).show();
                         }
@@ -116,5 +117,11 @@ public class OwnerViewDetails_From_Cardview extends AppCompatActivity
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(getApplicationContext(),AdminCheckNewShopAcceptance.class);
+        startActivity(intent);
     }
 }

@@ -35,7 +35,7 @@ public class RegisterPage extends AppCompatActivity
     ImageView iimg1,iimg2,iimg3;
     Button signup;
     TextView gotologin;
-    DatabaseReference reference,ref;
+    DatabaseReference referencee,ref;
     Owner owner;
 
     @Override
@@ -60,7 +60,7 @@ public class RegisterPage extends AppCompatActivity
 
         signup=(Button)findViewById(R.id.registerSignupButton);
 
-        reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners");
+        referencee= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
         owner=new Owner();
 
         gotologin.setOnClickListener(new View.OnClickListener()
@@ -140,13 +140,13 @@ public class RegisterPage extends AppCompatActivity
                 }
                 else
                 {
-                    final Query query=reference.orderByChild("shopID").equalTo(sShopID);
+                    final Query query=referencee.orderByChild("shopID").equalTo(sShopID);
                     query.addListenerForSingleValueEvent(new ValueEventListener()
                     {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                         {
-                            ref=reference.orderByChild("shopID").equalTo(sShopID).getRef();
+                            ref=referencee.orderByChild("shopID").equalTo(sShopID).getRef();
 
                             if (dataSnapshot.exists())
                             {
@@ -166,7 +166,7 @@ public class RegisterPage extends AppCompatActivity
                                 owner.setImage2(sImage2);
                                 owner.setImage3(sImage3);
 
-                                ref=FirebaseDatabase.getInstance().getReference().child("Shop_Owners").child(sShopID);
+                                ref=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(sShopID);
 
                                 ref.setValue(owner).addOnSuccessListener(new OnSuccessListener<Void>()
                                 {

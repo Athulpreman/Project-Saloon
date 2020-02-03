@@ -36,7 +36,7 @@ public class LoginPage extends AppCompatActivity
 
         Login=(Button)findViewById(R.id.loginSignInButton);
         register=(TextView)findViewById(R.id.loginRegisterTextView);
-        reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners");
+        reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
 
         owner=new Owner();
 
@@ -129,5 +129,13 @@ public class LoginPage extends AppCompatActivity
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

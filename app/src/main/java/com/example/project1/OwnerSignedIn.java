@@ -63,7 +63,7 @@ public class OwnerSignedIn extends AppCompatActivity
 
         iimg=(ImageView) findViewById(R.id.ownerShowSelectedImg);
 
-        reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners").child(shopID1);
+        reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID1);
         AddImg.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -118,8 +118,8 @@ public class OwnerSignedIn extends AppCompatActivity
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                             {
-                                ref= FirebaseDatabase.getInstance().getReference().child("Shop_Owners").child(shopID1).child("Activity").child(sActivity);
-                                ref.setValue(ownerAdd).addOnSuccessListener(new OnSuccessListener<Void>()
+                                ref= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID1).child("Activity");
+                                ref.push().setValue(ownerAdd).addOnSuccessListener(new OnSuccessListener<Void>()
                                 {
                                     @Override
                                     public void onSuccess(Void aVoid)

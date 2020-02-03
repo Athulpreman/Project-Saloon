@@ -24,7 +24,6 @@ public class AdminCheckNewShopAcceptance extends AppCompatActivity
     OwnerAdapter adapter;
     ArrayList<Owner> list;
 
-    List<Owner> itemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,7 +37,7 @@ public class AdminCheckNewShopAcceptance extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list=new ArrayList<Owner>();
 
-        refee= FirebaseDatabase.getInstance().getReference().child("Shop_Owners");
+        refee= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
         refee.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)

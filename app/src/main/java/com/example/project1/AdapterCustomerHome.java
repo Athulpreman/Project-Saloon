@@ -2,6 +2,7 @@ package com.example.project1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,40 +27,41 @@ import java.util.ArrayList;
 public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHome.CustomerViewHolder>
 {
     private ValueEventListener mCtx;
-    private ArrayList<OwnerAdd> ownerAdds;
+    private ArrayList<OwnerAdd> list;
     Context context;
     DatabaseReference reference;
 
     AdapterCustomerHome(Context context, ArrayList<OwnerAdd> itemList)
     {
+
         this.context = context;
-        ownerAdds = itemList;
+        list = itemList;
+
     }
 
     @NonNull
     @Override
     public AdapterCustomerHome.CustomerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        LayoutInflater layoutInflater=LayoutInflater.from((Context) context);
+        LayoutInflater layoutInflater=LayoutInflater.from(context);
         View view=layoutInflater.inflate(R.layout.cardview_customer_home,null);
         return new AdapterCustomerHome.CustomerViewHolder(view);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull final AdapterCustomerHome.CustomerViewHolder holder, final int position)
+    public void onBindViewHolder(@NonNull  final CustomerViewHolder holder, final int position)
     {
-        holder.t1.setText(ownerAdds.get(position).getPrice());
-        holder.t2.setText(ownerAdds.get(position).getModelName());
-        Picasso.with(context).load(ownerAdds.get(position).getModelImg()).into(holder.imageView);
-
+        holder.t1.setText(list.get(position).getPrice());
+        holder.t2.setText(list.get(position).getModelName());
+        Picasso.with(context).load(list.get(position).getModelImg()).into(holder.imageView);
     }
 
     @Override
     public int getItemCount()
-
     {
-        return ownerAdds.size();
+        Log.d("sizelist", String.valueOf(list.size()));
+        return list.size();
     }
 
     class CustomerViewHolder extends RecyclerView.ViewHolder
@@ -68,12 +70,13 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
         ImageView imageView;
 
 
-        public CustomerViewHolder(@NonNull View ownerView) {
+        public CustomerViewHolder(@NonNull View ownerView)
+        {
             super(ownerView);
-            t1=(TextView) ownerView.findViewById(R.id.OwnerName);
-            t2=(TextView)ownerView.findViewById(R.id.ShopNamee);
 
-            imageView=(ImageView) ownerView.findViewById(R.id.cimg1);
+            t1=(TextView) ownerView.findViewById(R.id.price);
+            t2=(TextView)ownerView.findViewById(R.id.StyleName);
+            imageView=(ImageView) ownerView.findViewById(R.id.Imgg);
 
         }
     }

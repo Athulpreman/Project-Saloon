@@ -2,7 +2,7 @@ package com.example.project1;
 
 import java.io.Serializable;
 
-public class OwnerAdd implements Serializable
+public class OwnerAdd
 {
     String Price,Activity,Time,ModelImg,ModelName;
 
