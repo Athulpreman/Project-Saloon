@@ -1,7 +1,7 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg3"
+    android:background="@drawable/bg4"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -40,7 +40,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:inputType="date"
+                android:inputType="none"
+                android:editable="false"
                 android:id="@+id/getDate"
                 android:paddingEnd="15dp"
                 android:paddingRight="15dp"
@@ -55,15 +56,14 @@
                 android:textColor="#fff"
                 android:textSize="18dp"
                 android:layout_marginTop="40dp"/>
-            <EditText
+            <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:inputType="time"
                 android:id="@+id/getTime"
                 android:textColor="#fff"
+                android:entries="@array/shoptimeselection"
                 android:paddingRight="15dp"
                 android:paddingEnd="15dp"
-                android:drawableRight="@drawable/time"
                 android:background="@drawable/textboxregister"
                 android:textSize="20dp"/>
             <TableLayout

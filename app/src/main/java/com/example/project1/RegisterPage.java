@@ -146,7 +146,7 @@ public class RegisterPage extends AppCompatActivity
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                         {
-                            ref=referencee.orderByChild("shopID").equalTo(sShopID).getRef();
+                            //ref=referencee.orderByChild("shopID").equalTo(sShopID).getRef();
 
                             if (dataSnapshot.exists())
                             {

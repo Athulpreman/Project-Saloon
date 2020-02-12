@@ -9,16 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -57,7 +53,7 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
         Picasso.with(context).load(owners.get(position).getImage1()).into(holder.imageView);
         Picasso.with(context).load(owners.get(position).getImage3()).into(holder.imageView2);
 
-        reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners");
+       // reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners");
 
 
 

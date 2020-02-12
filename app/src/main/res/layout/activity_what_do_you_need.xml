@@ -1,123 +1,132 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg3"
+    android:background="@drawable/bg4"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="What do you need..??"
-        android:textSize="40dp"
-        android:textColor="#fff"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_margin="40dp"/>
-    <TableLayout
-        android:layout_margin="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="vertical"
+        android:background="@drawable/background_dark_blur"
+        android:layout_height="match_parent">
 
-        <TableRow>
-            <TextView android:text="Face"
-                android:textColor="#fff"
-                android:textSize="22dp"/>
-        </TableRow>
-        <TableRow>
-            <TextView />
-            <CheckBox android:id="@+id/facetrim"
-                android:theme="@style/checkbobColor"
-                android:button="@drawable/checkbox_unchecked"
-                android:textColor="#fff"/>
-            <TextView android:text="Mustache Trim"
-                android:textSize="18dp"
-                android:textColor="#fff"/>
-        </TableRow>
-        <TableRow>
-            <TextView />
-            <CheckBox android:id="@+id/faceshapping"
-                android:button="@drawable/checkbox_unchecked"/>
-            <TextView android:text="Beard Shapping"
-                android:textColor="#fff"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow>
-            <TextView />
-            <CheckBox android:id="@+id/faceshaving"
-                android:button="@drawable/checkbox_unchecked"/>
-            <TextView android:text="Hot Shave"
-                android:textColor="#fff"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow>
-            <TextView android:text="Hair"
-                android:textColor="#fff"
-                android:textSize="22dp"/>
-        </TableRow>
-        <TableRow>
-            <TextView />
-            <CheckBox android:id="@+id/hairtrim"
-                android:button="@drawable/checkbox_unchecked"
-                android:layout_marginRight="8dp" />
-            <TextView android:text="Hair Trim"
-                android:textColor="#fff"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow>
-            <TextView />
-            <CheckBox android:id="@+id/hairshapping"
-                android:button="@drawable/checkbox_unchecked"/>
-            <TextView android:text="Hair Shapping"
-                android:textColor="#fff"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow>
-            <TextView />
-            <CheckBox android:id="@+id/hairshaving"
-                android:button="@drawable/checkbox_unchecked"/>
-            <TextView android:text="Hair Shave"
-                android:textColor="#fff"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow>
-            <TextView android:text="Body"
-                android:textColor="#fff"
-                android:textSize="22dp"/>
-        </TableRow>
-        <TableRow>
-            <TextView />
-            <CheckBox android:id="@+id/bodytrim"
-                android:button="@drawable/checkbox_unchecked"/>
-            <TextView android:text="Mustache Trim"
-                android:textColor="#fff"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow>
-            <TextView />
-            <CheckBox android:id="@+id/bodyshapping"
-                android:button="@drawable/checkbox_unchecked"/>
-            <TextView android:text="Beard Shapping"
-                android:textColor="#fff"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow>
-            <TextView />
-            <CheckBox android:id="@+id/bodyshaving"
-                android:button="@drawable/checkbox_unchecked"/>
-            <TextView android:text="Hot Shave"
-                android:textColor="#fff"
-                android:textSize="18dp"/>
-        </TableRow>
 
-    </TableLayout>
-    <Button
-        android:layout_width="120dp"
-        android:textSize="19dp"
-        android:textColor="#fff"
-        android:background="@drawable/textboxround"
-        android:text="Next"
-        android:layout_marginLeft="262dp"
-        android:layout_marginTop="80dp"
-        android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="What do you need..??"
+            android:textSize="40dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_margin="40dp"/>
+        <TableLayout
+            android:layout_margin="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <TableRow>
+                <TextView android:text="Face"
+                    android:textColor="#fff"
+                    android:textSize="22dp"/>
+            </TableRow>
+            <TableRow>
+                <TextView />
+                <CheckBox android:id="@+id/facetrim"
+                    android:theme="@style/checkbobColor"
+                    android:button="@drawable/checkbox_unchecked"
+                    android:textColor="#fff"/>
+                <TextView android:text="Mustache Trim"
+                    android:textSize="18dp"
+                    android:textColor="#fff"/>
+            </TableRow>
+            <TableRow>
+                <TextView />
+                <CheckBox android:id="@+id/faceshapping"
+                    android:button="@drawable/checkbox_unchecked"/>
+                <TextView android:text="Beard Shapping"
+                    android:textColor="#fff"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow>
+                <TextView />
+                <CheckBox android:id="@+id/faceshaving"
+                    android:button="@drawable/checkbox_unchecked"/>
+                <TextView android:text="Hot Shave"
+                    android:textColor="#fff"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow>
+                <TextView android:text="Hair"
+                    android:textColor="#fff"
+                    android:textSize="22dp"/>
+            </TableRow>
+            <TableRow>
+                <TextView />
+                <CheckBox android:id="@+id/hairtrim"
+                    android:button="@drawable/checkbox_unchecked"
+                    android:layout_marginRight="8dp" />
+                <TextView android:text="Hair Trim"
+                    android:textColor="#fff"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow>
+                <TextView />
+                <CheckBox android:id="@+id/hairshapping"
+                    android:button="@drawable/checkbox_unchecked"/>
+                <TextView android:text="Hair Shapping"
+                    android:textColor="#fff"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow>
+                <TextView />
+                <CheckBox android:id="@+id/hairshaving"
+                    android:button="@drawable/checkbox_unchecked"/>
+                <TextView android:text="Hair Shave"
+                    android:textColor="#fff"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow>
+                <TextView android:text="Body"
+                    android:textColor="#fff"
+                    android:textSize="22dp"/>
+            </TableRow>
+            <TableRow>
+                <TextView />
+                <CheckBox android:id="@+id/bodytrim"
+                    android:button="@drawable/checkbox_unchecked"/>
+                <TextView android:text="Mustache Trim"
+                    android:textColor="#fff"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow>
+                <TextView />
+                <CheckBox android:id="@+id/bodyshapping"
+                    android:button="@drawable/checkbox_unchecked"/>
+                <TextView android:text="Beard Shapping"
+                    android:textColor="#fff"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow>
+                <TextView />
+                <CheckBox android:id="@+id/bodyshaving"
+                    android:button="@drawable/checkbox_unchecked"/>
+                <TextView android:text="Hot Shave"
+                    android:textColor="#fff"
+                    android:textSize="18dp"/>
+            </TableRow>
+
+        </TableLayout>
+        <Button
+            android:layout_width="120dp"
+            android:textSize="19dp"
+            android:textColor="#fff"
+            android:background="@drawable/textboxround"
+            android:text="Next"
+            android:layout_marginLeft="262dp"
+            android:layout_marginTop="80dp"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
 </LinearLayout>

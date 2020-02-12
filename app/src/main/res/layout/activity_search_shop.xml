@@ -1,7 +1,7 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg3"
+    android:background="@drawable/bg4"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
    <LinearLayout
@@ -58,8 +58,19 @@
                        android:background="@drawable/textbox" />
                </TableRow>
            </TableLayout>
+           <TableLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:layout_margin="25dp">
+
+
+
+           </TableLayout>
 
        </LinearLayout>
+
+
 
    </LinearLayout>
 </LinearLayout>

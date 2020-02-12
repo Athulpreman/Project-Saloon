@@ -30,7 +30,10 @@
         <activity android:name=".RegisterPage" />
         <activity android:name=".LoginPage" />
         <activity android:name=".WhatDoYouNeed" />
-        <activity android:name=".BookAppoinment" />
+        <activity android:name=".BookAppoinment">
+
+
+        </activity>
         <activity android:name=".ShopDetails" />
         <activity android:name=".SearchShop" />
         <activity android:name=".MainActivity">
@@ -39,6 +42,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

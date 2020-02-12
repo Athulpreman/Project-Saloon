@@ -1,10 +1,27 @@
 <resources>
     <string name="app_name">Project1</string>
     <string-array name="ShopActivities">
-        <item>Hair Dressing</item>0
-        <item>Skin Care</item>
+        <item>Hair Trim</item>0
+        <item>Hair Shape</item>
+        <item>Hair Shave</item>
+        <item>Mustache Trim</item>
+        <item>Beard Shapping</item>
+        <item>Hot Shave</item>
         <item>Body Care</item>
-        <item>Hair Care</item>
+        <item>Body Massage</item>
 
     </string-array>
+
+    <string-array name="shoptimeselection">
+        <item>10am - 11am</item>
+        <item>11am - 12pm</item>
+        <item>12pm - 1pm</item>
+        <item>2pm - 3pm</item>
+        <item>3pm - 4pm</item>
+        <item>5pm - 6pm</item>
+        <item>6pm - 7pm</item>
+        <item>7pm - 8pm</item>
+
+    </string-array>
+
 </resources>
