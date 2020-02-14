@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -55,12 +56,21 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
         holder.t1.setText(list.get(position).getPrice());
         holder.t2.setText(list.get(position).getModelName());
         Picasso.with(context).load(list.get(position).getModelImg()).into(holder.imageView);
+        holder.cardView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(v.getContext(),BookAppoinment.class);
+                v.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @Override
     public int getItemCount()
     {
-        Log.d("sizelist", String.valueOf(list.size()));
         return list.size();
     }
 
@@ -68,6 +78,7 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
     {
         TextView t1,t2;
         ImageView imageView;
+        CardView cardView;
 
 
         public CustomerViewHolder(@NonNull View ownerView)
@@ -77,8 +88,16 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
             t1=(TextView) ownerView.findViewById(R.id.price);
             t2=(TextView)ownerView.findViewById(R.id.StyleName);
             imageView=(ImageView) ownerView.findViewById(R.id.Imgg);
+            cardView=(CardView)ownerView.findViewById(R.id.CustomerCard);
+
 
         }
+
+      /* public void OnClickListener(View.OnClickListener onClickListener)
+        {
+            Intent intent=new Intent(.getContext(),BookAppoinment.class);
+            v.getContext().startActivity(intent);
+        }*/
     }
 
 }

@@ -4,18 +4,19 @@ import java.io.Serializable;
 
 public class OwnerAdd
 {
-    String Price,Activity,Time,ModelImg,ModelName;
+    String Price,Activity,Time,ModelImg,ModelName,ShopID;
 
     public OwnerAdd()
     {
     }
 
-    public OwnerAdd(String price, String activity, String time, String modelImg, String modelName) {
+    public OwnerAdd(String price, String activity, String time, String modelImg, String modelName, String shopID) {
         Price = price;
         Activity = activity;
         Time = time;
         ModelImg = modelImg;
         ModelName = modelName;
+        ShopID = shopID;
     }
 
     public String getPrice() {
@@ -56,5 +57,13 @@ public class OwnerAdd
 
     public void setModelName(String modelName) {
         ModelName = modelName;
+    }
+
+    public String getShopID() {
+        return ShopID;
+    }
+
+    public void setShopID(String shopID) {
+        ShopID = shopID;
     }
 }

@@ -30,4 +30,11 @@ public class AdminPage extends AppCompatActivity
             }
         });
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent=new Intent(getApplicationContext(),LoginPage.class);
+        startActivity(intent);
+    }
 }

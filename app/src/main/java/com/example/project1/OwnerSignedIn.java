@@ -33,7 +33,7 @@ public class OwnerSignedIn extends AppCompatActivity
     EditText Amount,Time,ModelName;
     Spinner Activity;
     Button Submit,AddImg;
-    String sActivity,sAmount,sTime,sModelName,sModelImage;
+    String sActivity,sAmount,sTime,sModelName,sModelImage,sShopId;
     ImageView iimg;
 
     OwnerAdd ownerAdd;
@@ -52,8 +52,10 @@ public class OwnerSignedIn extends AppCompatActivity
         shopID1=sharedPreferences.getString("shopID",null);
 
         ownerAdd=new OwnerAdd();
+        SharedPreferences sharedPreference=getSharedPreferences("OwnerLogin",MODE_PRIVATE);
+        sShopId=sharedPreference.getString("shopID",null);
 
-        Activity=(Spinner)findViewById(R.id.ownerAddSpinnerActivity);
+            Activity=(Spinner)findViewById(R.id.ownerAddSpinnerActivity);
         Amount=(EditText)findViewById(R.id.ownerAddAmount);
         Time=(EditText)findViewById(R.id.ownerAddTime);
         ModelName=(EditText)findViewById(R.id.ownerModelName);
@@ -112,6 +114,7 @@ public class OwnerSignedIn extends AppCompatActivity
                         ownerAdd.setTime(sTime);
                         ownerAdd.setModelName(sModelName);
                         ownerAdd.setModelImg(sModelImage);
+                        ownerAdd.setShopID(sShopId);
 
                         query=reference.orderByChild("shopID").equalTo(shopID1);
                         query.addListenerForSingleValueEvent(new ValueEventListener() {

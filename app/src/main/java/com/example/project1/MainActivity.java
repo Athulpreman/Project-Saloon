@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         String value=sharedPreferences.getString("MobNo",null);
         if (value!=null)
         {
-            Intent intent=new Intent(getApplicationContext(),CustomerSignedIn.class);
+            Intent intent=new Intent(getApplicationContext(),CustomerSignedIn1.class);
             startActivity(intent);
         }
 
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity
 
 
                                         Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), CustomerSignedIn.class);
+                                        Intent intent = new Intent(getApplicationContext(), CustomerSignedIn1.class);
                                         startActivity(intent);
 
                                         ephoneNo.setText("");
@@ -165,11 +165,9 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-        tforgotPass.setOnClickListener(new View.OnClickListener()
-        {
+        tforgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
 
             }
         });

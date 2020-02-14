@@ -1,0 +1,59 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="60dp"
+                android:id="@+id/home"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="20dp"
+                android:paddingRight="10dp"
+                android:background="@drawable/home"
+                android:layout_height="match_parent"/>
+            <Button
+                android:layout_width="60dp"
+                android:id="@+id/search"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="12dp"
+                android:background="@drawable/search"
+                android:layout_height="match_parent"/>
+            <Button
+                android:layout_width="60dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/catagory"
+                android:background="@drawable/catagory"
+                android:layout_height="match_parent"/>
+            <Button
+                android:layout_width="60dp"
+                android:id="@+id/cart"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/cart"
+                android:layout_height="match_parent"/>
+            <Button
+                android:layout_width="60dp"
+                android:id="@+id/account"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="12dp"
+                android:background="@drawable/account"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

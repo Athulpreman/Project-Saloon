@@ -1,8 +1,8 @@
 package com.example.project1;
 
-import java.io.Serializable;
 
-public class CgetOwner implements Serializable
+
+public class CgetOwner
 {
     String OwnerName;
 
