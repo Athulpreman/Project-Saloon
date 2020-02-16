@@ -33,6 +33,7 @@ public class LoginPage extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+        this.setTitle("Login");
 
         Login=(Button)findViewById(R.id.loginSignInButton);
         register=(TextView)findViewById(R.id.loginRegisterTextView);

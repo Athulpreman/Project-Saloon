@@ -43,6 +43,7 @@ public class RegisterPage extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
+        this.setTitle("Register");
 
         eOwnerName=(EditText)findViewById(R.id.registerFullName);
         eShopName=(EditText)findViewById(R.id.RegisterShopName);

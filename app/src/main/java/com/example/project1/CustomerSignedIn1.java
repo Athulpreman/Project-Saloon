@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -41,10 +42,19 @@ public class CustomerSignedIn1 extends AppCompatActivity
     RecyclerView recyclerView;
     AdapterCustomerHome adapter;
 
+
+    ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_signed_in1);
+        this.setTitle("Home");
+
+
+        viewPager=(ViewPager) findViewById(R.id.viewpager);
+        ImageAdapter adapterimg=new ImageAdapter(this);
+        viewPager.setAdapter(adapterimg);
 
         bhome=(Button)findViewById(R.id.home);
         bsearch=(Button)findViewById(R.id.search);
@@ -183,6 +193,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
         if (a==1)
         {
             setContentView(R.layout.activity_customer_signed_in1);
+            this.setTitle("Home");
 
             {
                 final String[] Name = new String[1];
@@ -197,6 +208,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
                 int i=0;
 
+                ViewPager viewPager;
 
                 DatabaseReference refOwnerName;
                 DatabaseReference refee;
@@ -209,6 +221,10 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
                 list=new ArrayList<OwnerAdd>();
                 shopList=new ArrayList<String>();
+
+                viewPager=(ViewPager) findViewById(R.id.viewpager);
+                ImageAdapter adapterimg=new ImageAdapter(this);
+                viewPager.setAdapter(adapterimg);
 
                 recyclerView=(RecyclerView)findViewById(R.id.rvCustomerHome);
                 recyclerView.setLayoutManager(new GridLayoutManager(this,3));
@@ -328,6 +344,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
         else if (a==2)
         {
             setContentView(R.layout.customer_search);
+            this.setTitle("Search Shop");
+
             bhome=(Button)findViewById(R.id.home);
             bsearch=(Button)findViewById(R.id.search);
             bcatagory=(Button)findViewById(R.id.catagory);
@@ -375,6 +393,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
         else if (a==3)
         {
             setContentView(R.layout.customer_catogary);
+            this.setTitle("Catagory");
 
             bhome=(Button)findViewById(R.id.home);
             bsearch=(Button)findViewById(R.id.search);
@@ -423,6 +442,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
         else if (a==4)
         {
             setContentView(R.layout.customer_cart);
+            this.setTitle("My Cart");
+
             bhome=(Button)findViewById(R.id.home);
             bsearch=(Button)findViewById(R.id.search);
             bcatagory=(Button)findViewById(R.id.catagory);
@@ -472,6 +493,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
 
             setContentView(R.layout.customer_account);
+            this.setTitle("My Account");
 
             logout=(Button)findViewById(R.id.logoutcustomer);
             bhome=(Button)findViewById(R.id.home);

@@ -43,6 +43,7 @@ public class signupOTP_Verification extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_otp__verification);
+        this.setTitle("OTP Verification");
 
 
         progressBar=(ProgressBar)findViewById(R.id.progressbar);

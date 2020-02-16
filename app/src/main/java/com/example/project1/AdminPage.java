@@ -18,6 +18,9 @@ public class AdminPage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_page);
 
+        this.setTitle("Admin Page");
+
+
         CheckNewShop=(Button)findViewById(R.id.checkForNewShop);
 
         CheckNewShop.setOnClickListener(new View.OnClickListener()

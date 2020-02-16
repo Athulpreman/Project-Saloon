@@ -34,6 +34,7 @@ public class Sign_up extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        this.setTitle("Sign Up");
 
         gotologin=(Button)findViewById(R.id.signupButtonLogin);
         bsignup=(Button)findViewById(R.id.signupButtonsignup);

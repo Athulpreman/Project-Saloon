@@ -21,6 +21,7 @@ public class OwnerPage extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_page);
+        this.setTitle("Owner");
 
         SharedPreferences sharedPreferences=getSharedPreferences("OwnerLogin",MODE_PRIVATE);
         shopID1=sharedPreferences.getString("shopID",null);

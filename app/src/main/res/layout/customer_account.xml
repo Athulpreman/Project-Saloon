@@ -9,12 +9,14 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="660dp">
+            android:background="#39CACACA"
+            android:layout_height="603dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:layout_height="90dp">
+                android:background="#fff"
+                android:layout_height="110dp">
                 <com.mikhaellopez.circularimageview.CircularImageView
                     android:layout_width="80dp"
                     android:layout_gravity="center"
@@ -24,8 +26,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="21dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="37dp"
+                    android:layout_marginLeft="6dp"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
@@ -41,75 +43,161 @@
             </LinearLayout>
             <Button
                 android:layout_width="match_parent"
+                android:background="#39CACACA"
+                android:layout_height="12dp"/>
+            <Button
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="#00FFFFFF"
+                android:background="#fff"
+                android:drawableLeft="@drawable/notificationn"
+                android:drawableRight="@drawable/vrightarrow"
+                android:paddingRight="19dp"
+                android:paddingLeft="10dp"
+                android:drawablePadding="20dp"
                 android:text="Notification"
                 android:gravity="center_vertical"/>
-
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:background="#948E8E"
+                android:layout_height="0.5dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:drawableRight="@drawable/vrightarrow"
+                android:paddingRight="19dp"
+                android:drawableLeft="@drawable/vorders"
+                android:paddingLeft="10dp"
+                android:drawablePadding="20dp"
+                android:text="My Orders"
+                android:gravity="center_vertical"/>
+            <Button
+                android:layout_width="match_parent"
+                android:background="#948E8E"
+                android:layout_height="0.5dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:drawableLeft="@drawable/addresss"
+                android:paddingLeft="10dp"
+                android:drawableRight="@drawable/vrightarrow"
+                android:paddingRight="19dp"
+                android:drawablePadding="20dp"
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:text="Manage Address"
+                android:gravity="center_vertical"/>
+            <Button
+                android:layout_width="match_parent"
+                android:background="#948E8E"
+                android:layout_height="0.5dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="1dp"
+                android:drawableLeft="@drawable/commentss"
+                android:paddingLeft="10dp"
+                android:drawablePadding="20dp"
+                android:background="#fff"
+                android:drawableRight="@drawable/vrightarrow"
+                android:paddingRight="19dp"
+                android:text="Comments"
+                android:gravity="center_vertical"/>
+            <Button
+                android:layout_width="match_parent"
+                android:background="#948E8E"
+                android:layout_height="0.5dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="1dp"
+                android:drawableLeft="@drawable/vhelp"
+                android:paddingLeft="10dp"
+                android:drawablePadding="20dp"
+                android:background="#fff"
+                android:drawableRight="@drawable/vrightarrow"
+                android:paddingRight="19dp"
+                android:text="Help"
+                android:gravity="center_vertical"/>
+            <Button
+                android:layout_width="match_parent"
+                android:background="#39CACACA"
+                android:layout_height="12dp"/>
+            <Button
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Logout"
-                android:background="@drawable/textboxround"
+                android:text="SIGN OUT"
+                android:textColor="#FF0000"
+                android:textStyle="bold"
+                android:background="#fff"
                 android:id="@+id/logoutcustomer"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:text="V 3.2.0"/>
         </LinearLayout>
 
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="vertical"
-        android:gravity="center_vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:orientation="horizontal">
-
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:background="#fff"
+        android:gravity="center">
             <Button
-                android:layout_width="65dp"
                 android:id="@+id/home"
-                android:layout_marginRight="4dp"
-                android:layout_marginLeft="20dp"
-                android:paddingRight="5dp"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center_vertical"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="4dp"
                 android:background="@drawable/home"
-                android:layout_height="50dp"/>
+                android:paddingRight="5dp"
+                android:shadowColor="#fff" />
             <Button
-                android:layout_width="65dp"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
                 android:id="@+id/search"
                 android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="30dp"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/search"
-                android:layout_height="50dp"/>
+                android:background="@drawable/search" />
             <Button
-                android:layout_width="65dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/catagory"
                 android:background="@drawable/catagory"
-                android:layout_height="50dp"/>
+                style="?android:attr/borderlessButtonStyle"/>
             <Button
-                android:layout_width="65dp"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
                 android:id="@+id/cart"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="5dp"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/cart"
-                android:layout_height="50dp"/>
+                style="?android:attr/borderlessButtonStyle"
+                android:background="@drawable/cart"/>
             <Button
-                android:layout_width="65dp"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
                 android:id="@+id/account"
-                android:layout_marginRight="20dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/account"
-                android:layout_height="50dp"/>
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/account" />
 
-        </LinearLayout>
+
 
     </LinearLayout>
 

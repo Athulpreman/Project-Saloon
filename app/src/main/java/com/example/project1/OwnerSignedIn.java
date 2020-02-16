@@ -47,6 +47,7 @@ public class OwnerSignedIn extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_signed_in);
+        this.setTitle("Owner");
 
         SharedPreferences sharedPreferences=getSharedPreferences("OwnerLogin",MODE_PRIVATE);
         shopID1=sharedPreferences.getString("shopID",null);
