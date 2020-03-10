@@ -10,22 +10,32 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CustomerSignedIn1 extends AppCompatActivity
 {
     Button bhome,bsearch,bcatagory,bcart,baccount,logout;
     String Name;
+    String sSearchItem,sSearchType;
     Toast backToast;
     long backpress;
     Owner owner;
@@ -37,11 +47,9 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
     int i=0;
 
-
     DatabaseReference refOwnerName,refee,refee1;
     RecyclerView recyclerView;
     AdapterCustomerHome adapter;
-
 
     ViewPager viewPager;
 
@@ -62,13 +70,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
         bcart=(Button)findViewById(R.id.cart);
         baccount=(Button)findViewById(R.id.account);
 
-       /* bhome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                decide(1);
-            }
-        });*/
         bsearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -170,23 +171,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
             }
         });
-
-
-       /* Logout.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                SharedPreferences.Editor editor=getSharedPreferences("UserLogin",MODE_PRIVATE).edit();
-                editor.clear();
-                editor.commit();
-
-                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
-
     }
     public void decide(final int a)
     {
@@ -389,6 +373,122 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     decide(5);
                 }
             });
+
+
+            final TextView showAutoText;
+            final AutoCompleteTextView ACTextView;
+            DatabaseReference databaseReference;
+            final ArrayList<String> ShopName=new ArrayList<String>();
+            final ArrayList<String> ShopPlace=new ArrayList<String>();
+
+            Button search;
+            final Spinner SelectSearchingType;
+
+            search=(Button)findViewById(R.id.searchShop);
+            SelectSearchingType=(Spinner)findViewById(R.id.ItemSpinner);
+
+            showAutoText=(TextView)findViewById(R.id.tv);
+            ACTextView=(AutoCompleteTextView)findViewById(R.id.actv);
+
+            databaseReference=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
+                    for (DataSnapshot snap:dataSnapshot.getChildren())
+                    {
+                        Owner own1=new Owner();
+                        own1=snap.getValue(Owner.class);
+                        ShopName.add(own1.ShopName);
+                        ShopPlace.add(own1.place);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError)
+                {
+                    Toast.makeText(CustomerSignedIn1.this, "Error....!!!!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,ShopName);
+            ACTextView.setAdapter(adapter);
+
+            SelectSearchingType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String s=SelectSearchingType.getSelectedItem().toString();
+                    if (s.equals("Place"))
+                    {
+                        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,ShopPlace);
+                        ACTextView.setAdapter(adapter);
+                    }
+                    if (s.equals("Shop"))
+                    {
+                        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,ShopName);
+                        ACTextView.setAdapter(adapter);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            search.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Log.d("aaa", "porth");
+
+                    sSearchType =SelectSearchingType.getSelectedItem().toString();
+                    sSearchItem=ACTextView.getText().toString();
+                    Log.d("aaa", "ullil");
+
+                    if (sSearchType.equals("Shop"))
+                    {   Toast.makeText(CustomerSignedIn1.this, "in", Toast.LENGTH_SHORT).show();
+                        Log.d("aaa", "if");
+                        DatabaseReference databaseReference1;
+
+                        databaseReference1=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+                        databaseReference1.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot1)
+                            {
+                                for (DataSnapshot snap:dataSnapshot1.getChildren())
+                                {
+                                    Log.d("aaa", "for");
+
+                                    Owner own=new Owner();
+                                    own=snap.getValue(Owner.class);
+                                    if (own.ShopName.equalsIgnoreCase(sSearchItem))
+                                    {
+                                        Intent intent=new Intent(getApplicationContext(),ShopDetails.class);
+                                        intent.putExtra(own.ShopID,"ShopId");
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(CustomerSignedIn1.this, "No Shop Exist By That Name", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError)
+                            {
+                                Toast.makeText(CustomerSignedIn1.this, "Error....!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    else
+                    {
+                        Toast.makeText(CustomerSignedIn1.this, "shit", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            });
         }
         else if (a==3)
         {
@@ -397,7 +497,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
             bhome=(Button)findViewById(R.id.home);
             bsearch=(Button)findViewById(R.id.search);
-            bcatagory=(Button)findViewById(R.id.catagory);
             bcart=(Button)findViewById(R.id.cart);
             baccount=(Button)findViewById(R.id.account);
 
@@ -415,15 +514,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     decide(2);
                 }
             });
-            bcatagory.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v)
-                {
-                    if (a!=3) {
-                        decide(3);
-                    }
-                }
-            });
             bcart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
@@ -438,6 +528,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     decide(5);
                 }
             });
+
         }
         else if (a==4)
         {

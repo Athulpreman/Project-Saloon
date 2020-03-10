@@ -2,7 +2,7 @@ package com.example.project1;
 
 public class Owner
 {
-    String OwnerName,ShopName,ShopID,OwnerMobile,Address,EmployeeName,EmployeeMobile,Password,Image1,Image2,Image3;
+    String OwnerName,ShopName,ShopID,OwnerMobile,Address,EmployeeName,EmployeeMobile,place,Password,Image1,Image2,Image3;
     Boolean status;
 
     public Owner()
@@ -10,7 +10,7 @@ public class Owner
         status=false;
     }
 
-    public Owner(String ownerName, String shopName, String shopID, String ownerMobile, String address, String employeeName, String employeeMobile, String password, String image1, String image2, String image3, Boolean status) {
+    public Owner(String ownerName, String shopName, String shopID, String ownerMobile, String address, String employeeName, String employeeMobile, String place, String password, String image1, String image2, String image3, Boolean status) {
         OwnerName = ownerName;
         ShopName = shopName;
         ShopID = shopID;
@@ -18,6 +18,7 @@ public class Owner
         Address = address;
         EmployeeName = employeeName;
         EmployeeMobile = employeeMobile;
+        this.place = place;
         Password = password;
         Image1 = image1;
         Image2 = image2;
@@ -79,6 +80,14 @@ public class Owner
 
     public void setEmployeeMobile(String employeeMobile) {
         EmployeeMobile = employeeMobile;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     public String getPassword() {

@@ -1,101 +1,135 @@
-<LinearLayout android:layout_height="match_parent"
+<RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:id="@+id/one"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <ScrollView android:layout_height="603dp"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <LinearLayout android:layout_height="match_parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="61dp"
+        android:layout_alignBottom="@+id/last"
+        android:orientation="vertical">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="match_parent"
             android:gravity="center"
-            xmlns:android="http://schemas.android.com/apk/res/android">
+            android:orientation="vertical">
 
             <androidx.viewpager.widget.ViewPager
-                android:layout_width="match_parent"
                 android:id="@+id/viewpager"
-                android:layout_height="250dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
+
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCustomerHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:padding="5dp"
-                android:id="@+id/rvCustomerHome"/>
+                android:padding="5dp" />
 
 
         </LinearLayout>
     </ScrollView>
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:orientation="vertical"
-       android:gravity="bottom">
 
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="70dp"
-           android:orientation="vertical"
-           android:gravity="center_vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="61dp"
+        android:id="@+id/last"
+        android:gravity="bottom"
+        android:orientation="vertical">
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="55dp"
-               android:orientation="horizontal"
-               android:background="#fff"
-               android:gravity="center">
-               <Button
-                   android:id="@+id/home"
-                   android:layout_width="40dp"
-                   android:layout_height="35dp"
-                   android:layout_gravity="center_vertical"
-                   style="?android:attr/borderlessButtonStyle"
-                   android:layout_marginLeft="20dp"
-                   android:layout_marginRight="4dp"
-                   android:background="@drawable/home"
-                   android:paddingRight="5dp"
-                   android:shadowColor="#fff" />
-               <Button
-                   android:layout_width="40dp"
-                   android:layout_height="35dp"
-                   android:id="@+id/search"
-                   android:layout_marginRight="5dp"
-                   android:layout_marginLeft="30dp"
-                   style="?android:attr/borderlessButtonStyle"
-                   android:layout_gravity="center_vertical"
-                   android:background="@drawable/search" />
-               <Button
-                   android:layout_width="40dp"
-                   android:layout_height="35dp"
-                   android:layout_marginRight="30dp"
-                   android:layout_marginLeft="30dp"
-                   android:layout_gravity="center_vertical"
-                   android:id="@+id/catagory"
-                   android:background="@drawable/catagory"
-                   style="?android:attr/borderlessButtonStyle"/>
-               <Button
-                   android:layout_width="40dp"
-                   android:layout_height="35dp"
-                   android:id="@+id/cart"
-                   android:layout_gravity="center_vertical"
-                   style="?android:attr/borderlessButtonStyle"
-                   android:background="@drawable/cart"/>
-               <Button
-                   android:layout_width="40dp"
-                   android:layout_height="35dp"
-                   android:id="@+id/account"
-                   android:layout_gravity="center_vertical"
-                   style="?android:attr/borderlessButtonStyle"
-                   android:layout_marginLeft="30dp"
-                   android:layout_marginRight="20dp"
-                   android:background="@drawable/account" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#fff"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/search"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/search" />
+
+                <Button
+                    android:layout_width="2dp"
+                    android:layout_height="40dp"
+                    android:background="#050505" />
+
+                <Button
+                    android:id="@+id/catagory"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/catagory" />
+
+                <Button
+                    android:layout_width="2dp"
+                    android:layout_height="40dp"
+                    android:background="#050505" />
+
+                <Button
+                    android:id="@+id/home"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="60dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/home"
+                    android:paddingRight="5dp"
+                    android:shadowColor="#fff" />
+
+                <Button
+                    android:layout_width="2dp"
+                    android:layout_height="40dp"
+                    android:background="#050505" />
+
+                <Button
+                    android:id="@+id/cart"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/cart" />
+
+                <Button
+                    android:layout_width="2dp"
+                    android:layout_height="40dp"
+                    android:background="#050505" />
+
+                <Button
+                    android:id="@+id/account"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="40dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/account" />
 
 
+            </LinearLayout>
+        </LinearLayout>
 
-           </LinearLayout>
-       </LinearLayout>
+    </RelativeLayout>
 
-   </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

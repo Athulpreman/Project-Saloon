@@ -1,16 +1,16 @@
-<LinearLayout android:layout_height="match_parent"
+<RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:background="#39CACACA"
-            android:layout_height="603dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -145,60 +145,88 @@
 
 
     </LinearLayout>
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:orientation="horizontal"
-        android:background="#fff"
-        android:gravity="center">
-            <Button
-                android:id="@+id/home"
-                android:layout_width="40dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center_vertical"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="4dp"
-                android:background="@drawable/home"
-                android:paddingRight="5dp"
-                android:shadowColor="#fff" />
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:gravity="center">
+
             <Button
                 android:layout_width="40dp"
                 android:layout_height="35dp"
                 android:id="@+id/search"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="30dp"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_gravity="center_vertical"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/search" />
+            <Button
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#050505"/>
             <Button
                 android:layout_width="40dp"
                 android:layout_height="35dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/catagory"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:background="@drawable/catagory"
                 style="?android:attr/borderlessButtonStyle"/>
             <Button
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#050505"/>
+            <Button
+                android:id="@+id/home"
                 android:layout_width="40dp"
-                android:layout_height="35dp"
-                android:id="@+id/cart"
+                android:layout_height="37dp"
                 android:layout_gravity="center_vertical"
                 style="?android:attr/borderlessButtonStyle"
+                android:background="@drawable/home"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:paddingRight="5dp"
+                android:shadowColor="#fff" />
+            <Button
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#050505"/>
+            <Button
+                android:id="@+id/cart"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:paddingRight="5dp"
+                android:shadowColor="#fff"
                 android:background="@drawable/cart"/>
             <Button
-                android:layout_width="40dp"
-                android:layout_height="35dp"
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:background="#050505"/>
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="52dp"
                 android:id="@+id/account"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_gravity="center_vertical"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
                 android:background="@drawable/account" />
 
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-</LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

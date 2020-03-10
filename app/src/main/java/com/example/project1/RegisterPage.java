@@ -30,8 +30,8 @@ import com.squareup.picasso.Picasso;
 
 public class RegisterPage extends AppCompatActivity
 {
-    String sOwnerName,sShopName,sShopID,sOwnerMobile,sAddress,sEmployeeName,sEmployeeMobile,sPassword,sImage1="",sImage2="",sImage3="";
-    EditText eOwnerName,eShopName,eShopID,eOwnerMobile,eAddress,eEmployeeName,eEmployeeMobile,ePassword;
+    String sOwnerName,sShopName,sShopID,sOwnerMobile,sPlace,sAddress,sEmployeeName,sEmployeeMobile,sPassword,sImage1="",sImage2="",sImage3="";
+    EditText eOwnerName,eShopName,eShopID,ePlace,eOwnerMobile,eAddress,eEmployeeName,eEmployeeMobile,ePassword;
     ImageView iimg1,iimg2,iimg3;
     Button signup;
     TextView gotologin;
@@ -54,6 +54,7 @@ public class RegisterPage extends AppCompatActivity
         eEmployeeMobile=(EditText)findViewById(R.id.registerEmployeeContactNumber);
         ePassword=(EditText)findViewById(R.id.registerPassword);
         gotologin=(TextView) findViewById(R.id.registerGoToLogin);
+        ePlace=(EditText) findViewById(R.id.registerplace);
 
         iimg1=(ImageView)findViewById(R.id.img1);
         iimg2=(ImageView)findViewById(R.id.img2);
@@ -81,6 +82,7 @@ public class RegisterPage extends AppCompatActivity
                 sOwnerName=eOwnerName.getText().toString();
                 sShopName=eShopName.getText().toString();
                 sShopID=eShopID.getText().toString();
+                sPlace=ePlace.getText().toString();
                 sOwnerMobile=eOwnerMobile.getText().toString();
                 sAddress=eAddress.getText().toString();
                 sEmployeeName=eEmployeeName.getText().toString();
@@ -101,6 +103,11 @@ public class RegisterPage extends AppCompatActivity
                 {
                     eShopID.setError("Shop ID Required");
                     eShopID.requestFocus();
+                }
+                else if(sPlace.isEmpty())
+                {
+                    ePlace.setError("Shop ID Required");
+                    ePlace.requestFocus();
                 }
                 else if(sOwnerMobile.isEmpty()||sOwnerMobile.length()<10)
                 {
@@ -158,6 +165,7 @@ public class RegisterPage extends AppCompatActivity
                                 owner.setOwnerName(sOwnerName);
                                 owner.setShopName(sShopName);
                                 owner.setShopID(sShopID);
+                                owner.setPlace(sPlace);
                                 owner.setOwnerMobile(sOwnerMobile);
                                 owner.setAddress(sAddress);
                                 owner.setEmployeeName(sEmployeeName);
@@ -179,6 +187,7 @@ public class RegisterPage extends AppCompatActivity
                                         eOwnerName.setText("");
                                         eShopName.setText("");
                                         eShopID.setText("");
+                                        ePlace.setText("");
                                         eOwnerMobile.setText("");
                                         eAddress.setText("");
                                         eEmployeeName.setText("");

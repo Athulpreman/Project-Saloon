@@ -57,16 +57,6 @@ public class MainActivity extends AppCompatActivity
             Intent intent=new Intent(getApplicationContext(),OwnerPage.class);
             startActivity(intent);
         }
-       /* new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run()
-            {
-                Intent homeintent=new Intent(getApplicationContext(), EntryToApp.class);
-                startActivity(homeintent);,
-                finish();
-            }
-        },timout);*/
-
 
         blogin=(Button)findViewById(R.id.loginButtonlogin);
         gotosignup=(Button)findViewById(R.id.signinSignupButton);

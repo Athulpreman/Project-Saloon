@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -110,8 +111,12 @@ public class signupOTP_Verification extends AppCompatActivity
                         }
                     });
 
-                    Intent intent = new Intent(getApplicationContext(), SearchShop.class);
-                    intent.putExtra("mob1",mobno);
+                    Intent intent = new Intent(getApplicationContext(), CustomerSignedIn1.class);
+
+                    SharedPreferences.Editor editor=getSharedPreferences("UserLogin",MODE_PRIVATE).edit();
+                    editor.putString("MobNo",mobno);
+                    editor.commit();
+
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
