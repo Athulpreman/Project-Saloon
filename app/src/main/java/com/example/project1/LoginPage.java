@@ -72,9 +72,8 @@ public class LoginPage extends AppCompatActivity
                                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                                 {
                                     owner=snapshot.getValue(Owner.class);
-                                    Toast.makeText(getApplicationContext(), owner.getPassword()+password, Toast.LENGTH_SHORT).show();
 
-                                    if (spassword.equals(owner.Password))
+                                    if (spassword.equalsIgnoreCase(owner.Password))
                                     {
                                         if (owner.status.equals(true))
                                         {

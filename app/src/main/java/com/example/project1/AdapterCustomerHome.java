@@ -61,7 +61,8 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
             @Override
             public void onClick(View v)
             {
-                Intent intent=new Intent(v.getContext(),BookAppoinment.class);
+                Intent intent=new Intent(v.getContext(),Booking_shop_Customer_1st.class);
+                intent.putExtra("shopID",list.get(position).getShopID());
                 v.getContext().startActivity(intent);
             }
         });
@@ -93,11 +94,6 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
 
         }
 
-      /* public void OnClickListener(View.OnClickListener onClickListener)
-        {
-            Intent intent=new Intent(.getContext(),BookAppoinment.class);
-            v.getContext().startActivity(intent);
-        }*/
     }
 
 }

@@ -1,5 +1,6 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/bg4"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -41,14 +42,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:inputType="none"
+                android:paddingLeft="13dp"
                 android:editable="false"
                 android:id="@+id/getDate"
-                android:paddingEnd="15dp"
                 android:paddingRight="15dp"
                 android:textColor="#fff"
                 android:drawableRight="@drawable/date"
                 android:background="@drawable/textboxregister"
                 android:textSize="20dp"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,7 +66,7 @@
                 android:entries="@array/shoptimeselection"
                 android:paddingRight="15dp"
                 android:paddingEnd="15dp"
-                android:background="@drawable/textboxregister"
+                android:background="@drawable/textboxround"
                 android:textSize="20dp"/>
             <TableLayout
                 android:layout_width="match_parent"

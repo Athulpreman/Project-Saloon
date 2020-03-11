@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:text="Signin with Mobile No."
+            android:text="Signin with Shop ID"
             android:textColor="#fff"
             android:textSize="16dp" />
         <EditText
@@ -40,7 +40,7 @@
             android:layout_height="40dp"
             android:textColor="#fff"
             android:layout_marginLeft="20dp"
-            android:inputType="textPostalAddress"
+            android:inputType="number"
             android:layout_marginRight="20dp"
             android:textSize="19dp"
             android:maxLength="10"

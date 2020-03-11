@@ -3,6 +3,7 @@ package com.example.project1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -419,11 +420,13 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     String s=SelectSearchingType.getSelectedItem().toString();
                     if (s.equals("Place"))
                     {
+                        Log.d("aa","1st");
                         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,ShopPlace);
                         ACTextView.setAdapter(adapter);
                     }
-                    if (s.equals("Shop"))
+                    else if (s.equals("Shop"))
                     {
+                        Log.d("aa","2md");
                         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,ShopName);
                         ACTextView.setAdapter(adapter);
                     }
@@ -440,52 +443,97 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 @Override
                 public void onClick(View v)
                 {
-                    Log.d("aaa", "porth");
-
                     sSearchType =SelectSearchingType.getSelectedItem().toString();
                     sSearchItem=ACTextView.getText().toString();
-                    Log.d("aaa", "ullil");
 
-                    if (sSearchType.equals("Shop"))
-                    {   Toast.makeText(CustomerSignedIn1.this, "in", Toast.LENGTH_SHORT).show();
-                        Log.d("aaa", "if");
-                        DatabaseReference databaseReference1;
-
-                        databaseReference1=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
-                        databaseReference1.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot1)
-                            {
-                                for (DataSnapshot snap:dataSnapshot1.getChildren())
-                                {
-                                    Log.d("aaa", "for");
-
-                                    Owner own=new Owner();
-                                    own=snap.getValue(Owner.class);
-                                    if (own.ShopName.equalsIgnoreCase(sSearchItem))
-                                    {
-                                        Intent intent=new Intent(getApplicationContext(),ShopDetails.class);
-                                        intent.putExtra(own.ShopID,"ShopId");
-                                        startActivity(intent);
-                                    }
-                                    else
-                                    {
-                                        Toast.makeText(CustomerSignedIn1.this, "No Shop Exist By That Name", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError)
-                            {
-                                Toast.makeText(CustomerSignedIn1.this, "Error....!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                    if (sSearchItem.isEmpty())
+                    {
+                        ACTextView.setError("Field is empty");
+                        ACTextView.requestFocus();
                     }
                     else
                     {
-                        Toast.makeText(CustomerSignedIn1.this, "shit", Toast.LENGTH_SHORT).show();
+                        if (sSearchType.equals("Shop"))
+                        {
+                            DatabaseReference databaseReference1;
 
+                            databaseReference1=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+                            databaseReference1.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot1)
+                                {
+                                    for (DataSnapshot snap:dataSnapshot1.getChildren())
+                                    {
+                                        Owner own=new Owner();
+                                        own=snap.getValue(Owner.class);
+                                        if (own.ShopName.equalsIgnoreCase(sSearchItem))
+                                        {
+                                            Intent intent=new Intent(getApplicationContext(),ShopDetails.class);
+                                            intent.putExtra(own.ShopID,"ShopId");
+                                            startActivity(intent);
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(CustomerSignedIn1.this, "No Shop Exist By That Name", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError)
+                                {
+                                    Toast.makeText(CustomerSignedIn1.this, "Error....!", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        else
+                        {
+                            DatabaseReference refee;
+                            final RecyclerView recyclerView;
+                            final Adapter_Search_Place[] adapter = new Adapter_Search_Place[1];
+                            final ArrayList<Owner> list;
+                            final TextView tvResult;
+
+                            tvResult=(TextView)findViewById(R.id.ShowResult);
+                            recyclerView=(RecyclerView)findViewById(R.id.rvSearchShop);
+                            recyclerView.setHasFixedSize(true);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            list=new ArrayList<Owner>();
+
+                            refee= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+                            refee.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                {
+                                    for (DataSnapshot studentDatasnapshot : dataSnapshot.getChildren())
+                                    {
+                                        Owner owner = studentDatasnapshot.getValue(Owner.class);
+                                        if (owner.place.equalsIgnoreCase(sSearchItem))
+                                        {
+                                            list.add(owner);
+                                        }
+                                    }
+                                    int size=list.size();
+                                    if (size==0)
+                                    {
+                                        tvResult.setText("No Shope In The Given Place");
+                                    }
+                                    else
+                                    {
+                                        tvResult.setText(sSearchItem);
+                                        adapter[0] = new Adapter_Search_Place(CustomerSignedIn1.this,list);
+                                        recyclerView.setAdapter(adapter[0]);
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError)
+                                {
+                                    Toast.makeText(getApplicationContext(),"something wnt wrong",Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
                     }
                 }
             });

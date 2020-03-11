@@ -84,9 +84,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="415dp"
-        android:layout_marginTop="200dp"
-        android:gravity="center"
+        android:layout_marginTop="230dp"
+        android:gravity="top"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="17dp"
+            android:id="@+id/ShowResult"
+            android:gravity="center"
+            android:layout_marginBottom="6dp"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="365dp"
+            android:layout_gravity="center">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rvSearchShop"/>
+
+        </ScrollView>
 
 
     </LinearLayout>
