@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity
                                     {
                                         SharedPreferences.Editor editor=getSharedPreferences("UserLogin",MODE_PRIVATE).edit();
                                         editor.putString("MobNo",mobno);
+                                        editor.putString("Name",customer.name);
                                         editor.commit();
 
 

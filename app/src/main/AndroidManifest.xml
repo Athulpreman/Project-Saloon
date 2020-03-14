@@ -16,8 +16,10 @@
         android:roundIcon="@drawable/hair"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Booking_shop_Customer_1st"></activity>
-        <activity android:name=".CustomerSignedIn1"></activity>
+        <activity android:name=".showbooking_Cart" />
+        <activity android:name=".Bookin_status_show" />
+        <activity android:name=".Booking_shop_Customer_1st" />
+        <activity android:name=".CustomerSignedIn1" />
         <activity
             android:name=".BookingShopDetails"
             android:label="Booking" />
@@ -34,19 +36,15 @@
         <activity android:name=".RegisterPage" />
         <activity android:name=".LoginPage" />
         <activity android:name=".WhatDoYouNeed" />
-        <activity android:name=".BookAppoinment">
-
-        </activity>
+        <activity android:name=".BookAppoinment" />
         <activity android:name=".ShopDetails" />
         <activity android:name=".SearchShop" />
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

@@ -54,13 +54,12 @@ public class signupOTP_Verification extends AppCompatActivity
         mAuth=FirebaseAuth.getInstance();
         customer=new Customer();
 
-        reference= FirebaseDatabase.getInstance().getReference().child("Customer");
-
         Intent intent=getIntent();
         mobno=intent.getStringExtra("signMobile");
         password=intent.getStringExtra("signPassword");
         name=intent.getStringExtra("signName");
 
+        reference= FirebaseDatabase.getInstance().getReference().child("Customer").child(mobno);
 
         sendVerificationCode(mobno);
 
@@ -102,7 +101,7 @@ public class signupOTP_Verification extends AppCompatActivity
                     customer.setMobileNum(mobno);
                     customer.setPassword(password);
 
-                    reference.push().setValue(customer).addOnSuccessListener(new OnSuccessListener<Void>()
+                    reference.setValue(customer).addOnSuccessListener(new OnSuccessListener<Void>()
                     {
                         @Override
                         public void onSuccess(Void aVoid)
@@ -115,6 +114,7 @@ public class signupOTP_Verification extends AppCompatActivity
 
                     SharedPreferences.Editor editor=getSharedPreferences("UserLogin",MODE_PRIVATE).edit();
                     editor.putString("MobNo",mobno);
+                    editor.putString("Name",name);
                     editor.commit();
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

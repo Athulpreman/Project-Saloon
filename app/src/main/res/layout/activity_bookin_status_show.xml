@@ -1,0 +1,87 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg4"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/background_dark_blur">
+
+        <LinearLayout android:layout_height="400dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="30dp"
+            android:gravity="center"
+            android:background="@drawable/bgregister">
+
+            <LinearLayout android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:textSize="40dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="19dp"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:textStyle="italic"
+                    android:text="You have booked successfuly "/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="19dp"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="italic"
+                    android:text="Waite for owners confirmation"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="If owner didn't responded"
+                    android:textColor="#fff"
+                    android:textSize="19dp"
+                    android:textStyle="italic" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="19dp"
+                    android:textColor="#fff"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="Contact them"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:background="@drawable/textboxregister"
+            android:text="Goto Home"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:id="@+id/gotoHome"/>
+
+    </LinearLayout>
+
+</LinearLayout>

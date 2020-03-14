@@ -47,8 +47,6 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
 
         Intent intent=getIntent();
         shopID=intent.getStringExtra("shopID");
-        Toast.makeText(this, shopID, Toast.LENGTH_SHORT).show();
-
 
         reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
         owner=new Owner();

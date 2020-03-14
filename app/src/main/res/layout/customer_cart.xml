@@ -8,6 +8,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="bottom">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Active Bookings"
+            android:textSize="35dp"
+            android:gravity="center"
+            android:layout_marginBottom="15dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:id="@+id/rvCart"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

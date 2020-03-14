@@ -4,21 +4,22 @@ import java.util.Date;
 
 public class CBookShop
 {
-    String CustomerName,CustomerMob,time;
-    Date Date;
-    Boolean status;
+    String CustomerName,CustomerMob,time,Date,ShopID,statusBit,shopAddress,shopName;
 
     public CBookShop()
     {
-        status=false;
+        statusBit="0";
     }
 
-    public CBookShop(String customerName, String customerMob, String time, java.util.Date date, Boolean status) {
+    public CBookShop(String customerName, String customerMob, String time, String date, String shopID, String statusBit, String shopAddress, String shopName) {
         CustomerName = customerName;
         CustomerMob = customerMob;
         this.time = time;
         Date = date;
-        this.status = status;
+        ShopID = shopID;
+        this.statusBit = statusBit;
+        this.shopAddress = shopAddress;
+        this.shopName = shopName;
     }
 
     public String getCustomerName() {
@@ -45,19 +46,43 @@ public class CBookShop
         this.time = time;
     }
 
-    public java.util.Date getDate() {
+    public String getDate() {
         return Date;
     }
 
-    public void setDate(java.util.Date date) {
+    public void setDate(String date) {
         Date = date;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public String getShopID() {
+        return ShopID;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setShopID(String shopID) {
+        ShopID = shopID;
+    }
+
+    public String getStatusBit() {
+        return statusBit;
+    }
+
+    public void setStatusBit(String statusBit) {
+        this.statusBit = statusBit;
+    }
+
+    public String getShopAddress() {
+        return shopAddress;
+    }
+
+    public void setShopAddress(String shopAddress) {
+        this.shopAddress = shopAddress;
+    }
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
 }

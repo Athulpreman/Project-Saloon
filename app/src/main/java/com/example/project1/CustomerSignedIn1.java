@@ -1,12 +1,14 @@
 package com.example.project1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,12 +32,14 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class CustomerSignedIn1 extends AppCompatActivity
 {
     Button bhome,bsearch,bcatagory,bcart,baccount,logout;
-    String Name;
+    String Name,MobNoo;
     String sSearchItem,sSearchType;
     Toast backToast;
     long backpress;
@@ -43,6 +47,9 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
     ArrayList<OwnerAdd> list;
     ArrayList<String> shopList;
+    ArrayList<String> DateList;
+    ArrayList<CBookShop> DateList2;
+
 
     CgetOwner cgetOwner;
 
@@ -54,12 +61,23 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
     ViewPager viewPager;
 
+
+
+    //cart
+    DatabaseReference refeecart;
+    RecyclerView recyclerViewcart;
+    AdapterCart adaptercart;
+    ArrayList<CBookShop> listcart;
+    CBookShop cBookShop;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_signed_in1);
         this.setTitle("Home");
 
+        SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
+        MobNoo=sharedPreferences.getString("MobNo",null);
 
         viewPager=(ViewPager) findViewById(R.id.viewpager);
         ImageAdapter adapterimg=new ImageAdapter(this);
@@ -104,6 +122,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
         list=new ArrayList<OwnerAdd>();
         shopList=new ArrayList<String>();
+        DateList=new ArrayList<String>();
+        DateList2=new ArrayList<CBookShop>();
 
         recyclerView=(RecyclerView)findViewById(R.id.rvCustomerHome);
         recyclerView.setLayoutManager(new GridLayoutManager(this,3));
@@ -420,13 +440,11 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     String s=SelectSearchingType.getSelectedItem().toString();
                     if (s.equals("Place"))
                     {
-                        Log.d("aa","1st");
                         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,ShopPlace);
                         ACTextView.setAdapter(adapter);
                     }
                     else if (s.equals("Shop"))
                     {
-                        Log.d("aa","2md");
                         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,ShopName);
                         ACTextView.setAdapter(adapter);
                     }
@@ -577,6 +595,11 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 }
             });
 
+
+
+
+
+
         }
         else if (a==4)
         {
@@ -614,9 +637,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 @Override
                 public void onClick(View v)
                 {
-                    if (a!=4) {
-                        decide(4);
-                    }
+
                 }
             });
             baccount.setOnClickListener(new View.OnClickListener() {
@@ -624,6 +645,38 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 public void onClick(View v)
                 {
                     decide(5);
+                }
+            });
+
+            recyclerViewcart=(RecyclerView)findViewById(R.id.rvCart);
+            final Calendar c = Calendar.getInstance();
+            final SimpleDateFormat df = new SimpleDateFormat("yyyy,MM,dd");
+            final String formattedDate = df.format(c.getTime());
+            cBookShop=new CBookShop();
+
+            recyclerView=(RecyclerView)findViewById(R.id.rvCart);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            listcart=new ArrayList<CBookShop>();
+
+            refeecart=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking");
+            refeecart.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
+                    for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                    {
+                        cBookShop=new CBookShop();
+                        cBookShop=snapshot.getValue(CBookShop.class);
+                        DateList2.add(cBookShop);
+                    }
+                    adaptercart = new AdapterCart(CustomerSignedIn1.this, DateList2);
+                    recyclerViewcart.setAdapter(adaptercart);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
                 }
             });
         }
@@ -685,17 +738,36 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 public void onClick(View v)
                 {
 
-                    SharedPreferences.Editor editor=getSharedPreferences("UserLogin",MODE_PRIVATE).edit();
-                    editor.clear();
-                    editor.commit();
+                    final AlertDialog.Builder builder=new AlertDialog.Builder(getApplicationContext());
+                    builder.setCancelable(false);
+                    builder.setTitle("Logout..?");
+                    builder.setMessage("Are you sure want to Logout ?");
+                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            SharedPreferences.Editor editor=getSharedPreferences("UserLogin",MODE_PRIVATE).edit();
+                            editor.clear();
+                            editor.commit();
 
-                    Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(intent);
+                            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            dialog.dismiss();
+                        }
+                    });
+
                 }
             });
 
         }
     }
+
 
     @Override
     public void onBackPressed() {
