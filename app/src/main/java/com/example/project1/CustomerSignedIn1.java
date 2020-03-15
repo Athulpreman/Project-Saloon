@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,13 +44,14 @@ public class CustomerSignedIn1 extends AppCompatActivity
     String sSearchItem,sSearchType;
     Toast backToast;
     long backpress;
-    Owner owner;
+    Owner owner,owner1;
+
+    AlertDialog.Builder builder;
 
     ArrayList<OwnerAdd> list;
     ArrayList<String> shopList;
     ArrayList<String> DateList;
     ArrayList<CBookShop> DateList2;
-
 
     CgetOwner cgetOwner;
 
@@ -61,14 +63,17 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
     ViewPager viewPager;
 
-
-
     //cart
     DatabaseReference refeecart;
     RecyclerView recyclerViewcart;
     AdapterCart adaptercart;
     ArrayList<CBookShop> listcart;
     CBookShop cBookShop;
+
+    //account
+    ImageView proPic;
+    String proName,phoneNo;
+    Button Notification,MyBookingHistory,Manageadress,Feedback,Help;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -732,42 +737,104 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     }
                 }
             });
+
+
+
+            Notification=(Button)findViewById(R.id.notification);
+            MyBookingHistory=(Button)findViewById(R.id.bookingHistory);
+            Manageadress=(Button)findViewById(R.id.manageAdress);
+            Feedback=(Button)findViewById(R.id.feedback);
+            Help=(Button)findViewById(R.id.help);
+
+
+            Notification.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+
+                }
+            });
+            MyBookingHistory.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+
+                }
+            });
+            Manageadress.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+
+                }
+            });
+            Feedback.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+
+                }
+            });
+            Help.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+
+                }
+            });
+
+            builder = new AlertDialog.Builder(this);
             logout.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
 
-                    final AlertDialog.Builder builder=new AlertDialog.Builder(getApplicationContext());
-                    builder.setCancelable(false);
-                    builder.setTitle("Logout..?");
-                    builder.setMessage("Are you sure want to Logout ?");
-                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-                            SharedPreferences.Editor editor=getSharedPreferences("UserLogin",MODE_PRIVATE).edit();
-                            editor.clear();
-                            editor.commit();
+                    builder.setMessage("Are you sure want to LOGOUT ?") .setTitle("Logout");
 
-                            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-                            dialog.dismiss();
-                        }
-                    });
+                    //Setting message manually and performing action on button click
+                    builder.setMessage("Are you sure want to LOGOUT ?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id)
+                                {
+                                    SharedPreferences.Editor editor=getSharedPreferences("UserLogin",MODE_PRIVATE).edit();
+                                    editor.clear();
+                                    editor.commit();
+                                    Toast.makeText(getApplicationContext(),"Logged Out", Toast.LENGTH_SHORT).show();
 
+                                    Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id)
+                                {
+                                    //  Action for 'NO' Button
+                                    dialog.cancel();
+                                 }
+                             });
+
+                    //Creating dialog box
+                    AlertDialog alert = builder.create();
+                    //Setting the title manually
+                    alert.setTitle("LOGOUT");
+                    alert.show();
                 }
             });
 
+
+
+
+
+
         }
     }
-
 
     @Override
     public void onBackPressed() {

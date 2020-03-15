@@ -19,6 +19,7 @@
                 android:layout_height="110dp">
                 <com.mikhaellopez.circularimageview.CircularImageView
                     android:layout_width="80dp"
+                    android:id="@+id/proPic"
                     android:layout_gravity="center"
                     android:layout_height="80dp"
                     android:layout_margin="10dp"
@@ -32,12 +33,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/proName"
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:text="Name"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/proPhone"
                         android:text="12345657890"/>
                 </LinearLayout>
             </LinearLayout>
@@ -48,6 +51,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:id="@+id/notification"
                 android:background="#fff"
                 android:drawableLeft="@drawable/notificationn"
                 android:drawableRight="@drawable/vrightarrow"
@@ -63,6 +67,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:id="@+id/bookingHistory"
                 android:layout_marginTop="1dp"
                 android:background="#fff"
                 android:drawableRight="@drawable/vrightarrow"
@@ -70,7 +75,7 @@
                 android:drawableLeft="@drawable/vorders"
                 android:paddingLeft="10dp"
                 android:drawablePadding="20dp"
-                android:text="My Orders"
+                android:text="My Booking History"
                 android:gravity="center_vertical"/>
             <Button
                 android:layout_width="match_parent"
@@ -79,6 +84,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:id="@+id/manageAdress"
                 android:drawableLeft="@drawable/addresss"
                 android:paddingLeft="10dp"
                 android:drawableRight="@drawable/vrightarrow"
@@ -95,6 +101,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:id="@+id/feedback"
                 android:layout_marginTop="1dp"
                 android:drawableLeft="@drawable/commentss"
                 android:paddingLeft="10dp"
@@ -102,7 +109,7 @@
                 android:background="#fff"
                 android:drawableRight="@drawable/vrightarrow"
                 android:paddingRight="19dp"
-                android:text="Comments"
+                android:text="Feedback"
                 android:gravity="center_vertical"/>
             <Button
                 android:layout_width="match_parent"
@@ -111,6 +118,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:id="@+id/help"
                 android:layout_marginTop="1dp"
                 android:drawableLeft="@drawable/vhelp"
                 android:paddingLeft="10dp"

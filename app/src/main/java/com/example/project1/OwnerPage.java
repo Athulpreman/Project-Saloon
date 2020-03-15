@@ -34,6 +34,7 @@ public class OwnerPage extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
                 SharedPreferences.Editor editor=getSharedPreferences("OwnerLogin",MODE_PRIVATE).edit();
                 editor.clear();
                 editor.commit();
@@ -48,7 +49,7 @@ public class OwnerPage extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Toast.makeText(getApplicationContext(), "Logged Out", Toast.LENGTH_SHORT).show();
+
                 Intent intent1=new Intent(getApplicationContext(),OwnerSignedIn.class);
                 startActivity(intent1);
             }

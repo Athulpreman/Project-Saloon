@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -35,11 +37,9 @@ public class OwnerSignedIn extends AppCompatActivity
     Button Submit,AddImg;
     String sActivity,sAmount,sTime,sModelName,sModelImage,sShopId;
     ImageView iimg;
-
     OwnerAdd ownerAdd;
     DatabaseReference reference,ref;
     String shopID1;
-
     Query query;
 
     @Override
@@ -56,7 +56,7 @@ public class OwnerSignedIn extends AppCompatActivity
         SharedPreferences sharedPreference=getSharedPreferences("OwnerLogin",MODE_PRIVATE);
         sShopId=sharedPreference.getString("shopID",null);
 
-            Activity=(Spinner)findViewById(R.id.ownerAddSpinnerActivity);
+        Activity=(Spinner)findViewById(R.id.ownerAddSpinnerActivity);
         Amount=(EditText)findViewById(R.id.ownerAddAmount);
         Time=(EditText)findViewById(R.id.ownerAddTime);
         ModelName=(EditText)findViewById(R.id.ownerModelName);
@@ -145,9 +145,6 @@ public class OwnerSignedIn extends AppCompatActivity
                             }
                         });
                     }
-
-
-
             }
         });
     }
