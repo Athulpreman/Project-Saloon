@@ -87,7 +87,6 @@ public class OwnerSignedIn extends AppCompatActivity
                 sTime=Time.getText().toString();
                 sModelName=ModelName.getText().toString();
 
-
                 if (sAmount.isEmpty())
                 {
                     Amount.setError("Enter mount");
@@ -170,14 +169,12 @@ public class OwnerSignedIn extends AppCompatActivity
                             public void onSuccess(Uri uri) {
 
                                 sModelImage = String.valueOf(uri);
-                                Picasso.with(getApplicationContext()).load(sModelImage).into(iimg);
+                                Picasso.get().load(sModelImage).into(iimg);
                             }
                         });
-
                     }
                 });
             }
-
         }
     }
 }

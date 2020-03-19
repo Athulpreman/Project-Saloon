@@ -273,7 +273,7 @@ public class RegisterPage extends AppCompatActivity
                             public void onSuccess(Uri uri) {
 
                                 sImage1 = String.valueOf(uri);
-                                Picasso.with(getApplicationContext()).load(sImage1).into(iimg1);
+                                Picasso.get().load(sImage1).into(iimg1);
                             }
                         });
 
@@ -303,7 +303,7 @@ public class RegisterPage extends AppCompatActivity
                             public void onSuccess(Uri uri) {
 
                                 sImage2 = String.valueOf(uri);
-                                Picasso.with(getApplicationContext()).load(sImage2).into(iimg2);
+                                Picasso.get().load(sImage2).into(iimg2);
                             }
                         });
 
@@ -333,7 +333,7 @@ public class RegisterPage extends AppCompatActivity
                             public void onSuccess(Uri uri) {
 
                                 sImage3 = String.valueOf(uri);
-                                Picasso.with(getApplicationContext()).load(sImage3).into(iimg3);
+                                Picasso.get().load(sImage3).into(iimg3);
                             }
                         });
 

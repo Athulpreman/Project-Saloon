@@ -50,8 +50,8 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
         holder.t3.setText(owners.get(position).getShopID());
         holder.t4.setText(owners.get(position).getOwnerMobile());
         holder.t5.setText(owners.get(position).getAddress());
-        Picasso.with(context).load(owners.get(position).getImage1()).into(holder.imageView);
-        Picasso.with(context).load(owners.get(position).getImage3()).into(holder.imageView2);
+        Picasso.get().load(owners.get(position).getImage1()).into(holder.imageView);
+        Picasso.get().load(owners.get(position).getImage3()).into(holder.imageView2);
 
        // reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners");
 

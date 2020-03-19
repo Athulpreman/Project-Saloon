@@ -1,0 +1,45 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:gravity="top"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginVertical="40dp"
+        android:id="@+id/manageAdress"
+        android:drawableLeft="@drawable/vector_call"
+        android:paddingLeft="10dp"
+        android:drawableRight="@drawable/vrightarrow"
+        android:paddingRight="19dp"
+        android:drawablePadding="20dp"
+        android:layout_marginTop="1dp"
+        android:background="#fff"
+        android:text="Contact Us"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About us"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:textSize="34dp"
+        android:layout_marginBottom="30dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="17dp"
+        android:text="        Our app   is one stop  solution for saving time by  waiting in queue in saloons  and beauty parlours .   We simplify  this  by  making queue online for such shops ."/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="17dp"
+        android:text="        Our app allows the shop owners to register in our app and let them add their servises and allow users to book shop by searching the shop by shop name or place . "/>
+
+</LinearLayout>

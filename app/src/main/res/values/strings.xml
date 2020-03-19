@@ -1,26 +1,35 @@
 <resources>
     <string name="app_name">Project1</string>
     <string-array name="ShopActivities">
-        <item>Hair Trim</item>0
-        <item>Hair Shape</item>
-        <item>Hair Shave</item>
-        <item>Mustache Trim</item>
+        <item>Hair Wash</item>
+        <item>Hair Cut</item>
+        <item>Scalpe Treatement</item>
+        <item>Hair Loss Servises</item>
         <item>Beard Shapping</item>
-        <item>Hot Shave</item>
-        <item>Body Care</item>
-        <item>Body Massage</item>
-
+        <item>Braiding</item>
+        <item>Straightening</item>
+        <item>Head Massage</item>
+        <item>Nail Treatement</item>
+        <item>Detoxifying Mud Wrap</item>
+        <item>Stress Relieving Back Treatment</item>
+        <item>Body Glow With Body Masque</item>
+        <item>Facial Hair Bleaching</item>
+        <item>LED Light Therapy</item>
+        <item>Europian Facial</item>
+        <item>Oxygen Facial</item>
+        <item>Chemical Peel</item>
+        <item>Fruit Facial</item>
     </string-array>
 
     <string-array name="shoptimeselection">
-        <item>10am - 11am</item>
-        <item>11am - 12pm</item>
-        <item>12pm - 1pm</item>
-        <item>2pm - 3pm</item>
-        <item>3pm - 4pm</item>
-        <item>5pm - 6pm</item>
-        <item>6pm - 7pm</item>
-        <item>7pm - 8pm</item>
+        <item>10-11</item>
+        <item>11-12</item>
+        <item>12- 13</item>
+        <item>14-15</item>
+        <item>15-16</item>
+        <item>16-17</item>
+        <item>17-18</item>
+        <item>18-19</item>
 
     </string-array>
 

@@ -1,6 +1,7 @@
 package com.example.project1;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -11,40 +12,48 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CustomerSignedIn1 extends AppCompatActivity
 {
-    Button bhome,bsearch,bcatagory,bcart,baccount,logout;
+    Button bHome, bSearch, bCatagory,bcart,baccount,logout;
     String Name,MobNoo;
     String sSearchItem,sSearchType;
     Toast backToast;
-    long backpress;
-    Owner owner,owner1;
+    long backPress;
+    Owner owner,owner2;
+    DatabaseReference refee1;
+    AdapterCustomerHome adapter;
+
+    RecyclerView recyclerView;
 
     AlertDialog.Builder builder;
 
@@ -57,9 +66,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
     int i=0;
 
-    DatabaseReference refOwnerName,refee,refee1;
-    RecyclerView recyclerView;
-    AdapterCustomerHome adapter;
+    DatabaseReference refOwnerName,refee;
 
     ViewPager viewPager;
 
@@ -69,11 +76,21 @@ public class CustomerSignedIn1 extends AppCompatActivity
     AdapterCart adaptercart;
     ArrayList<CBookShop> listcart;
     CBookShop cBookShop;
+    Customer customer;
+
+    //catagory
+    TabHost host;
+    Button hairWash,hairCut,scalpeTreatement,hairLossServises,beardShapping,braiding,straightening;
+    Button headMassage,nailTreatement,detoxifyingMudWrap,stressRelievingBackTreatment,bodyGlowWithBodyMasque;
+    Button facialHairBleaching,LEDLightTherapy,europianFacial,oxygenFacial,chemicalPeel,fruitFacial;
 
     //account
     ImageView proPic;
-    String proName,phoneNo;
-    Button Notification,MyBookingHistory,Manageadress,Feedback,Help;
+    TextView TproName,TphoneNo;
+    String sProName,sPhoneNo,sProPic="";
+    Button Notification,MyBookingHistory, ManageProfile,Feedback,Help;
+    DatabaseReference propicReference,refe;
+    Intent i1=new Intent(Intent.ACTION_GET_CONTENT);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,20 +105,20 @@ public class CustomerSignedIn1 extends AppCompatActivity
         ImageAdapter adapterimg=new ImageAdapter(this);
         viewPager.setAdapter(adapterimg);
 
-        bhome=(Button)findViewById(R.id.home);
-        bsearch=(Button)findViewById(R.id.search);
-        bcatagory=(Button)findViewById(R.id.catagory);
+        bHome =(Button)findViewById(R.id.home);
+        bSearch =(Button)findViewById(R.id.search);
+        bCatagory =(Button)findViewById(R.id.catagory);
         bcart=(Button)findViewById(R.id.cart);
         baccount=(Button)findViewById(R.id.account);
 
-        bsearch.setOnClickListener(new View.OnClickListener() {
+        bSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 decide(2);
             }
         });
-        bcatagory.setOnClickListener(new View.OnClickListener() {
+        bCatagory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -206,10 +223,10 @@ public class CustomerSignedIn1 extends AppCompatActivity
             this.setTitle("Home");
 
             {
-                final String[] Name = new String[1];
+                String Name;
                 Toast backToast;
                 long backpress;
-                final Owner[] owner = new Owner[1];
+
 
                 final ArrayList<OwnerAdd> list;
                 final ArrayList<String> shopList;
@@ -219,13 +236,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 int i=0;
 
                 ViewPager viewPager;
-
-                DatabaseReference refOwnerName;
-                DatabaseReference refee;
-                final DatabaseReference[] refee1 = new DatabaseReference[1];
-                final RecyclerView recyclerView;
-                final AdapterCustomerHome[] adapter = new AdapterCustomerHome[1];
-
 
                 cgetOwner=new CgetOwner();
 
@@ -247,11 +257,11 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     {
                         for (DataSnapshot snapOwnerName:dataSnapshot.getChildren())
                         {
-                            owner[0] =new Owner();
-                            owner[0] =snapOwnerName.getValue(Owner.class);
-                            String Namee= owner[0].ShopID;
+                            owner2 = new Owner();
+                            owner2 =new Owner();
+                            owner2 =snapOwnerName.getValue(Owner.class);
+                            String Namee= owner2.ShopID;
                             shopList.add(Namee);
-
                         }
 
                     }
@@ -272,10 +282,10 @@ public class CustomerSignedIn1 extends AppCompatActivity
                         for (int j=0;j<shopList.size();j++)
                         {
 
-                            Name[0] =shopList.get(j);
-                            refee1[0] = FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(Name[0]).child("Activity");
+                            String Name1=shopList.get(j);
+                            refee1= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(Name1).child("Activity");
 
-                            refee1[0].addValueEventListener(new ValueEventListener() {
+                            refee1.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     for (DataSnapshot datasnapshot1 : dataSnapshot.getChildren())
@@ -286,8 +296,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
                                             list.add(ownerAdd);
                                         }
                                     }
-                                    adapter[0] = new AdapterCustomerHome(CustomerSignedIn1.this, list);
-                                    recyclerView.setAdapter(adapter[0]);
+                                    adapter = new AdapterCustomerHome(CustomerSignedIn1.this, list);
+                                    recyclerView.setAdapter(adapter);
                                 }
 
                                 @Override
@@ -306,13 +316,13 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
             }
 
-            bhome=(Button)findViewById(R.id.home);
-            bsearch=(Button)findViewById(R.id.search);
-            bcatagory=(Button)findViewById(R.id.catagory);
+            bHome =(Button)findViewById(R.id.home);
+            bSearch =(Button)findViewById(R.id.search);
+            bCatagory =(Button)findViewById(R.id.catagory);
             bcart=(Button)findViewById(R.id.cart);
             baccount=(Button)findViewById(R.id.account);
 
-            bhome.setOnClickListener(new View.OnClickListener() {
+            bHome.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
@@ -322,14 +332,14 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     }
                 }
             });
-            bsearch.setOnClickListener(new View.OnClickListener() {
+            bSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
                     decide(2);
                 }
             });
-            bcatagory.setOnClickListener(new View.OnClickListener() {
+            bCatagory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
@@ -356,20 +366,20 @@ public class CustomerSignedIn1 extends AppCompatActivity
             setContentView(R.layout.customer_search);
             this.setTitle("Search Shop");
 
-            bhome=(Button)findViewById(R.id.home);
-            bsearch=(Button)findViewById(R.id.search);
-            bcatagory=(Button)findViewById(R.id.catagory);
+            bHome =(Button)findViewById(R.id.home);
+            bSearch =(Button)findViewById(R.id.search);
+            bCatagory =(Button)findViewById(R.id.catagory);
             bcart=(Button)findViewById(R.id.cart);
             baccount=(Button)findViewById(R.id.account);
 
-            bhome.setOnClickListener(new View.OnClickListener() {
+            bHome.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
                     decide(1);
                 }
             });
-            bsearch.setOnClickListener(new View.OnClickListener() {
+            bSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
@@ -378,7 +388,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     }
                 }
             });
-            bcatagory.setOnClickListener(new View.OnClickListener() {
+            bCatagory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
@@ -566,19 +576,19 @@ public class CustomerSignedIn1 extends AppCompatActivity
             setContentView(R.layout.customer_catogary);
             this.setTitle("Catagory");
 
-            bhome=(Button)findViewById(R.id.home);
-            bsearch=(Button)findViewById(R.id.search);
+            bHome =(Button)findViewById(R.id.home);
+            bSearch =(Button)findViewById(R.id.search);
             bcart=(Button)findViewById(R.id.cart);
             baccount=(Button)findViewById(R.id.account);
 
-            bhome.setOnClickListener(new View.OnClickListener() {
+            bHome.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
                     decide(1);
                 }
             });
-            bsearch.setOnClickListener(new View.OnClickListener() {
+            bSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
@@ -600,8 +610,162 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 }
             });
 
+            host=(TabHost)findViewById(R.id.tabhost);
+            host.setup();
+
+            //tab1
+            TabHost.TabSpec spec=host.newTabSpec("Tab One");
+            spec.setContent(R.id.Hair_Mustache);
+            spec.setIndicator("Hair and Mustache");
+            host.addTab(spec);
+
+            //tab2
+            spec=host.newTabSpec("Tab Two");
+            spec.setContent(R.id.Facial);
+            spec.setIndicator("Facial");
+            host.addTab(spec);
+
+            //tab3
+            spec=host.newTabSpec("Tab Three");
+            spec.setContent(R.id.Body_Care);
+            spec.setIndicator("Body Care");
+            host.addTab(spec);
+
+            //All Buttons
+
+            hairWash=(Button)findViewById(R.id.hairWash);
+            hairLossServises=(Button)findViewById(R.id.hairLossServises);
+            beardShapping=(Button)findViewById(R.id.beardShapping);
+            braiding=(Button)findViewById(R.id.braiding);
+            straightening=(Button)findViewById(R.id.straightening);
+            hairCut=(Button)findViewById(R.id.hairCut);
+            scalpeTreatement=(Button)findViewById(R.id.scalpeTreatement);
+
+            headMassage=(Button)findViewById(R.id.headMassage);
+            nailTreatement=(Button)findViewById(R.id.nailTreatement);
+            detoxifyingMudWrap=(Button)findViewById(R.id.detoxifyingMudWrap);
+            stressRelievingBackTreatment=(Button)findViewById(R.id.stressRelievingBackTreatment);
+            bodyGlowWithBodyMasque=(Button)findViewById(R.id.bodyGlowWithBodyMasque);
+
+            facialHairBleaching=(Button)findViewById(R.id.facialHairBleaching);
+            LEDLightTherapy=(Button)findViewById(R.id.LEDLightTherapy);
+            europianFacial=(Button)findViewById(R.id.europianFacial);
+            oxygenFacial=(Button)findViewById(R.id.oxygenFacial);
+            chemicalPeel=(Button)findViewById(R.id.chemicalPeel);
+            fruitFacial=(Button)findViewById(R.id.fruitFacial);
 
 
+
+            hairWash.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    startActivity(intent);
+                }
+            });
+            hairLossServises.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            beardShapping.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            braiding.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            hairCut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            stressRelievingBackTreatment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            scalpeTreatement.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            headMassage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            nailTreatement.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            detoxifyingMudWrap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            stressRelievingBackTreatment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            bodyGlowWithBodyMasque.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            facialHairBleaching.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            LEDLightTherapy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            europianFacial.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            oxygenFacial.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            chemicalPeel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            fruitFacial.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
 
 
 
@@ -611,27 +775,27 @@ public class CustomerSignedIn1 extends AppCompatActivity
             setContentView(R.layout.customer_cart);
             this.setTitle("My Cart");
 
-            bhome=(Button)findViewById(R.id.home);
-            bsearch=(Button)findViewById(R.id.search);
-            bcatagory=(Button)findViewById(R.id.catagory);
+            bHome =(Button)findViewById(R.id.home);
+            bSearch =(Button)findViewById(R.id.search);
+            bCatagory =(Button)findViewById(R.id.catagory);
             bcart=(Button)findViewById(R.id.cart);
             baccount=(Button)findViewById(R.id.account);
 
-            bhome.setOnClickListener(new View.OnClickListener() {
+            bHome.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
                     decide(1);
                 }
             });
-            bsearch.setOnClickListener(new View.OnClickListener() {
+            bSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
                     decide(2);
                 }
             });
-            bcatagory.setOnClickListener(new View.OnClickListener() {
+            bCatagory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
@@ -687,34 +851,32 @@ public class CustomerSignedIn1 extends AppCompatActivity
         }
         else if (a==5)
         {
-
-
             setContentView(R.layout.customer_account);
             this.setTitle("My Account");
 
             logout=(Button)findViewById(R.id.logoutcustomer);
-            bhome=(Button)findViewById(R.id.home);
-            bsearch=(Button)findViewById(R.id.search);
-            bcatagory=(Button)findViewById(R.id.catagory);
+            bHome =(Button)findViewById(R.id.home);
+            bSearch =(Button)findViewById(R.id.search);
+            bCatagory =(Button)findViewById(R.id.catagory);
             bcart=(Button)findViewById(R.id.cart);
             baccount=(Button)findViewById(R.id.account);
 
 
-            bhome.setOnClickListener(new View.OnClickListener() {
+            bHome.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
                     decide(1);
                 }
             });
-            bsearch.setOnClickListener(new View.OnClickListener() {
+            bSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
                     decide(2);
                 }
             });
-            bcatagory.setOnClickListener(new View.OnClickListener() {
+            bCatagory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
@@ -739,20 +901,59 @@ public class CustomerSignedIn1 extends AppCompatActivity
             });
 
 
-
             Notification=(Button)findViewById(R.id.notification);
             MyBookingHistory=(Button)findViewById(R.id.bookingHistory);
-            Manageadress=(Button)findViewById(R.id.manageAdress);
+            ManageProfile =(Button)findViewById(R.id.manageAdress);
             Feedback=(Button)findViewById(R.id.feedback);
             Help=(Button)findViewById(R.id.help);
+            proPic=(ImageView)findViewById(R.id.proPic);
+            TproName=(TextView)findViewById(R.id.proName);
+            TphoneNo=(TextView)findViewById(R.id.proPhone);
 
+            customer=new Customer();
+            refe=FirebaseDatabase.getInstance().getReference().child("Customer");
+            Query query=refe.orderByChild("mobileNum").equalTo(MobNoo);
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot snapee:dataSnapshot.getChildren())
+                    {
+                        Toast.makeText(CustomerSignedIn1.this, customer.name, Toast.LENGTH_SHORT).show();
+                        customer=snapee.getValue(Customer.class);
+                        TproName.setText(customer.name.toUpperCase());
+                        TphoneNo.setText(customer.mobileNum);
+                        if (!customer.profilePic.equals("0000000"))
+                        {
+                            Picasso.get().load(customer.profilePic).into(proPic);
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+            proPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    i1.setType("image/*");
+                    startActivityForResult(i1,1);
+
+                    }
+
+            });
 
             Notification.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-
+                    Intent i1=new Intent(CustomerSignedIn1.this,Account_Notification.class);
+                    startActivity(i1);
                 }
             });
             MyBookingHistory.setOnClickListener(new View.OnClickListener()
@@ -760,15 +961,17 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 @Override
                 public void onClick(View v)
                 {
-
+                    Intent i1=new Intent(CustomerSignedIn1.this,Account_Booking_History.class);
+                    startActivity(i1);
                 }
             });
-            Manageadress.setOnClickListener(new View.OnClickListener()
+            ManageProfile.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-
+                    Intent i1=new Intent(CustomerSignedIn1.this,Account_Manage_Profile.class);
+                    startActivity(i1);
                 }
             });
             Feedback.setOnClickListener(new View.OnClickListener()
@@ -776,7 +979,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 @Override
                 public void onClick(View v)
                 {
-
+                    Intent i1=new Intent(CustomerSignedIn1.this,Account_Feedback.class);
+                    startActivity(i1);
                 }
             });
             Help.setOnClickListener(new View.OnClickListener()
@@ -784,7 +988,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 @Override
                 public void onClick(View v)
                 {
-
+                    Intent i1=new Intent(CustomerSignedIn1.this,Account_Help.class);
+                    startActivity(i1);
                 }
             });
 
@@ -827,18 +1032,13 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     alert.show();
                 }
             });
-
-
-
-
-
-
         }
     }
 
+
     @Override
     public void onBackPressed() {
-        if (backpress+2000>System.currentTimeMillis())
+        if (backPress +2000>System.currentTimeMillis())
         {
             backToast.cancel();
             moveTaskToBack(true);
@@ -850,6 +1050,60 @@ public class CustomerSignedIn1 extends AppCompatActivity
             backToast=Toast.makeText(getApplicationContext(), "Press again to exit", Toast.LENGTH_SHORT);
             backToast.show();
         }
-        backpress=System.currentTimeMillis();
+        backPress =System.currentTimeMillis();
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                Uri fileuri = data.getData();
+
+                StorageReference folder = FirebaseStorage.getInstance().getReference().child("ShopImage");
+
+                String timestamp = String.valueOf(System.currentTimeMillis());
+
+                final StorageReference filename = folder.child(timestamp + fileuri.getLastPathSegment());
+
+                filename.putFile(fileuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        filename.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri)
+                            {
+                                sProPic = String.valueOf(uri);
+                                Picasso.get().load(sProPic).into(proPic);
+                                if (!sProPic.equals(""))
+                                {
+                                    propicReference=FirebaseDatabase.getInstance().getReference().child("Customer");
+                                    Query query1 = propicReference.orderByChild("profilePic");
+                                    query1.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            for (DataSnapshot snap : dataSnapshot.getChildren())
+                                            {
+                                                Toast.makeText(CustomerSignedIn1.this, "Profile pic updated sucesfully", Toast.LENGTH_SHORT).show();
+                                                snap.getRef().child("profilePic").setValue(sProPic);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                                            Toast.makeText(CustomerSignedIn1.this, "DatabaseError......!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                                else {
+                                    Toast.makeText(CustomerSignedIn1.this, "Elseeeeeeeeee", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                    }
+                });
+            }
+        }
     }
 }

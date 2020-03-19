@@ -68,9 +68,9 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
                     empName.setText(owner.getEmployeeName());
                     empMob.setText(owner.getEmployeeMobile());
 
-                    Picasso.with(getApplicationContext()).load(owner.getImage1()).into(im1);
-                    Picasso.with(getApplicationContext()).load(owner.getImage2()).into(im2);
-                    Picasso.with(getApplicationContext()).load(owner.getImage3()).into(im3);
+                    Picasso.get().load(owner.getImage1()).into(im1);
+                    Picasso.get().load(owner.getImage2()).into(im2);
+                    Picasso.get().load(owner.getImage3()).into(im3);
                 }
 
             }

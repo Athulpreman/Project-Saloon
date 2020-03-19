@@ -55,7 +55,7 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
     {
         holder.t1.setText(list.get(position).getPrice());
         holder.t2.setText(list.get(position).getModelName());
-        Picasso.with(context).load(list.get(position).getModelImg()).into(holder.imageView);
+        Picasso.get().load(list.get(position).getModelImg()).into(holder.imageView);
         holder.cardView.setOnClickListener(new View.OnClickListener()
         {
             @Override

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.project1">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="com.android.hardware" />
+    <uses-feature android:name="com.android.hardware.Camera.focus" />
 
     <supports-screens
         android:anyDensity="true"
@@ -16,7 +22,12 @@
         android:roundIcon="@drawable/hair"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Account_Notification"></activity>
+        <activity android:name=".Catagory_Search"></activity>
+        <activity android:name=".Account_Manage_Profile" />
+        <activity android:name=".Account_Help" />
+        <activity android:name=".Account_Booking_History" />
+        <activity android:name=".Account_Feedback" />
+        <activity android:name=".Account_Notification" />
         <activity android:name=".showbooking_Cart" />
         <activity android:name=".Bookin_status_show" />
         <activity android:name=".Booking_shop_Customer_1st" />
@@ -47,6 +58,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
     </application>
 
 </manifest>

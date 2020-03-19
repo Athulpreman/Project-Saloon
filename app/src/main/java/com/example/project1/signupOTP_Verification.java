@@ -86,9 +86,9 @@ public class signupOTP_Verification extends AppCompatActivity
         PhoneAuthCredential credential= PhoneAuthProvider.getCredential(verificationcode, code);
         signInWithCredential(credential);
     }
-    void signInWithCredential(PhoneAuthCredential credential)
+    void signInWithCredential(PhoneAuthCredential credentials)
     {
-        mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>()
+        mAuth.signInWithCredential(credentials).addOnCompleteListener(new OnCompleteListener<AuthResult>()
         {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task)
@@ -120,6 +120,10 @@ public class signupOTP_Verification extends AppCompatActivity
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
+                else
+                {
+                    Toast.makeText(signupOTP_Verification.this, "Wrong pssword", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -127,14 +131,14 @@ public class signupOTP_Verification extends AppCompatActivity
 
     public void sendVerificationCode(String num)
     {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(num,30, TimeUnit.SECONDS,this,mCallBack);
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(num,60, TimeUnit.SECONDS,signupOTP_Verification.this,mmCall);
 
     }
-    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks mmCall=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
-        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential)
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential1)
         {
-            String code=phoneAuthCredential.getSmsCode();
+            String code=phoneAuthCredential1.getSmsCode();
             if (code!=null)
             {
                 progressBar.setVisibility(View.VISIBLE);

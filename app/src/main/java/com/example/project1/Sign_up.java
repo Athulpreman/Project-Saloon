@@ -43,7 +43,6 @@ public class Sign_up extends AppCompatActivity
         ename=(EditText)findViewById(R.id.signupName);
 
         customer=new Customer();
-        reference= FirebaseDatabase.getInstance().getReference().child("Customer");
 
 
         bsignup.setOnClickListener(new View.OnClickListener()
@@ -80,6 +79,8 @@ public class Sign_up extends AppCompatActivity
                     String code="91";
                     phoneno="+" + code + mobno;
 
+
+                    reference= FirebaseDatabase.getInstance().getReference().child("Customer");
 
                     Query query=reference.orderByChild("mobileNum").equalTo(phoneno);
                     query.addListenerForSingleValueEvent(new ValueEventListener()

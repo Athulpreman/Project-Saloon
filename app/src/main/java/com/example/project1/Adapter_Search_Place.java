@@ -46,8 +46,8 @@ public class Adapter_Search_Place extends RecyclerView.Adapter<Adapter_Search_Pl
     {
         holder.t1.setText(owners.get(position).getOwnerName());
         holder.t2.setText(owners.get(position).getShopName());
-        Picasso.with(context).load(owners.get(position).getImage1()).into(holder.imageView);
-        Picasso.with(context).load(owners.get(position).getImage3()).into(holder.imageView2);
+        Picasso.get().load(owners.get(position).getImage1()).into(holder.imageView);
+        Picasso.get().load(owners.get(position).getImage3()).into(holder.imageView2);
 
         // reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners");
 

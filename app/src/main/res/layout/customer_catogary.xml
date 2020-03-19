@@ -1,7 +1,9 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -9,6 +11,340 @@
         android:orientation="vertical"
         android:gravity="bottom">
 
+
+
+
+        <TabHost
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:outlineAmbientShadowColor="#000"
+            android:outlineSpotShadowColor="#000"
+            android:id="@+id/tabhost">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:outlineAmbientShadowColor="#000"
+                    android:outlineSpotShadowColor="#000"
+                    android:layout_height="60dp" />
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/Hair_Mustache"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/hairWash"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Hair Wash"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/hairCut"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Hair Cut"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/scalpeTreatement"
+                            android:background="#fff"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Scalpe Treatement"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/hairLossServises"
+                            android:background="#fff"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Hair Loss Servises"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/beardShapping"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Beard Shapping"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/braiding"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Braiding"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/straightening"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:drawablePadding="20dp"
+                            android:text="Straightening"
+                            android:gravity="center_vertical"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Facial"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/headMassage"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Head Massage"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:id="@+id/nailTreatement"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Nail Treatement"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/detoxifyingMudWrap"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:text="Detoxifying Mud Wrap"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/stressRelievingBackTreatment"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Stress Relieving Back Treatment"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/bodyGlowWithBodyMasque"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:drawablePadding="20dp"
+                            android:text="Body Glow With Body Masque"
+                            android:gravity="center_vertical"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Body_Care"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/facialHairBleaching"
+                            android:background="#fff"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Facial Hair Bleaching"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/LEDLightTherapy"
+                            android:background="#fff"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="LED Light Therapy"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/europianFacial"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Europian Facial"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/oxygenFacial"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Oxygen Facial"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/chemicalPeel"
+                            android:background="#fff"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            android:text="Chemical Peel"
+                            android:gravity="center_vertical"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:background="#948E8E"
+                            android:layout_height="0.5dp"/>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:id="@+id/fruitFacial"
+                            android:background="#fff"
+                            android:drawableRight="@drawable/vrightarrow"
+                            android:paddingRight="19dp"
+                            android:paddingLeft="10dp"
+                            android:drawablePadding="20dp"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:text="Fruit Facial"
+                            android:gravity="center_vertical"/>
+
+
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
         <RelativeLayout
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"

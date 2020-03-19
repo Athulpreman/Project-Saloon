@@ -77,9 +77,9 @@ public class OwnerViewDetails_From_Cardview extends AppCompatActivity
                     eEmployeeName.setText(owner.getEmployeeName());
                     eEmployeeMobile.setText(owner.getEmployeeMobile());
 
-                    Picasso.with(getApplicationContext()).load(owner.getImage1()).into(iimg1);
-                    Picasso.with(getApplicationContext()).load(owner.getImage2()).into(iimg2);
-                    Picasso.with(getApplicationContext()).load(owner.getImage3()).into(iimg3);
+                    Picasso.get().load(owner.getImage1()).into(iimg1);
+                    Picasso.get().load(owner.getImage2()).into(iimg2);
+                    Picasso.get().load(owner.getImage3()).into(iimg3);
                 }
 
             }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,7 +31,7 @@ public class BookAppoinment extends AppCompatActivity
     EditText date;
     Spinner time;
     Button nextbtn;
-    String getDate,getTime,date1,name,mob,shopID,shopName,shopAdress;
+    String getDate,getTime,date1,name,mob,shopID,shopName,shopAdress,qrString;
     Customer customer1;
     DatabaseReference refee,reference,ref,customerRef,refee1;
     String MobNoo;
@@ -201,6 +202,10 @@ public class BookAppoinment extends AppCompatActivity
                                                     cBookShop.ShopID=shopID;
                                                     cBookShop.shopAddress=shopAdress;
                                                     cBookShop.shopName=shopName;
+
+                                                    qrString=MobNoo+"-"+getDate+"-"+getTime;
+                                                    Toast.makeText(BookAppoinment.this, qrString, Toast.LENGTH_SHORT).show();
+
                                                     reference.child(getDate).setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
                                                         public void onSuccess(Void aVoid)
@@ -211,6 +216,7 @@ public class BookAppoinment extends AppCompatActivity
                                                                 {
                                                                     Toast.makeText(BookAppoinment.this, "booking Placed", Toast.LENGTH_SHORT).show();
                                                                     Intent intent1=new Intent(getApplicationContext(),Bookin_status_show.class);
+                                                                    intent1.putExtra("qrString",qrString);
                                                                     startActivity(intent1);
                                                                 }
                                                             });
@@ -236,6 +242,9 @@ public class BookAppoinment extends AppCompatActivity
                                         cBookShop.ShopID=shopID;
                                         cBookShop.shopAddress=shopAdress;
                                         cBookShop.shopName=shopName;
+
+                                        qrString=MobNoo+"-"+getDate+"-"+getTime;
+
                                         ref=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Booking").child(getDate);
                                         ref.child(getTime).setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
@@ -247,6 +256,9 @@ public class BookAppoinment extends AppCompatActivity
                                                     {
                                                         Toast.makeText(BookAppoinment.this, "booking Placed", Toast.LENGTH_SHORT).show();
                                                         Intent intent1=new Intent(getApplicationContext(),Bookin_status_show.class);
+                                                        intent1.putExtra("qrString",qrString);
+                                                        intent1.putExtra("MobNoo",MobNoo);
+                                                        intent1.putExtra("getDate",getDate);
                                                         startActivity(intent1);
                                                     }
                                                 });
