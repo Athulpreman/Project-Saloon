@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class CBookShop
 {
-    String CustomerName,CustomerMob,time,Date,ShopID,statusBit,shopAddress,shopName,qrCode;
+    String CustomerName,CustomerMob,time,Date,ShopID,statusBit,shopAddress,shopName,qrCode,activity;
 
     public CBookShop()
     {
@@ -12,7 +12,7 @@ public class CBookShop
         qrCode="0";
     }
 
-    public CBookShop(String customerName, String customerMob, String time, String date, String shopID, String statusBit, String shopAddress, String shopName, String qrCode) {
+    public CBookShop(String customerName, String customerMob, String time, String date, String shopID, String statusBit, String shopAddress, String shopName, String qrCode, String activity) {
         CustomerName = customerName;
         CustomerMob = customerMob;
         this.time = time;
@@ -22,6 +22,7 @@ public class CBookShop
         this.shopAddress = shopAddress;
         this.shopName = shopName;
         this.qrCode = qrCode;
+        this.activity = activity;
     }
 
     public String getCustomerName() {
@@ -94,5 +95,13 @@ public class CBookShop
 
     public void setQrCode(String qrCode) {
         this.qrCode = qrCode;
+    }
+
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
     }
 }

@@ -6,14 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,19 +27,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class BookAppoinment extends AppCompatActivity
 {
     EditText date;
-    Spinner time;
+    Spinner time,activity;
     Button nextbtn;
-    String getDate,getTime,date1,name,mob,shopID,shopName,shopAdress,qrString;
+    String getDate,getTime,date1,name,mob,shopID,shopName,shopAdress,qrString,sActivity;
     Customer customer1;
-    DatabaseReference refee,reference,ref,customerRef,refee1;
+    DatabaseReference refee,reference,ref,customerRef,refee1,refActivity;
     String MobNoo;
-    CBookShop cBookShop;
+    CBookShop cBookShop,cBookShop1;
     Owner owner;
+    ArrayList<String>listActivity;
+    String list[];
+    int k;
+    ArrayAdapter<String> adapter1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,13 +58,16 @@ public class BookAppoinment extends AppCompatActivity
         name=sharedPreferences.getString("Name",null);
 
         cBookShop=new CBookShop();
+        cBookShop1=new CBookShop();
         customer1=new Customer();
         owner=new Owner();
+        listActivity=new ArrayList<>();
 
         refee= FirebaseDatabase.getInstance().getReference().child("Customer");
 
         date=(EditText)findViewById(R.id.getDate);
         time=(Spinner)findViewById(R.id.getTime);
+        activity=(Spinner)findViewById(R.id.getActivity);
         nextbtn=(Button)findViewById(R.id.BookAppoinmentNext);
 
         final Calendar calendar = Calendar.getInstance();
@@ -70,6 +81,58 @@ public class BookAppoinment extends AppCompatActivity
         final Calendar c = Calendar.getInstance();
         final SimpleDateFormat df = new SimpleDateFormat("yyyy,MM,dd");
         final String formattedDate = df.format(c.getTime());
+
+
+
+        refActivity=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Activity");
+        refActivity.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                listActivity.clear();
+                if (dataSnapshot.exists())
+                {
+                    for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                    {
+                        cBookShop1=snapshot.getValue(CBookShop.class);
+                        listActivity.add(cBookShop1.activity);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+
+            }
+        });
+
+       adapter1=new ArrayAdapter<String>(BookAppoinment.this,android.R.layout.simple_spinner_dropdown_item,listActivity);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        activity.setAdapter(adapter1);
+
+
+
+       activity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                String item = adapter1.getItem(position);
+
+                ((TextView) view).setTextColor(Color.RED);
+                Toast.makeText(BookAppoinment.this, "aaaaaaaaaa", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
 
         date.setOnClickListener(new View.OnClickListener()
         {
@@ -108,10 +171,17 @@ public class BookAppoinment extends AppCompatActivity
             {
                 getDate=date.getText().toString();
                 getTime=time.getSelectedItem().toString();
+                sActivity=activity.getSelectedItem().toString();
+                Toast.makeText(BookAppoinment.this, sActivity, Toast.LENGTH_SHORT).show();
 
                 if (getDate.isEmpty())
                 {
-                    Toast.makeText(BookAppoinment.this, "Chose a date", Toast.LENGTH_SHORT).show();              }
+                    Toast.makeText(BookAppoinment.this, "Chose a date", Toast.LENGTH_SHORT).show();
+                }
+                /*else if (sActivity.equals(""))
+                {
+                    Toast.makeText(BookAppoinment.this, "Chose an Activity", Toast.LENGTH_SHORT).show();
+                }*/
                 else
                 {
                     if (formattedDate.compareTo(date1)>0)
@@ -194,7 +264,6 @@ public class BookAppoinment extends AppCompatActivity
                                                 }
                                                 else
                                                 {
-                                                    Log.d("aaaa","b");
                                                     cBookShop.Date=getDate;
                                                     cBookShop.time=getTime;
                                                     cBookShop.CustomerName=name;

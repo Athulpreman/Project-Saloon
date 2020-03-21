@@ -52,6 +52,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
     Owner owner,owner2;
     DatabaseReference refee1;
     AdapterCustomerHome adapter;
+    Adapter_Search_Place adapter11;
+
 
     RecyclerView recyclerView;
 
@@ -156,6 +158,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
+                shopList.clear();
                 for (DataSnapshot snapOwnerName:dataSnapshot.getChildren())
                 {
                     owner=new Owner();
@@ -188,7 +191,9 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
                     refee1.addValueEventListener(new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                        {
+                            list.clear();
                             for (DataSnapshot datasnapshot1 : dataSnapshot.getChildren())
                             {
                                 if (dataSnapshot.exists())
@@ -255,6 +260,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
+                        shopList.clear();
                         for (DataSnapshot snapOwnerName:dataSnapshot.getChildren())
                         {
                             owner2 = new Owner();
@@ -287,7 +293,9 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
                             refee1.addValueEventListener(new ValueEventListener() {
                                 @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                {
+                                    list.clear();
                                     for (DataSnapshot datasnapshot1 : dataSnapshot.getChildren())
                                     {
                                         if (dataSnapshot.exists())
@@ -431,6 +439,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                 {
+                    ShopName.clear();
+                    ShopPlace.clear();
                     for (DataSnapshot snap:dataSnapshot.getChildren())
                     {
                         Owner own1=new Owner();
@@ -523,27 +533,27 @@ public class CustomerSignedIn1 extends AppCompatActivity
                         {
                             DatabaseReference refee;
                             final RecyclerView recyclerView;
-                            final Adapter_Search_Place[] adapter = new Adapter_Search_Place[1];
-                            final ArrayList<Owner> list;
+                            final ArrayList<Owner> list1;
                             final TextView tvResult;
 
                             tvResult=(TextView)findViewById(R.id.ShowResult);
                             recyclerView=(RecyclerView)findViewById(R.id.rvSearchShop);
                             recyclerView.setHasFixedSize(true);
                             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                            list=new ArrayList<Owner>();
+                            list1=new ArrayList<Owner>();
 
                             refee= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
                             refee.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                                 {
+                                    list1.clear();
                                     for (DataSnapshot studentDatasnapshot : dataSnapshot.getChildren())
                                     {
                                         Owner owner = studentDatasnapshot.getValue(Owner.class);
                                         if (owner.place.equalsIgnoreCase(sSearchItem))
                                         {
-                                            list.add(owner);
+                                            list1.add(owner);
                                         }
                                     }
                                     int size=list.size();
@@ -554,8 +564,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
                                     else
                                     {
                                         tvResult.setText(sSearchItem);
-                                        adapter[0] = new Adapter_Search_Place(CustomerSignedIn1.this,list);
-                                        recyclerView.setAdapter(adapter[0]);
+                                        adapter11= new Adapter_Search_Place(CustomerSignedIn1.this,list1);
+                                        recyclerView.setAdapter(adapter11);
                                     }
 
                                 }
@@ -661,109 +671,170 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 public void onClick(View v)
                 {
                     Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Hair Wash");
                     startActivity(intent);
                 }
             });
             hairLossServises.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-
+                public void onClick(View v)
+                {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Hair Loss Servises");
+                    startActivity(intent);
                 }
             });
             beardShapping.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","eard Shapping");
+                    startActivity(intent);
 
                 }
             });
             braiding.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Braiding");
+                    startActivity(intent);
 
                 }
             });
             hairCut.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Hair Cut");
+                    startActivity(intent);
 
                 }
             });
             stressRelievingBackTreatment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Stress Relieving Back Treatment");
+                    startActivity(intent);
 
                 }
             });
             scalpeTreatement.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Scalpe Treatement");
+                    startActivity(intent);
 
                 }
             });
             headMassage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Head Massage");
+                    startActivity(intent);
 
                 }
             });
             nailTreatement.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Nail Treatement");
+                    startActivity(intent);
 
                 }
             });
             detoxifyingMudWrap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Detoxifying Mud Wrap");
+                    startActivity(intent);
 
                 }
             });
             stressRelievingBackTreatment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Stress Relieving Back Treatment");
+                    startActivity(intent);
 
                 }
             });
             bodyGlowWithBodyMasque.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Body Glow With Body Masque");
+                    startActivity(intent);
 
                 }
             });
             facialHairBleaching.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Facial Hair Bleaching");
+                    startActivity(intent);
 
                 }
             });
             LEDLightTherapy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","LED Light Therapy");
+                    startActivity(intent);
 
                 }
             });
             europianFacial.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Europian Facial");
+                    startActivity(intent);
 
                 }
             });
             oxygenFacial.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Oxygen Facial");
+                    startActivity(intent);
 
                 }
             });
             chemicalPeel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Chemical Peel");
+                    startActivity(intent);
 
                 }
             });
             fruitFacial.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Fruit Facial");
+                    startActivity(intent);
 
+                }
+            });
+            straightening.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
+                    intent.putExtra("activity","Straightening");
+                    startActivity(intent);
                 }
             });
 
