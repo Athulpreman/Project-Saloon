@@ -1,12 +1,5 @@
 <LinearLayout android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:background="@drawable/bg4"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:background="@drawable/background_dark_blur"
         android:orientation="vertical"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -25,8 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="420dp"
                 android:layout_marginTop="6dp"
-                android:orientation="vertical"
-                android:background="#9C756969">
+                android:orientation="vertical">
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -37,14 +29,16 @@
 
                     <TableRow>
                         <Button android:layout_width="166dp"
-                            android:background="#000000"
+                            android:background="#B7959595"
                             android:text="sign up"
+                            android:textSize="18dp"
                             android:id="@+id/signinSignupButton"
                             android:textColor="#fff"/>
                         <Button  android:layout_width="166dp"
-                            android:background="#BFDDC9C9"
+                            android:background="@drawable/button_black_rectangle"
                             android:text="login"
-                            android:textColor="#fff"/>
+                            android:textSize="18dp"
+                            android:textColor="@color/textColor_white"/>
                     </TableRow>
 
                 </TableLayout>
@@ -61,8 +55,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:hint="Mob No."
-                        android:textColorHint="#fff"
-                        android:textColor="#fff"
+                        android:textColorHint="@color/textColor"
+                        android:textColor="@color/textColor"
                         android:textSize="19dp"
                         android:inputType="phone"
                         android:maxLength="10"
@@ -73,24 +67,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:hint="Password"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColor"
                         android:password="true"
                         android:inputType="textPassword"
-                        android:textColorHint="#FFFFFF"
+                        android:textColorHint="@color/textColor"
                         android:textSize="19dp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/textbox"
                         android:padding="11dp"
-                        android:id="@+id/loginPassword"
-                        android:drawableRight="@drawable/passwordvector" />
+                        android:id="@+id/loginPassword" />
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:text="Login"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/textColor_white"
                         android:textSize="18dp"
                         android:layout_marginTop="40dp"
-                        android:background="#BFDDC9C9"
+                        android:background="@drawable/button_black_rectangle"
                         android:padding="11dp"
                         android:textStyle="bold"
                         android:id="@+id/loginButtonlogin"/>
@@ -108,7 +101,7 @@
                         android:layout_marginTop="10dp">
                         <TextView android:text="Forgot Password ?"
                             android:id="@+id/loginForgotPassword"
-                            android:textColor="#fff" />
+                            android:textColor="@color/textColor" />
 
                     </TableRow>
 
@@ -124,9 +117,9 @@
                     <TableRow android:gravity="center"
                         android:layout_marginTop="10dp">
                         <TextView android:text="For Shop Option, "
-                            android:textColor="#fff" />
+                            android:textColor="@color/textColor" />
                         <TextView android:text="Click Here"
-                            android:textColor="#fff"
+                            android:textColor="@color/textColor"
                             android:id="@+id/loginShopOption"
                             android:layout_marginBottom="1dp"
                             android:textStyle="bold"
@@ -142,5 +135,3 @@
         </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>

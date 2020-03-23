@@ -6,20 +6,18 @@
     <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="@drawable/bg11">
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@drawable/background_dark_blur">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Let's Register"
-                android:textColor="#fff"
+                android:textColor="@color/textColor"
                 android:textSize="50dp"
                 android:textStyle="bold"
                 android:layout_margin="50dp"
@@ -34,7 +32,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Already have an account?"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColor"
                         android:layout_marginLeft="47dp"
                         android:textSize="17dp"/>
                     <TextView android:layout_width="match_parent"
@@ -42,22 +40,21 @@
                         android:text="Click here!"
                         android:textStyle="bold"
                         android:id="@+id/registerGoToLogin"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColor"
                         android:textSize="19dp"/>
                 </TableRow>
             </TableLayout>
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:background="@drawable/bgregister">
+                android:layout_margin="20dp">
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColor"
                     android:hint="Owner Full Name "
                     android:maxLines="1"
-                    android:textColorHint="#fff"
+                    android:textColorHint="@color/textColor"
                     android:paddingLeft="19dp"
                     android:inputType="textPostalAddress"
                     android:layout_marginLeft="10dp"
@@ -68,10 +65,10 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textColorHint="#fff"
+                    android:textColorHint="@color/textColor"
                     android:hint="Shop Name"
                     android:paddingLeft="19dp"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColor"
                     android:maxLines="1"
                     android:inputType="textPostalAddress"
                     android:layout_marginLeft="10dp"
@@ -82,10 +79,10 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColor"
                     android:maxLines="1"
                     android:layout_marginLeft="10dp"
-                    android:textColorHint="#fff"
+                    android:textColorHint="@color/textColor"
                     android:paddingLeft="19dp"
                     android:hint="Shop ID"
                     android:layout_marginRight="10dp"
@@ -96,10 +93,10 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColor"
                     android:maxLines="1"
                     android:layout_marginLeft="10dp"
-                    android:textColorHint="#fff"
+                    android:textColorHint="@color/textColor"
                     android:paddingLeft="19dp"
                     android:hint="Place"
                     android:layout_marginRight="10dp"
@@ -110,11 +107,11 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textColor="#fff"
+                    android:textColor="@color/textColor"
                     android:layout_marginLeft="10dp"
                     android:maxLines="1"
                     android:layout_marginRight="10dp"
-                    android:textColorHint="#fff"
+                    android:textColorHint="@color/textColor"
                     android:hint="Owner Mobile No"
                     android:inputType="phone"
                     android:maxLength="10"
@@ -125,11 +122,11 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
-                    android:textColorHint="#fff"
+                    android:textColorHint="@color/textColor"
                     android:paddingLeft="19dp"
                     android:lines="5"
                     android:maxLines="5"
-                    android:textColor="#FFF"
+                    android:textColor="@color/textColor"
                     android:hint="Address"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -139,8 +136,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textColor="#FFF"
-                    android:textColorHint="#fff"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/textColor"
                     android:paddingLeft="19dp"
                     android:hint="Employee Name"
                     android:inputType="textPostalAddress"
@@ -153,9 +150,9 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:textColor="#FFF"
+                    android:textColor="@color/textColor"
                     android:maxLines="1"
-                    android:textColorHint="#fff"
+                    android:textColorHint="@color/textColor"
                     android:paddingLeft="19dp"
                     android:hint="Employee Contact Number"
                     android:layout_marginLeft="10dp"
@@ -168,16 +165,17 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:textColor="@color/textColor"
                     android:maxLines="1"
-                    android:textColor="#FFF"
-                    android:textColorHint="#fff"
+                    android:textColorHint="@color/textColor"
                     android:paddingLeft="19dp"
                     android:hint="Create Password"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="25dp"
+                    android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
-                    android:inputType="textPassword"
+                    android:inputType="phone"
+                    android:maxLength="10"
                     android:background="@drawable/textboxregister"
                     android:id="@+id/registerPassword"/>
                 <TableLayout android:layout_width="match_parent"
@@ -209,10 +207,10 @@
                             android:layout_height="45dp"
                             android:layout_width="140dp"
                             android:id="@+id/registerSignupButton"
-                            android:background="@drawable/textboxregister"
+                            android:background="@drawable/button_black_rectangle"
                             android:textSize="20dp"
                             android:layout_margin="20dp"
-                            android:textColor="#fff"
+                            android:textColor="@color/textColor_white"
                             android:textStyle="bold"/>
                     </TableRow>
                 </TableLayout>

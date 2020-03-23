@@ -67,6 +67,8 @@ public class OwnerSignedIn extends AppCompatActivity
         iimg=(ImageView) findViewById(R.id.ownerShowSelectedImg);
 
         reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID1);
+
+
         AddImg.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -77,6 +79,9 @@ public class OwnerSignedIn extends AppCompatActivity
                 startActivityForResult(i,1);
             }
         });
+
+
+
         Submit.setOnClickListener(new View.OnClickListener()
         {
             @Override

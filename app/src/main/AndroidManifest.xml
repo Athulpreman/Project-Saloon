@@ -7,6 +7,7 @@
 
     <uses-feature android:name="com.android.hardware" />
     <uses-feature android:name="com.android.hardware.Camera.focus" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <supports-screens
         android:anyDensity="true"
@@ -22,10 +23,10 @@
         android:roundIcon="@drawable/hair"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Catagory_Search"></activity>
+        <activity android:name=".Account_Booking_History"></activity>
+        <activity android:name=".Catagory_Search" />
         <activity android:name=".Account_Manage_Profile" />
         <activity android:name=".Account_Help" />
-        <activity android:name=".Account_Booking_History" />
         <activity android:name=".Account_Feedback" />
         <activity android:name=".Account_Notification" />
         <activity android:name=".showbooking_Cart" />
@@ -44,13 +45,9 @@
         <activity android:name=".AdminPage" />
         <activity android:name=".signupOTP_Verification" />
         <activity android:name=".Sign_up" />
-        <activity android:name=".BookingConfirmation" />
         <activity android:name=".RegisterPage" />
         <activity android:name=".LoginPage" />
-        <activity android:name=".WhatDoYouNeed" />
         <activity android:name=".BookAppoinment" />
-        <activity android:name=".ShopDetails" />
-        <activity android:name=".SearchShop" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

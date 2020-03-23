@@ -8,21 +8,19 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@drawable/bg4"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@drawable/background_dark_blur"
             xmlns:android="http://schemas.android.com/apk/res/android">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="#fff"
+                android:textColor="@color/textColor"
                 android:textSize="40dp"
                 android:textStyle="bold"
                 android:text="Owner Details"
@@ -38,14 +36,12 @@
 
                 <TableRow android:layout_marginBottom="15dp">
                     <TextView android:text="Shop ID"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColor"
                         android:layout_marginRight="20dp"
                         android:textSize="18dp"/>
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textColor="#fff"
-                        android:textColorHint="#fff"
                         android:inputType="none"
                         android:textSize="19dp"
                         android:editable="false"
@@ -55,14 +51,12 @@
                 </TableRow>
                 <TableRow android:layout_marginBottom="15dp">
                     <TextView android:text="Owner Name"
-                        android:textColor="#fff"
                         android:layout_marginRight="20dp"
+                        android:textColor="@color/textColor"
                         android:textSize="18dp"/>
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:textColor="#fff"
-                        android:textColorHint="#fff"
                         android:clickable="false"
                         android:textSize="19dp"
                         android:editable="false"
@@ -73,7 +67,7 @@
                 </TableRow>
                 <TableRow android:layout_marginBottom="15dp">
                     <TextView android:text="Owner Mobile"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColor"
                         android:layout_marginRight="20dp"
                         android:textSize="18dp"/>
                     <EditText
@@ -90,7 +84,7 @@
                 </TableRow>
                 <TableRow android:layout_marginBottom="15dp">
                     <TextView android:text="Shop Name"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColor"
                         android:layout_marginRight="20dp"
                         android:textSize="18dp"/>
                     <EditText
@@ -107,7 +101,7 @@
                 </TableRow>
                 <TableRow android:layout_marginBottom="15dp">
                     <TextView android:text="Shop Address"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColor"
                         android:layout_marginRight="20dp"
                         android:textSize="18dp"/>
                     <EditText
@@ -124,7 +118,7 @@
                 </TableRow>
                 <TableRow android:layout_marginBottom="15dp">
                     <TextView android:text="Emp Name"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColor"
                         android:layout_marginRight="20dp"
                         android:textSize="18dp"/>
                     <EditText
@@ -141,7 +135,7 @@
                 </TableRow>
                 <TableRow android:layout_marginBottom="15dp">
                     <TextView android:text="Emp Mobile"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColor"
                         android:layout_marginRight="20dp"
                         android:textSize="18dp"/>
                     <EditText
@@ -191,7 +185,7 @@
                     android:layout_height="70dp"
                     android:layout_width="140dp"
                     android:id="@+id/ownerViewGrantPermisssionButton"
-                    android:background="@drawable/textboxregister"
+                    android:background="@drawable/button_black_rectangle"
                     android:textSize="20dp"
                     android:layout_margin="20dp"
                     android:textColor="#fff"

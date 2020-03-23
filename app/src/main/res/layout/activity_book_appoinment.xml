@@ -2,18 +2,17 @@
     android:layout_width="match_parent"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/bg4"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/background_dark_blur">
+        android:orientation="vertical">
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_margin="20dp">
             <TextView
                 android:layout_width="match_parent"
@@ -21,70 +20,66 @@
                 android:text="Book an Appoinment"
                 android:textSize="40dp"
                 android:textStyle="bold"
-                android:textColor="#fff"
+                android:textColor="@color/textColor"
                 android:gravity="center"
                 android:layout_marginTop="20dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="When do you want to come ???"
-                android:textColor="#fff"
-                android:textSize="25dp"
+                android:textColor="@color/textColor"
+                android:textSize="20dp"
                 android:layout_marginTop="30dp"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Chose yours"
-                android:textColor="#fff"
+                android:textColor="@color/textColor"
                 android:textSize="18dp"
                 android:layout_marginTop="40dp"/>
-            <Spinner
+            <AutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:id="@+id/getActivity"
-                android:textColor="#fff"
-                android:spinnerMode="dropdown"
-                android:paddingRight="15dp"
-                android:paddingEnd="15dp"
-                style="@style/Widget.AppCompat.Spinner.DropDown"
-                android:background="@drawable/textbox_round_black"
-                android:textSize="20dp"/>
+                android:background="@drawable/textbox"
+                android:id="@+id/au"
+                android:textAlignment="center"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:text="Select a day"
                 android:textSize="18dp"
                 android:layout_marginTop="20dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:textAlignment="center"
                 android:inputType="none"
                 android:paddingLeft="13dp"
                 android:editable="false"
                 android:id="@+id/getDate"
                 android:paddingRight="15dp"
-                android:textColor="#fff"
-                android:drawableRight="@drawable/date"
-                android:background="@drawable/textboxregister"
+                android:textColor="@color/textColor"
+                android:background="@drawable/textbox"
                 android:textSize="20dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select a time"
-                android:textColor="#fff"
+                android:textColor="@color/textColor"
                 android:textSize="18dp"
                 android:layout_marginTop="20dp"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/getTime"
-                android:textColor="#fff"
+                android:textAlignment="center"
+                android:textColor="@color/textColor"
                 android:entries="@array/shoptimeselection"
                 android:paddingRight="15dp"
                 android:paddingEnd="15dp"
-                android:background="@drawable/textboxregister"
+                android:background="@drawable/textbox"
                 android:textSize="20dp"/>
             <TableLayout
                 android:layout_width="match_parent"
@@ -95,14 +90,17 @@
                     <ProgressBar
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="invisible"
                         android:layout_marginLeft="60dp"
-                        android:outlineAmbientShadowColor="#fff"
+                        android:outlineAmbientShadowColor="@color/textColor"
                         android:outlineSpotShadowColor="#fff"
-                        android:id="@+id/Progressbar1" />
+                        android:id="@+id/Progressba" />
                     <TextView android:text="Checking Availability"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColor"
+                        android:visibility="invisible"
                         android:layout_marginTop="12dp"
                         android:textSize="17dp"
+                        android:id="@+id/ProgressbaText"
                         android:layout_marginLeft="20dp"/>
                 </TableRow>
                 <TableRow>
@@ -111,7 +109,7 @@
                         android:layout_marginLeft="90dp"
                         android:text="next"
                         android:textSize="20dp"
-                        android:background="@drawable/textboxround"
+                        android:background="@drawable/button_black_rectangle"
                         android:textColor="#fff"
                         android:id="@+id/BookAppoinmentNext"
                         android:layout_marginTop="50dp"/>
@@ -119,7 +117,7 @@
 
             </TableLayout>
 
-        </TableLayout>
+        </LinearLayout>
 
 
     </LinearLayout>

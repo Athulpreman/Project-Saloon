@@ -2,13 +2,14 @@ package com.example.project1;
 
 public class CManageProfile
 {
-    String Email,Gender,Address1,Address2,Address3,Address4,Image;
+    String Email,Gender,Address1,Address2,Address3,Address4,Image,location;
 
     public CManageProfile()
     {
+        location="0000";
     }
 
-    public CManageProfile(String email, String gender, String address1, String address2, String address3, String address4, String image) {
+    public CManageProfile(String email, String gender, String address1, String address2, String address3, String address4, String image, String location) {
         Email = email;
         Gender = gender;
         Address1 = address1;
@@ -16,6 +17,7 @@ public class CManageProfile
         Address3 = address3;
         Address4 = address4;
         Image = image;
+        this.location = location;
     }
 
     public String getEmail() {
@@ -72,5 +74,13 @@ public class CManageProfile
 
     public void setImage(String image) {
         Image = image;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

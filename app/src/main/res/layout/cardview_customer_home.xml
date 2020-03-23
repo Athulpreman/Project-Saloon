@@ -1,29 +1,28 @@
-<LinearLayout android:layout_height="230dp"
-    android:layout_width="115dp"
+<LinearLayout android:layout_height="200dp"
+    android:layout_width="145dp"
     android:layout_margin="20dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <androidx.cardview.widget.CardView android:layout_height="230dp"
-        android:layout_width="116dp"
+    <androidx.cardview.widget.CardView android:layout_height="200dp"
+        android:layout_width="145dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:cardCornerRadius="30dp"
         android:id="@+id/CustomerCard"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout
-            android:layout_width="105dp"
+            android:layout_width="139dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_gravity="center">
 
             <com.mikhaellopez.circularimageview.CircularImageView
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:src="@drawable/hair"
                 android:layout_gravity="center|top"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/Imgg"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,16 +53,6 @@
                 android:textSize="20dp"
                 android:textAlignment="center"
                 android:textStyle="bold"/>
-            <Button
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/textboxround"
-                android:text="Book"
-                android:id="@+id/Bookbtn"/>
-
-
-
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

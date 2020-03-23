@@ -22,12 +22,12 @@ import com.google.firebase.database.ValueEventListener;
 public class Sign_up extends AppCompatActivity
 {
     Button gotologin,bsignup;
-    EditText ename,ephoneNo,epasswoed;
-    String name,mobno,password,phoneno;
-    DatabaseReference reference;
-    Customer customer;
-    long backpress;
-    Toast backToast;
+    EditText eename,eephoneNo,eepasswoed;
+    String sname,smobno,spassword,sphoneno;
+    DatabaseReference rreference;
+    Customer ccustomer;
+    long bbackpress;
+    Toast bbackToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,11 +38,11 @@ public class Sign_up extends AppCompatActivity
 
         gotologin=(Button)findViewById(R.id.signupButtonLogin);
         bsignup=(Button)findViewById(R.id.signupButtonsignup);
-        ephoneNo=(EditText)findViewById(R.id.signupMobNo);
-        epasswoed=(EditText)findViewById(R.id.signupPassword);
-        ename=(EditText)findViewById(R.id.signupName);
+        eephoneNo=(EditText)findViewById(R.id.signupMobNo);
+        eepasswoed=(EditText)findViewById(R.id.signupPassword);
+        eename=(EditText)findViewById(R.id.signupName);
 
-        customer=new Customer();
+        ccustomer=new Customer();
 
 
         bsignup.setOnClickListener(new View.OnClickListener()
@@ -50,39 +50,39 @@ public class Sign_up extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                mobno=ephoneNo.getText().toString();
-                password=epasswoed.getText().toString();
-                name=ename.getText().toString().trim();
+                smobno=eephoneNo.getText().toString();
+                spassword=eepasswoed.getText().toString();
+                sname=eename.getText().toString().trim();
 
-                if (name.isEmpty())
+                if (sname.isEmpty())
                 {
-                    ename.setError("Name is required");
-                    ename.requestFocus();
+                    eename.setError("Name is required");
+                    eename.requestFocus();
                 }
-                else if (mobno.isEmpty())
+                else if (smobno.isEmpty())
                 {
-                    ephoneNo.setError("Mobile No. is required");
-                    ephoneNo.requestFocus();
+                    eephoneNo.setError("Mobile No. is required");
+                    eephoneNo.requestFocus();
                 }
-                else if (mobno.length()<10)
+                else if (smobno.length()<10)
                 {
-                    ephoneNo.setError("Mobile No. must have 10 numbers");
-                    ephoneNo.requestFocus();
+                    eephoneNo.setError("Mobile No. must have 10 numbers");
+                    eephoneNo.requestFocus();
                 }
-                else if (password.isEmpty())
+                else if (spassword.isEmpty())
                 {
-                    epasswoed.setError("Password is rquired");
-                    epasswoed.requestFocus();
+                    eepasswoed.setError("Password is rquired");
+                    eepasswoed.requestFocus();
                 }
                 else
                 {
                     String code="91";
-                    phoneno="+" + code + mobno;
+                    sphoneno="+" + code + smobno;
 
 
-                    reference= FirebaseDatabase.getInstance().getReference().child("Customer");
+                    rreference= FirebaseDatabase.getInstance().getReference().child("Customer");
 
-                    Query query=reference.orderByChild("mobileNum").equalTo(phoneno);
+                    Query query=rreference.orderByChild("mobileNum").equalTo(sphoneno);
                     query.addListenerForSingleValueEvent(new ValueEventListener()
                     {
                         @Override
@@ -90,21 +90,21 @@ public class Sign_up extends AppCompatActivity
                         {
                             if (dataSnapshot.exists())
                             {
-                                ephoneNo.setError("Customer already exist..! Try Login");
-                                ephoneNo.requestFocus();
+                                eephoneNo.setError("Customer already exist..! Try Login");
+                                eephoneNo.requestFocus();
                             }
                             else
                             {
                                 Intent intent=new Intent(getApplicationContext(),signupOTP_Verification.class);
-                                intent.putExtra("signMobile",phoneno);
-                                intent.putExtra("signPassword",password);
-                                intent.putExtra("signName",name);
+                                intent.putExtra("signMobile",sphoneno);
+                                intent.putExtra("signPassword",spassword);
+                                intent.putExtra("signName",sname);
                                 startActivity(intent);
 
 
-                                ename.setText("");
-                                epasswoed.setText("");
-                                ephoneNo.setText("");
+                                eename.setText("");
+                                eepasswoed.setText("");
+                                eephoneNo.setText("");
                             }
                         }
 
@@ -130,18 +130,18 @@ public class Sign_up extends AppCompatActivity
     }
     public void onBackPressed()
     {
-        if (backpress+2000>System.currentTimeMillis())
+        if (bbackpress+2000>System.currentTimeMillis())
         {
-            backToast.cancel();
+            bbackToast.cancel();
             moveTaskToBack(true);
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(1);
         }
         else
         {
-            backToast= Toast.makeText(getApplicationContext(), "Press again to exit", Toast.LENGTH_SHORT);
-            backToast.show();
+            bbackToast= Toast.makeText(getApplicationContext(), "Press again to exit", Toast.LENGTH_SHORT);
+            bbackToast.show();
         }
-        backpress=System.currentTimeMillis();
+        bbackpress=System.currentTimeMillis();
     }
 }

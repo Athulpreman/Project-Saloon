@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
     <AutoCompleteTextView
         android:id="@+id/actv"
         android:layout_width="350dp"
@@ -17,7 +16,7 @@
         android:layout_marginTop="120dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="26dp"
-        android:background="@drawable/textbox_round_black"
+        android:background="@drawable/textbox"
         android:gravity="center_vertical"
         android:hint="Enter Shop Name or Area"
         android:textAlignment="center"
@@ -65,7 +64,7 @@
                 android:entries="@array/searchby"
                 android:textAlignment="center"
                 android:layout_height="33dp"
-                android:background="@drawable/textbox_round_black"/>
+                android:background="@drawable/textbox"/>
 
 
         </LinearLayout>
@@ -74,7 +73,7 @@
             android:layout_width="140dp"
             android:layout_height="38dp"
             android:text="Search"
-            android:background="@drawable/textboxregister"
+            android:background="@drawable/button_black_rectangle"
             android:textColor="#FFF"
             android:layout_marginTop="85dp"
             android:layout_gravity="center"/>
@@ -92,6 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:textSize="17dp"
+            android:textStyle="bold"
             android:id="@+id/ShowResult"
             android:gravity="center"
             android:layout_marginBottom="6dp"/>

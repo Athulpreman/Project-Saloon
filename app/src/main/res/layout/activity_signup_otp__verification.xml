@@ -1,12 +1,6 @@
-<LinearLayout android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:background="@drawable/bg4"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:background="@drawable/background_dark_blur"
         android:orientation="vertical"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -25,8 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:layout_marginTop="6dp"
-                android:orientation="vertical"
-                android:background="#9C756969">
+                android:orientation="vertical">
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -36,12 +29,18 @@
                     android:orientation="horizontal"
                    >
 
-                    <TableRow>
-                        <TextView android:text="OTP is sent to your Mobile Number"
-                            android:textSize="20dp"
+                    <TableRow android:gravity="center">
+                        <TextView android:text="Verify Your Number"
+                            android:textSize="25dp"
                             android:textStyle="bold"
-                            android:layout_marginTop="30dp"
-                            android:textColor="#fff"/>
+                            android:layout_gravity="center"
+                            android:textColor="@color/textColor"/>
+                    </TableRow>
+                    <TableRow android:layout_marginTop="20dp"
+                        android:gravity="center">
+                        <TextView android:text="Please enter otp received in nnumber"
+                            android:textSize="17dp"
+                            android:textColor="@color/textColor"/>
                     </TableRow>
 
                 </TableLayout>
@@ -51,16 +50,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="30dp"
                     android:orientation="vertical">
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:hint="OTP"
-                        android:textColorHint="#FFFFFF"
+                        android:textColorHint="@color/textColor"
                         android:textSize="19dp"
-                        android:textColor="#fff"
+                        android:textColor="@color/textColor"
                         android:maxLength="6"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/textbox"
@@ -70,12 +69,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:text="verify"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18dp"
+                        android:textColor="#fff"
+                        android:textSize="20dp"
                         android:layout_marginTop="40dp"
-                        android:background="#BFDDC9C9"
+                        android:background="@drawable/button_black_rectangle"
                         android:padding="11dp"
-                        android:textStyle="bold"
                         android:id="@+id/signupOTP_verificationButton"/>
                     <ProgressBar
                         android:layout_width="wrap_content"
@@ -96,5 +94,3 @@
         </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>

@@ -24,7 +24,6 @@ public class Adapter_Search_Place extends RecyclerView.Adapter<Adapter_Search_Pl
     private ValueEventListener mCtx;
     private ArrayList<Owner> owners;
     Context context;
-    DatabaseReference reference;
 
     Adapter_Search_Place(Context context, ArrayList<Owner> itemList)
     {
@@ -48,10 +47,6 @@ public class Adapter_Search_Place extends RecyclerView.Adapter<Adapter_Search_Pl
         holder.t2.setText(owners.get(position).getShopName());
         Picasso.get().load(owners.get(position).getImage1()).into(holder.imageView);
         Picasso.get().load(owners.get(position).getImage3()).into(holder.imageView2);
-
-        // reference= FirebaseDatabase.getInstance().getReference().child("Shop_Owners");
-
-
 
         holder.viewOenerButton.setOnClickListener(new View.OnClickListener()
         {

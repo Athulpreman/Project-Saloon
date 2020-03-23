@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -387,15 +386,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     decide(1);
                 }
             });
-            bSearch.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v)
-                {
-                    if (a!=2) {
-                        decide(2);
-                    }
-                }
-            });
             bCatagory.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
@@ -511,8 +501,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
                                         own=snap.getValue(Owner.class);
                                         if (own.ShopName.equalsIgnoreCase(sSearchItem))
                                         {
-                                            Intent intent=new Intent(getApplicationContext(),ShopDetails.class);
-                                            intent.putExtra(own.ShopID,"ShopId");
+                                            Intent intent=new Intent(getApplicationContext(),Booking_shop_Customer_1st.class);
+                                            intent.putExtra(own.ShopID,"shopId");
                                             startActivity(intent);
                                         }
                                         else
@@ -550,14 +540,17 @@ public class CustomerSignedIn1 extends AppCompatActivity
                                     list1.clear();
                                     for (DataSnapshot studentDatasnapshot : dataSnapshot.getChildren())
                                     {
-                                        Owner owner = studentDatasnapshot.getValue(Owner.class);
-                                        if (owner.place.equalsIgnoreCase(sSearchItem))
+                                        if (studentDatasnapshot.exists())
                                         {
-                                            list1.add(owner);
+                                            Owner owner = studentDatasnapshot.getValue(Owner.class);
+                                            if (owner.place.equalsIgnoreCase(sSearchItem))
+                                            {
+                                                list1.add(owner);
+                                            }
                                         }
                                     }
-                                    int size=list.size();
-                                    if (size==0)
+
+                                    if (list1.isEmpty())
                                     {
                                         tvResult.setText("No Shope In The Given Place");
                                     }
@@ -688,7 +681,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(getApplicationContext(),Catagory_Search.class);
-                    intent.putExtra("activity","eard Shapping");
+                    intent.putExtra("activity","Beard Shapping");
                     startActivity(intent);
 
                 }
@@ -910,6 +903,14 @@ public class CustomerSignedIn1 extends AppCompatActivity
                         cBookShop=snapshot.getValue(CBookShop.class);
                         DateList2.add(cBookShop);
                     }
+                    if (DateList2.isEmpty())
+                    {
+                        Toast.makeText(CustomerSignedIn1.this, "empty lis", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(CustomerSignedIn1.this, "not empty", Toast.LENGTH_SHORT).show();
+                    }
                     adaptercart = new AdapterCart(CustomerSignedIn1.this, DateList2);
                     recyclerViewcart.setAdapter(adaptercart);
                 }
@@ -961,15 +962,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     decide(4);
                 }
             });
-            baccount.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v)
-                {
-                    if (a!=5) {
-                        decide(5);
-                    }
-                }
-            });
 
 
             Notification=(Button)findViewById(R.id.notification);
@@ -989,7 +981,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapee:dataSnapshot.getChildren())
                     {
-                        Toast.makeText(CustomerSignedIn1.this, customer.name, Toast.LENGTH_SHORT).show();
                         customer=snapee.getValue(Customer.class);
                         TproName.setText(customer.name.toUpperCase());
                         TphoneNo.setText(customer.mobileNum);
