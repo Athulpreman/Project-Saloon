@@ -1,9 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".showbooking_Cart">
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Booking Details"
+                android:textStyle="bold"
+                android:textSize="35dp"
+                android:gravity="center"
+                android:textColor="#000"/>
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Shop Name"
+                android:textColor="@color/textColor"
+                android:textSize="16dp"/>
+            <TextView android:background="@drawable/textbox"
+                android:layout_height="40dp"
+                android:textSize="18dp"
+                android:id="@+id/shopName"
+                android:textColor="@color/textColor"
+                android:layout_width="match_parent"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Date of booking"
+                android:textColor="@color/textColor"
+                android:textSize="16dp"/>
+            <TextView android:background="@drawable/textbox"
+                android:layout_height="40dp"
+                android:textSize="18dp"
+                android:id="@+id/dateBooking"
+                android:textColor="@color/textColor"
+                android:layout_width="match_parent"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Time of Booking"
+                android:textColor="@color/textColor"
+                android:textSize="16dp"/>
+            <TextView android:background="@drawable/textbox"
+                android:layout_height="40dp"
+                android:textSize="18dp"
+                android:textColor="@color/textColor"
+                android:id="@+id/timeBooking"
+                android:layout_width="match_parent"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Amount(in Rs)"
+                android:textColor="@color/textColor"
+                android:textSize="16dp"/>
+            <TextView android:background="@drawable/textbox"
+                android:layout_height="40dp"
+                android:id="@+id/Amount"
+                android:textSize="18dp"
+                android:textColor="@color/textColor"
+                android:layout_width="match_parent"/>
+            <Button
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:id="@+id/shoMap"
+                android:background="@drawable/button_black_rectangle"
+                android:textColor="@color/textColor_white"
+                android:text="Show Direction"/>
+            <Button
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/showQRCode"
+                android:layout_gravity="center"
+                android:background="@drawable/button_black_rectangle"
+                android:textColor="@color/textColor_white"
+                android:text="Show QR Code"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/hair"
+                android:id="@+id/imgQR"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="30dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:text="Scan this QR code fromThe shop"
+                android:textColor="@color/textColor"/>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

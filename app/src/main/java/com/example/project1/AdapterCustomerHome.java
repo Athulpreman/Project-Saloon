@@ -63,6 +63,8 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
             {
                 Intent intent=new Intent(v.getContext(),Booking_shop_Customer_1st.class);
                 intent.putExtra("shopID",list.get(position).getShopID());
+                intent.putExtra("price",list.get(position).getPrice());
+                intent.putExtra("activity",list.get(position).getActivity());
                 v.getContext().startActivity(intent);
             }
         });

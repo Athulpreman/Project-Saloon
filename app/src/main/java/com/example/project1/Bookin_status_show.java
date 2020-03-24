@@ -39,7 +39,7 @@ public class Bookin_status_show extends AppCompatActivity
     Button gotoHome;
     ImageView QR;
     String qrString,qrStrings,MobNoo,getDate;
-    Bitmap bitmap;
+
     DatabaseReference reference;
 
     @Override
@@ -48,35 +48,7 @@ public class Bookin_status_show extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookin_status_show);
 
-        QR=(ImageView)findViewById(R.id.qrCodeid);
-
-        Intent i=getIntent();
-        qrString=i.getStringExtra("qrString");
-        MobNoo=i.getStringExtra("MobNoo");
-        getDate=i.getStringExtra("getDate");
-
-        if (qrString!=null)
-        {
-            try
-            {
-                MultiFormatWriter multiFormatWriter=new MultiFormatWriter();
-                BitMatrix bitMatrix=multiFormatWriter.encode(qrString, BarcodeFormat.QR_CODE,330,330);
-                BarcodeEncoder barcodeEncoder=new BarcodeEncoder();
-                bitmap=barcodeEncoder.createBitmap(bitMatrix);
-                QR.setImageBitmap(bitmap);
-            }
-            catch (WriterException e)
-            {
-                Toast.makeText(Bookin_status_show.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
-        else
-        {
-            Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show();
-        }
         gotoHome=(Button)findViewById(R.id.gotoHome);
-
-
         gotoHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

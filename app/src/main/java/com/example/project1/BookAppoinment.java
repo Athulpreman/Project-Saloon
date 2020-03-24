@@ -45,8 +45,9 @@ public class BookAppoinment extends AppCompatActivity
     int k;
     ArrayAdapter<String> adapter1;
     AutoCompleteTextView autoCompleteTextView;
-    TextView progressText;
+    TextView progressText,tprice,rs;
     ProgressBar progressBar;
+    String aactivity,price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,6 +65,26 @@ public class BookAppoinment extends AppCompatActivity
         customer1=new Customer();
         owner=new Owner();
         listActivity=new ArrayList<>();
+        tprice=(TextView)findViewById(R.id.price);
+        rs=(TextView)findViewById(R.id.rs);
+
+
+        Intent inten=getIntent();
+        price=inten.getStringExtra("price");
+        aactivity=inten.getStringExtra("activity");
+        shopID=inten.getStringExtra("shopID");
+        if (!price.isEmpty())
+        {
+            tprice.setText(price);
+        }
+        else
+        {
+            rs.setVisibility(View.INVISIBLE);
+        }
+        if (!aactivity.isEmpty())
+        {
+            aa.setText(aactivity);
+        }
 
         progressBar=(ProgressBar)findViewById(R.id.Progressba);
         progressText=(TextView)findViewById(R.id.ProgressbaText);
@@ -78,8 +99,6 @@ public class BookAppoinment extends AppCompatActivity
         final int month=calendar.get(calendar.MONTH);
         final int day=calendar.get(calendar.DAY_OF_MONTH);
 
-        Intent intent=getIntent();
-        shopID=intent.getStringExtra("shopID");
 
         final Calendar c = Calendar.getInstance();
         final SimpleDateFormat df = new SimpleDateFormat("yyyy,MM,dd");
@@ -236,7 +255,7 @@ public class BookAppoinment extends AppCompatActivity
                                 {
                                     if (dataSnapshot.exists())
                                     {
-                                        Toast.makeText(BookAppoinment.this, "The time is booked", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(BookAppoinment.this, "The time is booked Chose another time", Toast.LENGTH_SHORT).show();
                                     }
                                     else
                                     {

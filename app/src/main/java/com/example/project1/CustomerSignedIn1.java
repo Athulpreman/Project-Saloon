@@ -892,6 +892,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             listcart=new ArrayList<CBookShop>();
 
+            DateList2.clear();
             refeecart=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking");
             refeecart.addValueEventListener(new ValueEventListener() {
                 @Override

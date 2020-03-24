@@ -7,7 +7,7 @@
         <LinearLayout android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:gravity="top">
+            android:gravity="center">
 
             <LinearLayout android:layout_height="450dp"
                 android:layout_width="match_parent"
@@ -39,33 +39,18 @@
                         android:textColor="@color/textColor"
                         android:textStyle="italic"
                         android:text="You have booked successfuly "/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="19dp"
-                        android:textColor="@color/textColor"
-                        android:gravity="center"
-                        android:layout_marginTop="15dp"
-                        android:textStyle="italic"
-                        android:text="Waite for owners confirmation"/>
+
+
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:gravity="center"
-                        android:text="If owner didn't responded"
-                        android:textColor="@color/textColor"
                         android:textSize="19dp"
-                        android:textStyle="italic" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="19dp"
+                        android:textStyle="bold"
                         android:textColor="@color/textColor"
                         android:layout_marginTop="15dp"
                         android:gravity="center"
-                        android:text="Contact them"/>
+                        android:text="Use the QR code"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -74,7 +59,7 @@
                         android:textColor="@color/textColor"
                         android:layout_marginTop="15dp"
                         android:gravity="center"
-                        android:text="Use the QR code below"/>
+                        android:text="That is available in the cart"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -83,7 +68,7 @@
                         android:textColor="@color/textColor"
                         android:layout_marginTop="15dp"
                         android:gravity="center"
-                        android:text="QR code will be available in the cart"/>
+                        android:text="Thank You"/>
                     <Button
                         android:layout_width="200dp"
                         android:layout_height="45dp"
@@ -99,14 +84,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-            <ImageView
-                android:layout_width="350dp"
-                android:layout_height="350dp"
-                android:id="@+id/qrCodeid"
-                android:background="#fff"
-                android:layout_marginBottom="40dp"
-                android:layout_gravity="center"/>
 
 
         </LinearLayout>
