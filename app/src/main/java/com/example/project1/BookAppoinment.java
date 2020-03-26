@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class BookAppoinment extends AppCompatActivity
 {
@@ -44,6 +46,7 @@ public class BookAppoinment extends AppCompatActivity
     ArrayList<String>listActivity;
     String list[];
     int k;
+    int xxx=0;
     ArrayAdapter<String> adapter1;
     AutoCompleteTextView autoCompleteTextView;
     TextView progressText,tprice,rs;
@@ -104,6 +107,7 @@ public class BookAppoinment extends AppCompatActivity
         final Calendar c = Calendar.getInstance();
         final SimpleDateFormat df = new SimpleDateFormat("yyyy,MM,dd");
         final String formattedDate = df.format(c.getTime());
+
 
         refActivity=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Activity");
         refActivity.addValueEventListener(new ValueEventListener() {
@@ -171,18 +175,35 @@ public class BookAppoinment extends AppCompatActivity
                 getDate=date.getText().toString();
                 getTime=time.getSelectedItem().toString();
                 ssActivity=autoCompleteTextView.getText().toString();
-                Toast.makeText(BookAppoinment.this, ssActivity, Toast.LENGTH_SHORT).show();
 
-                if (getDate.isEmpty())
+                //finding the day from an outside function
+                String dayOftheWeek=getDayFromDateString(getDate,"yyyy,MM,dd");
+
+
+
+                if (ssActivity.equals(""))
+                {
+                    autoCompleteTextView.setError("Enter a service");
+                    autoCompleteTextView.requestFocus();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    progressText.setVisibility(View.INVISIBLE);
+                }
+                if (!listActivity.contains(ssActivity))
+                {
+                    autoCompleteTextView.setError("The service is not available in this shop");
+                    autoCompleteTextView.requestFocus();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    progressText.setVisibility(View.INVISIBLE);
+                }
+                else if (getDate.isEmpty())
                 {
                     Toast.makeText(BookAppoinment.this, "Chose a date", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                     progressText.setVisibility(View.INVISIBLE);
                 }
-                else if (ssActivity.equals(""))
+                else if (dayOftheWeek.equals("sunday"))
                 {
-                    autoCompleteTextView.setError("Chose an activity");
-                    autoCompleteTextView.requestFocus();
+                    Toast.makeText(BookAppoinment.this, "Sunday is holiday \n Chose a different day", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                     progressText.setVisibility(View.INVISIBLE);
                 }
@@ -191,7 +212,7 @@ public class BookAppoinment extends AppCompatActivity
 
                     String ss=getDate;
                     String[]split=ss.split(",");
-                    String a=split[0];
+                    final String a=split[0];
                     String b=split[1];
                     String c=split[2];
                     String dateSelected=a+b+c;
@@ -202,8 +223,8 @@ public class BookAppoinment extends AppCompatActivity
                     String e=split[1];
                     String f=split[2];
                     String currentdateinNum=d+e+f;
-                    Toast.makeText(BookAppoinment.this, currentdateinNum, Toast.LENGTH_LONG).show();
-                    Toast.makeText(BookAppoinment.this, formattedDate, Toast.LENGTH_SHORT).show();
+
+
 
                     //checking date is after the current date
                     if (formattedDate.compareTo(date1)>0)
@@ -222,7 +243,7 @@ public class BookAppoinment extends AppCompatActivity
                     else
                     {
                         //checking customer booked on the same date
-                        refCheckCustomerBooked=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking").child(date1);
+                        refCheckCustomerBooked=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking").child(getDate);
                         Query query=refCheckCustomerBooked.orderByChild("date").equalTo(formattedDate);
                         query.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -293,127 +314,61 @@ public class BookAppoinment extends AppCompatActivity
 
 
                                     customerRef= FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking").child(getDate);
-                                    reference = FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Booking").child(getDate).child(getTime);
+                                    reference = FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Booking").child(getDate);
 
-                                    Query query2=reference.orderByChild("statusBit").equalTo("0");
+                                    xxx=0;
+                                    Query query2=reference.orderByChild("time").equalTo(getTime);
                                     query2.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                                         {
                                             if (dataSnapshot.exists())
                                             {
-                                                Log.d("aaaaa","if");
-                                                Toast.makeText(BookAppoinment.this, "The time is booked....! \n Chose another time", Toast.LENGTH_SHORT).show();
-                                                progressBar.setVisibility(View.INVISIBLE);
-                                                progressText.setVisibility(View.INVISIBLE);
+                                               for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                                               {
+                                                   CBookShop cBookShop=new CBookShop();
+                                                   cBookShop=snapshot.getValue(CBookShop.class);
+                                                   if (cBookShop.time.equals(getTime))
+                                                   {
+                                                       Toast.makeText(BookAppoinment.this, "The time is not available \n Chose a different time", Toast.LENGTH_SHORT).show();
+                                                       xxx=1;
+                                                       progressBar.setVisibility(View.INVISIBLE);
+                                                       progressText.setVisibility(View.INVISIBLE);
+                                                   }
+                                               }
                                             }
                                             else
                                             {
-                                                Log.d("aaaaa","else");
-                                                reference.addValueEventListener(new ValueEventListener()
-                                                {
+                                                xxx=1;
+                                                cBookShop.Date=getDate;
+                                                cBookShop.time=getTime;
+                                                cBookShop.CustomerName=name;
+                                                cBookShop.CustomerMob=mob;
+                                                cBookShop.ShopID=shopID;
+                                                cBookShop.shopAddress=shopAdress;
+                                                cBookShop.shopName=shopName;
+                                                cBookShop.activity=ssActivity;
+                                                qrString=MobNoo+"-"+getDate+"-"+getTime;
+                                                cBookShop.qrCode=qrString;
+                                                reference.child(getTime).setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
-                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                                    public void onSuccess(Void aVoid)
                                                     {
-                                                        if (dataSnapshot.exists())
-                                                        {
-                                                            reference.child(getTime).addListenerForSingleValueEvent(new ValueEventListener() {
-                                                                @Override
-                                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                                                                {
-
-                                                                    if (dataSnapshot.exists())
-                                                                    {
-                                                                        CBookShop cBookShop5=new CBookShop();
-                                                                        cBookShop5=dataSnapshot.getValue(CBookShop.class);
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        cBookShop.Date=getDate;
-                                                                        cBookShop.time=getTime;
-                                                                        cBookShop.CustomerName=name;
-                                                                        cBookShop.CustomerMob=mob;
-                                                                        cBookShop.ShopID=shopID;
-                                                                        cBookShop.shopAddress=shopAdress;
-                                                                        cBookShop.shopName=shopName;
-                                                                        cBookShop.activity=ssActivity;
-                                                                        qrString=MobNoo+"-"+getDate+"-"+getTime;
-                                                                        cBookShop.qrCode=qrString;
-                                                                        reference.setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                            @Override
-                                                                            public void onSuccess(Void aVoid)
-                                                                            {
-                                                                                customerRef.setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                                    @Override
-                                                                                    public void onSuccess(Void aVoid)
-                                                                                    {
-                                                                                        Toast.makeText(BookAppoinment.this, "Your booking has been Placed", Toast.LENGTH_LONG).show();
-                                                                                        progressBar.setVisibility(View.INVISIBLE);
-                                                                                        progressText.setVisibility(View.INVISIBLE);
-                                                                                        Intent intent1=new Intent(getApplicationContext(),Bookin_status_show.class);
-                                                                                        intent1.putExtra("qrString",qrString);
-                                                                                        startActivity(intent1);
-                                                                                    }
-                                                                                });
-                                                                            }
-                                                                        });
-
-                                                                    }
-                                                                }
-
-                                                                @Override
-                                                                public void onCancelled(@NonNull DatabaseError databaseError)
-                                                                {
-                                                                    Toast.makeText(BookAppoinment.this, "Database Error....!", Toast.LENGTH_SHORT).show();
-                                                                    progressBar.setVisibility(View.INVISIBLE);
-                                                                    progressText.setVisibility(View.INVISIBLE);
-                                                                }
-                                                            });
-                                                        }
-                                                        else
-                                                        {
-                                                            cBookShop.Date=getDate;
-                                                            cBookShop.time=getTime;
-                                                            cBookShop.CustomerName=name;
-                                                            cBookShop.CustomerMob=mob;
-                                                            cBookShop.ShopID=shopID;
-                                                            cBookShop.shopAddress=shopAdress;
-                                                            cBookShop.shopName=shopName;
-                                                            cBookShop.activity=ssActivity;
-                                                            qrString=MobNoo+"-"+getDate+"-"+getTime;
-                                                            cBookShop.qrCode=qrString;
-
-                                                            ref=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Booking").child(getDate);
-                                                            ref.child(getTime).setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                @Override
-                                                                public void onSuccess(Void aVoid)
-                                                                {
-                                                                    customerRef.setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                        @Override
-                                                                        public void onSuccess(Void aVoid)
-                                                                        {
-                                                                            Toast.makeText(BookAppoinment.this, "booking Placed", Toast.LENGTH_SHORT).show();
-                                                                            progressBar.setVisibility(View.INVISIBLE);
-                                                                            progressText.setVisibility(View.INVISIBLE);
-                                                                            Intent intent1=new Intent(getApplicationContext(),Bookin_status_show.class);
-                                                                            intent1.putExtra("qrString",qrString);
-                                                                            intent1.putExtra("MobNoo",MobNoo);
-                                                                            intent1.putExtra("getDate",getDate);
-                                                                            startActivity(intent1);
-                                                                        }
-                                                                    });
-                                                                }
-                                                            });
-                                                        }
-                                                    }
-                                                    @Override
-                                                    public void onCancelled(@NonNull DatabaseError databaseError)
-                                                    {
-                                                        Toast.makeText(BookAppoinment.this, "Database Error...!", Toast.LENGTH_SHORT).show();
-                                                        progressBar.setVisibility(View.INVISIBLE);
-                                                        progressText.setVisibility(View.INVISIBLE);
+                                                        customerRef.setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void aVoid)
+                                                            {
+                                                                Toast.makeText(BookAppoinment.this, "booking has been Placed", Toast.LENGTH_LONG).show();
+                                                                Intent intent1=new Intent(getApplicationContext(),Bookin_status_show.class);
+                                                                progressBar.setVisibility(View.INVISIBLE);
+                                                                progressText.setVisibility(View.INVISIBLE);
+                                                                intent1.putExtra("qrString",qrString);
+                                                                startActivity(intent1);
+                                                            }
+                                                        });
                                                     }
                                                 });
+
                                             }
                                         }
 
@@ -422,6 +377,37 @@ public class BookAppoinment extends AppCompatActivity
 
                                         }
                                     });
+                                    /*if (xxx==0)
+                                    {
+                                        cBookShop.Date=getDate;
+                                        cBookShop.time=getTime;
+                                        cBookShop.CustomerName=name;
+                                        cBookShop.CustomerMob=mob;
+                                        cBookShop.ShopID=shopID;
+                                        cBookShop.shopAddress=shopAdress;
+                                        cBookShop.shopName=shopName;
+                                        cBookShop.activity=ssActivity;
+                                        qrString=MobNoo+"-"+getDate+"-"+getTime;
+                                        cBookShop.qrCode=qrString;
+                                        reference.child(getTime).setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid)
+                                            {
+                                                customerRef.setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid)
+                                                    {
+                                                        Toast.makeText(BookAppoinment.this, "Your booking has been Placed", Toast.LENGTH_LONG).show();
+                                                        progressBar.setVisibility(View.INVISIBLE);
+                                                        progressText.setVisibility(View.INVISIBLE);
+                                                        Intent intent1=new Intent(getApplicationContext(),Bookin_status_show.class);
+                                                        intent1.putExtra("qrString",qrString);
+                                                        startActivity(intent1);
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }*/
                                 }
                             }
 
@@ -434,5 +420,29 @@ public class BookAppoinment extends AppCompatActivity
                 }
             }
         });
+    }
+    public static String getDayFromDateString(String stringDate,String dateTimeFormat)
+    {
+        String[] daysArray = new String[] {"sunday","monday","tuesday","wednesday","thursday","friday","saturday"};
+        String day ="";
+
+        int dayOfWeek =0;
+        //dateTimeFormat = yyyy-MM-dd HH:mm:ss
+        SimpleDateFormat formatter = new SimpleDateFormat(dateTimeFormat);
+        Date date;
+        try {
+            date = formatter.parse(stringDate);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            dayOfWeek = c.get(Calendar.DAY_OF_WEEK)-1;
+            if (dayOfWeek < 0) {
+                dayOfWeek += 7;
+            }
+            day = daysArray[dayOfWeek];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return day;
     }
 }
