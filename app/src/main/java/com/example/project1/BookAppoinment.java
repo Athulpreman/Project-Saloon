@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,7 +37,7 @@ public class BookAppoinment extends AppCompatActivity
     Button nextbtn;
     String getDate,getTime,date1,name,mob,shopID,shopName,shopAdress,qrString,sActivity,ssActivity;
     Customer customer1;
-    DatabaseReference refee,reference,ref,customerRef,refee1,refActivity;
+    DatabaseReference refee,reference,ref,customerRef,refee1,refActivity,refCheckCustomerBooked;
     String MobNoo;
     CBookShop cBookShop,cBookShop1;
     Owner owner;
@@ -73,18 +74,18 @@ public class BookAppoinment extends AppCompatActivity
         price=inten.getStringExtra("price");
         aactivity=inten.getStringExtra("activity");
         shopID=inten.getStringExtra("shopID");
-        if (!price.isEmpty())
+        /*if (!price.isEmpty())
         {
             tprice.setText(price);
         }
-        else
+        if (true)
         {
             rs.setVisibility(View.INVISIBLE);
         }
         if (!aactivity.isEmpty())
         {
             aa.setText(aactivity);
-        }
+        }*/
 
         progressBar=(ProgressBar)findViewById(R.id.Progressba);
         progressText=(TextView)findViewById(R.id.ProgressbaText);
@@ -109,7 +110,6 @@ public class BookAppoinment extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                Toast.makeText(BookAppoinment.this, shopID, Toast.LENGTH_SHORT).show();
                 listActivity.clear();
                 if (dataSnapshot.exists())
                 {
@@ -176,196 +176,261 @@ public class BookAppoinment extends AppCompatActivity
                 if (getDate.isEmpty())
                 {
                     Toast.makeText(BookAppoinment.this, "Chose a date", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    progressText.setVisibility(View.INVISIBLE);
                 }
                 else if (ssActivity.equals(""))
                 {
                     autoCompleteTextView.setError("Chose an activity");
                     autoCompleteTextView.requestFocus();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    progressText.setVisibility(View.INVISIBLE);
                 }
                 else
                 {
+
+                    String ss=getDate;
+                    String[]split=ss.split(",");
+                    String a=split[0];
+                    String b=split[1];
+                    String c=split[2];
+                    String dateSelected=a+b+c;
+
+                    String tt=formattedDate;
+                    String[]split1=ss.split(",");
+                    String d=split[0];
+                    String e=split[1];
+                    String f=split[2];
+                    String currentdateinNum=d+e+f;
+                    Toast.makeText(BookAppoinment.this, currentdateinNum, Toast.LENGTH_LONG).show();
+                    Toast.makeText(BookAppoinment.this, formattedDate, Toast.LENGTH_SHORT).show();
+
+                    //checking date is after the current date
                     if (formattedDate.compareTo(date1)>0)
                     {
                         Toast.makeText(BookAppoinment.this, "Chosen date is not currect", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+                        progressText.setVisibility(View.INVISIBLE);
+                    }
+                    //cannot book date that is 7 days after current date
+                    else if (Integer.parseInt(currentdateinNum)-Integer.parseInt(dateSelected)>7)
+                    {
+                        Toast.makeText(BookAppoinment.this, "Can only book shop for the 7 days from today", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+                        progressText.setVisibility(View.INVISIBLE);
                     }
                     else
-                        {
-                            Query query=refee.orderByChild("mobileNum").equalTo(MobNoo);
-                            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.exists())
-                                    {
-                                        for (DataSnapshot ds:dataSnapshot.getChildren())
+                    {
+                        //checking customer booked on the same date
+                        refCheckCustomerBooked=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking").child(date1);
+                        Query query=refCheckCustomerBooked.orderByChild("date").equalTo(formattedDate);
+                        query.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                            {
+                                if (dataSnapshot.exists())
+                                {
+                                    Toast.makeText(BookAppoinment.this, "You have Already booked the in the same date. You can only book once a day", Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    progressText.setVisibility(View.INVISIBLE);
+                                }
+                                else
+                                {   progressText.setText("Making Your Booking....");
+                                    Query query=refee.orderByChild("mobileNum").equalTo(MobNoo);
+                                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            if (dataSnapshot.exists())
+                                            {
+                                                for (DataSnapshot ds:dataSnapshot.getChildren())
+                                                {
+
+                                                    customer1=ds.getValue(Customer.class);
+                                                    if (MobNoo.equals(customer1.mobileNum))
+                                                    {
+                                                        name=customer1.mobileNum;
+                                                        mob=customer1.name;
+                                                    }
+
+                                                    else
+                                                    {
+                                                    }
+
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+
+                                    //getting the shop details
+                                    refee1=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+                                    Query query1=refee.orderByChild("shopID").equalTo(shopID);
+                                    query1.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            if (dataSnapshot.exists())
+                                            {
+                                                for (DataSnapshot ds:dataSnapshot.getChildren())
+                                                {
+                                                    owner=ds.getValue(Owner.class);
+                                                    shopAdress=owner.Address;
+                                                    shopName=owner.ShopName;
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError)
                                         {
 
-                                            customer1=ds.getValue(Customer.class);
-                                            if (MobNoo.equals(customer1.mobileNum))
-                                            {
-                                                name=customer1.mobileNum;
-                                                mob=customer1.name;
-                                            }
+                                        }
+                                    });
 
+
+                                    customerRef= FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking").child(getDate);
+                                    reference = FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Booking").child(getDate).child(getTime);
+
+                                    Query query2=reference.orderByChild("statusBit").equalTo("0");
+                                    query2.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                        {
+                                            if (dataSnapshot.exists())
+                                            {
+                                                Log.d("aaaaa","if");
+                                                Toast.makeText(BookAppoinment.this, "The time is booked....! \n Chose another time", Toast.LENGTH_SHORT).show();
+                                                progressBar.setVisibility(View.INVISIBLE);
+                                                progressText.setVisibility(View.INVISIBLE);
+                                            }
                                             else
                                             {
-                                            }
-
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-
-
-                            //getting the shop details
-                            refee1=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
-                            Query query1=refee.orderByChild("shopID").equalTo(shopID);
-                            query1.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.exists())
-                                    {
-                                        for (DataSnapshot ds:dataSnapshot.getChildren())
-                                        {
-                                            owner=ds.getValue(Owner.class);
-                                            shopAdress=owner.Address;
-                                            shopName=owner.ShopName;
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-
-
-                            customerRef= FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking").child(getDate);
-                            reference = FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Booking").child(getDate);
-
-                            Query query2=reference.orderByChild("statusBit").equalTo("0");
-                            query2.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                                {
-                                    if (dataSnapshot.exists())
-                                    {
-                                        Toast.makeText(BookAppoinment.this, "The time is booked Chose another time", Toast.LENGTH_SHORT).show();
-                                    }
-                                    else
-                                    {
-
-                                        reference.addValueEventListener(new ValueEventListener()
-                                        {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                                            {
-                                                if (dataSnapshot.exists())
+                                                Log.d("aaaaa","else");
+                                                reference.addValueEventListener(new ValueEventListener()
                                                 {
-                                                    reference.child(getTime).addListenerForSingleValueEvent(new ValueEventListener() {
-                                                        @Override
-                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                                    {
+                                                        if (dataSnapshot.exists())
                                                         {
+                                                            reference.child(getTime).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                @Override
+                                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                                                {
 
-                                                            if (dataSnapshot.exists())
-                                                            {
-                                                            }
-                                                            else
-                                                            {
-                                                                cBookShop.Date=getDate;
-                                                                cBookShop.time=getTime;
-                                                                cBookShop.CustomerName=name;
-                                                                cBookShop.CustomerMob=mob;
-                                                                cBookShop.ShopID=shopID;
-                                                                cBookShop.shopAddress=shopAdress;
-                                                                cBookShop.shopName=shopName;
-                                                                cBookShop.activity=ssActivity;
-                                                                qrString=MobNoo+"-"+getDate+"-"+getTime;
-                                                                cBookShop.qrCode=qrString;
-                                                                Toast.makeText(BookAppoinment.this, qrString, Toast.LENGTH_SHORT).show();
-
-                                                                reference.child(getDate).setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                    @Override
-                                                                    public void onSuccess(Void aVoid)
+                                                                    if (dataSnapshot.exists())
                                                                     {
-                                                                        customerRef.setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                        CBookShop cBookShop5=new CBookShop();
+                                                                        cBookShop5=dataSnapshot.getValue(CBookShop.class);
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        cBookShop.Date=getDate;
+                                                                        cBookShop.time=getTime;
+                                                                        cBookShop.CustomerName=name;
+                                                                        cBookShop.CustomerMob=mob;
+                                                                        cBookShop.ShopID=shopID;
+                                                                        cBookShop.shopAddress=shopAdress;
+                                                                        cBookShop.shopName=shopName;
+                                                                        cBookShop.activity=ssActivity;
+                                                                        qrString=MobNoo+"-"+getDate+"-"+getTime;
+                                                                        cBookShop.qrCode=qrString;
+                                                                        reference.setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                             @Override
                                                                             public void onSuccess(Void aVoid)
                                                                             {
-                                                                                Toast.makeText(BookAppoinment.this, "booking Placed", Toast.LENGTH_SHORT).show();
-                                                                                Intent intent1=new Intent(getApplicationContext(),Bookin_status_show.class);
-                                                                                intent1.putExtra("qrString",qrString);
-                                                                                startActivity(intent1);
+                                                                                customerRef.setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                    @Override
+                                                                                    public void onSuccess(Void aVoid)
+                                                                                    {
+                                                                                        Toast.makeText(BookAppoinment.this, "Your booking has been Placed", Toast.LENGTH_LONG).show();
+                                                                                        progressBar.setVisibility(View.INVISIBLE);
+                                                                                        progressText.setVisibility(View.INVISIBLE);
+                                                                                        Intent intent1=new Intent(getApplicationContext(),Bookin_status_show.class);
+                                                                                        intent1.putExtra("qrString",qrString);
+                                                                                        startActivity(intent1);
+                                                                                    }
+                                                                                });
                                                                             }
                                                                         });
+
                                                                     }
-                                                                });
+                                                                }
 
-                                                            }
-                                                        }
-
-                                                        @Override
-                                                        public void onCancelled(@NonNull DatabaseError databaseError)
-                                                        {
-                                                            Toast.makeText(BookAppoinment.this, "Database Error....!", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
-                                                }
-                                                else
-                                                {
-                                                    cBookShop.Date=getDate;
-                                                    cBookShop.time=getTime;
-                                                    cBookShop.CustomerName=name;
-                                                    cBookShop.CustomerMob=mob;
-                                                    cBookShop.ShopID=shopID;
-                                                    cBookShop.shopAddress=shopAdress;
-                                                    cBookShop.shopName=shopName;
-                                                    cBookShop.activity=ssActivity;
-                                                    qrString=MobNoo+"-"+getDate+"-"+getTime;
-                                                    cBookShop.qrCode=qrString;
-
-                                                    ref=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Booking").child(getDate);
-                                                    ref.child(getTime).setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                        @Override
-                                                        public void onSuccess(Void aVoid)
-                                                        {
-                                                            customerRef.setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
-                                                                public void onSuccess(Void aVoid)
+                                                                public void onCancelled(@NonNull DatabaseError databaseError)
                                                                 {
-                                                                    Toast.makeText(BookAppoinment.this, "booking Placed", Toast.LENGTH_SHORT).show();
-                                                                    Intent intent1=new Intent(getApplicationContext(),Bookin_status_show.class);
-                                                                    intent1.putExtra("qrString",qrString);
-                                                                    intent1.putExtra("MobNoo",MobNoo);
-                                                                    intent1.putExtra("getDate",getDate);
-                                                                    startActivity(intent1);
+                                                                    Toast.makeText(BookAppoinment.this, "Database Error....!", Toast.LENGTH_SHORT).show();
+                                                                    progressBar.setVisibility(View.INVISIBLE);
+                                                                    progressText.setVisibility(View.INVISIBLE);
                                                                 }
                                                             });
                                                         }
-                                                    });
-                                                }
+                                                        else
+                                                        {
+                                                            cBookShop.Date=getDate;
+                                                            cBookShop.time=getTime;
+                                                            cBookShop.CustomerName=name;
+                                                            cBookShop.CustomerMob=mob;
+                                                            cBookShop.ShopID=shopID;
+                                                            cBookShop.shopAddress=shopAdress;
+                                                            cBookShop.shopName=shopName;
+                                                            cBookShop.activity=ssActivity;
+                                                            qrString=MobNoo+"-"+getDate+"-"+getTime;
+                                                            cBookShop.qrCode=qrString;
+
+                                                            ref=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Booking").child(getDate);
+                                                            ref.child(getTime).setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void aVoid)
+                                                                {
+                                                                    customerRef.setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                        @Override
+                                                                        public void onSuccess(Void aVoid)
+                                                                        {
+                                                                            Toast.makeText(BookAppoinment.this, "booking Placed", Toast.LENGTH_SHORT).show();
+                                                                            progressBar.setVisibility(View.INVISIBLE);
+                                                                            progressText.setVisibility(View.INVISIBLE);
+                                                                            Intent intent1=new Intent(getApplicationContext(),Bookin_status_show.class);
+                                                                            intent1.putExtra("qrString",qrString);
+                                                                            intent1.putExtra("MobNoo",MobNoo);
+                                                                            intent1.putExtra("getDate",getDate);
+                                                                            startActivity(intent1);
+                                                                        }
+                                                                    });
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError)
+                                                    {
+                                                        Toast.makeText(BookAppoinment.this, "Database Error...!", Toast.LENGTH_SHORT).show();
+                                                        progressBar.setVisibility(View.INVISIBLE);
+                                                        progressText.setVisibility(View.INVISIBLE);
+                                                    }
+                                                });
                                             }
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError)
-                                            {
-                                                Toast.makeText(BookAppoinment.this, "Database Error...!", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                                    }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
                                 }
+                            }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                }
-                            });
-
-                        }
+                            }
+                        });
+                    }
                 }
             }
         });

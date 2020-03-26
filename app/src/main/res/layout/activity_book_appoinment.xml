@@ -63,6 +63,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/textbox"
                 android:id="@+id/au"
+                android:textSize="18dp"
                 android:textAlignment="center"/>
             <TextView
                 android:layout_width="match_parent"
@@ -79,10 +80,10 @@
                 android:paddingLeft="13dp"
                 android:editable="false"
                 android:id="@+id/getDate"
-                android:paddingRight="15dp"
+                android:paddingRight="18dp"
                 android:textColor="@color/textColor"
                 android:background="@drawable/textbox"
-                android:textSize="20dp"/>
+                android:textSize="16dp"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -100,8 +101,7 @@
                 android:entries="@array/shoptimeselection"
                 android:paddingRight="15dp"
                 android:paddingEnd="15dp"
-                android:background="@drawable/textbox"
-                android:textSize="20dp"/>
+                android:background="@drawable/textbox" />
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
