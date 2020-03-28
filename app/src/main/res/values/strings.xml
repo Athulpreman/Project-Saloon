@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Project1</string>
+    <string name="available">Available</string>
+    <string name="booked">Booked</string>
+    <string name="Selected">Selected</string>
     <string-array name="ShopActivities">
         <item>Hair Wash</item>
         <item>Hair Cut</item>

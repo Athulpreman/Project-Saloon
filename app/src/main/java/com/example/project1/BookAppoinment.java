@@ -359,7 +359,7 @@ public class BookAppoinment extends AppCompatActivity
                                                             public void onSuccess(Void aVoid)
                                                             {
                                                                 Toast.makeText(BookAppoinment.this, "booking has been Placed", Toast.LENGTH_LONG).show();
-                                                                Intent intent1=new Intent(getApplicationContext(),Bookin_status_show.class);
+                                                                Intent intent1=new Intent(getApplicationContext(),Check_Availability_Of_Shop.class);
                                                                 progressBar.setVisibility(View.INVISIBLE);
                                                                 progressText.setVisibility(View.INVISIBLE);
                                                                 intent1.putExtra("qrString",qrString);

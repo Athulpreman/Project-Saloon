@@ -1,9 +1,132 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Check_Availability_Of_Shop">
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TableRow android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp">
+            <LinearLayout android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <Button android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/one"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10AM - 11AM"/>
+            </LinearLayout>
+            <LinearLayout android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <Button android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/two"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11AM - 12PM"/>
+            </LinearLayout>
+
+        </TableRow>
+        <TableRow android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp">
+            <LinearLayout android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <Button android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/three"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12PM - 1PM"/>
+            </LinearLayout>
+            <LinearLayout android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <Button android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/four"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2PM - 3PM"/>
+            </LinearLayout>
+
+        </TableRow>
+        <TableRow android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp">
+            <LinearLayout android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <Button android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/five"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3PM - 4PM"/>
+            </LinearLayout>
+            <LinearLayout android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <Button android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/six"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4PM - 5PM"/>
+            </LinearLayout>
+
+        </TableRow>
+        <TableRow android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp">
+            <LinearLayout android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <Button android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/seven"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5PM - 6PM"/>
+            </LinearLayout>
+            <LinearLayout android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <Button android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/eight"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6PM - 7PM"/>
+            </LinearLayout>
+
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>

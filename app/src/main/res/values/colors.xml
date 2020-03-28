@@ -8,4 +8,8 @@
     <color name="textColor">#000</color>
     <color name="textColor_white">#fff</color>
 
+
+    <color name="booked">#FF0000</color>
+    <color name="clicked">#39FF00</color>
+
 </resources>

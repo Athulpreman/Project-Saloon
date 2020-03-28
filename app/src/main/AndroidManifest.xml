@@ -24,7 +24,13 @@
         android:roundIcon="@drawable/hair"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Check_Availability_Of_Shop"></activity>
+        <activity android:name=".Check_Availability_Of_Shop">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".Account_Booking_History" />
         <activity android:name=".Catagory_Search" />
         <activity android:name=".Account_Manage_Profile" />
@@ -51,11 +57,7 @@
         <activity android:name=".LoginPage" />
         <activity android:name=".BookAppoinment" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
