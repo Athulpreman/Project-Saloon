@@ -27,20 +27,22 @@
                         android:layout_height="wrap_content"
                         android:text="Welcome"
                         android:textStyle="bold"
+                        android:fontFamily="@font/goblin_one"
                         android:textColor="@color/textColor"
                         android:textSize="40dp"
                         android:gravity="center"/>
+
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="19dp"
                         android:layout_marginTop="40dp"
+                        android:fontFamily="@font/goblin_one"
                         android:gravity="center"
+                        android:text="You have booked successfuly "
                         android:textColor="@color/textColor"
-                        android:textStyle="italic"
-                        android:text="You have booked successfuly "/>
-
-
+                        android:textSize="19dp"
+                        android:textStyle="italic" />
 
                     <TextView
                         android:layout_width="match_parent"

@@ -7,22 +7,17 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -218,22 +213,29 @@ public class BookAppoinment extends AppCompatActivity
                 }
                 else
                 {
-
-                    String ss=getDate;
-                    String[]split=ss.split(",");
-                    final String a=split[0];
-                    String b=split[1];
-                    String c=split[2];
-                    String dateSelected=a+b+c;
-
-                    String tt=formattedDate;
-                    String[]split1=ss.split(",");
-                    String d=split[0];
-                    String e=split[1];
-                    String f=split[2];
-                    String currentdateinNum=d+e+f;
-
-
+                    Calendar now1= Calendar.getInstance();
+                    now1.add(Calendar.DATE, +7);
+                    int a1,a2,a3;
+                    String b1,b2,b3;
+                    a1=now1.get(Calendar.DATE);
+                    a2=now1.get((Calendar.MONDAY)+0);
+                    a2=a2+1;
+                    a3=now1.get(Calendar.YEAR);
+                    b1=String.valueOf(a1);
+                    b2=String.valueOf(a2);
+                    b3=String.valueOf(a3);
+                    if (b1.length()==1)
+                    {
+                        b1="0"+b1;
+                    }
+                    if (b2.length()==1)
+                    {
+                        b2="0"+b2;
+                    }
+                    String beforedate=b3+","+b2+","+b1;
+                    int a,b;
+                    a=Integer.parseInt(beforedate.replaceAll("[\\D]",""));
+                    b=Integer.parseInt(getDate.replaceAll("[\\D]",""));
 
                     //checking date is after the current date
                     if (formattedDate.compareTo(date1)>0)
@@ -243,7 +245,7 @@ public class BookAppoinment extends AppCompatActivity
                         progressText.setVisibility(View.INVISIBLE);
                     }
                     //cannot book date that is 7 days after current date
-                    else if (Integer.parseInt(currentdateinNum)-Integer.parseInt(dateSelected)>7)
+                    else if (b>a)
                     {
                         Toast.makeText(BookAppoinment.this, "Can only book shop for the 7 days from today", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.INVISIBLE);

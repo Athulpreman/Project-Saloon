@@ -114,37 +114,57 @@ public class OwnerSignedIn extends AppCompatActivity
                 }
                 else
                     {
-                        ownerAdd.setActivity(sActivity);
-                        ownerAdd.setPrice(sAmount);
-                        ownerAdd.setTime(sTime);
-                        ownerAdd.setModelName(sModelName);
-                        ownerAdd.setModelImg(sModelImage);
-                        ownerAdd.setShopID(sShopId);
-
-                        query=reference.orderByChild("shopID").equalTo(shopID1);
-                        query.addListenerForSingleValueEvent(new ValueEventListener() {
+                        ref=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(sShopId).child("Activity");
+                        Query query1=ref.orderByChild("activity").equalTo(sActivity);
+                        query1.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                             {
-                                ref= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID1).child("Activity");
-                                ref.push().setValue(ownerAdd).addOnSuccessListener(new OnSuccessListener<Void>()
+                                if (dataSnapshot.exists())
                                 {
-                                    @Override
-                                    public void onSuccess(Void aVoid)
-                                    {
-                                        Toast.makeText(getApplicationContext(), "Added successfully", Toast.LENGTH_SHORT).show();
-                                        Time.setText("");
-                                        Amount.setText("");
-                                        ModelName.setText("");
-                                        iimg.setImageResource(R.drawable.hair);
+                                    Toast.makeText(OwnerSignedIn.this, "This Service already Exist...\n Chose another service", Toast.LENGTH_LONG).show();
+                                }
+                                else
+                                {
+                                    ownerAdd.setActivity(sActivity);
+                                    ownerAdd.setPrice(sAmount);
+                                    ownerAdd.setTime(sTime);
+                                    ownerAdd.setModelName(sModelName);
+                                    ownerAdd.setModelImg(sModelImage);
+                                    ownerAdd.setShopID(sShopId);
 
-                                    }
-                                });
+                                    query=reference.orderByChild("shopID").equalTo(shopID1);
+                                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                        {
+                                            ref= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID1).child("Activity");
+                                            ref.push().setValue(ownerAdd).addOnSuccessListener(new OnSuccessListener<Void>()
+                                            {
+                                                @Override
+                                                public void onSuccess(Void aVoid)
+                                                {
+                                                    Toast.makeText(getApplicationContext(), "Added successfully", Toast.LENGTH_SHORT).show();
+                                                    Time.setText("");
+                                                    Amount.setText("");
+                                                    ModelName.setText("");
+                                                    iimg.setImageResource(R.drawable.hair);
+
+                                                }
+                                            });
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError)
+                                        {
+
+                                        }
+                                    });
+                                }
                             }
 
                             @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError)
-                            {
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
                             }
                         });

@@ -28,10 +28,10 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class showbooking_Cart extends AppCompatActivity
 {
-    String MobNoo,shopID,Activity,sprice;
+    String MobNoo,shopID,Activity,sprice,sname;
     String date,time;
     TextView price,name,date1,time1;
-    DatabaseReference reference,refe;
+    DatabaseReference reference,refeShopName,refePrice;
     CBookShop cBookShop,cBook;
     Button showMap,showQR;
     ImageView imgQR;
@@ -65,8 +65,8 @@ public class showbooking_Cart extends AppCompatActivity
         shopID=intent.getStringExtra("shopID");
         Activity=intent.getStringExtra("Activity");
 
-        /*refe=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Activity");
-        Query query=refe.orderByChild("activity").equalTo(Activity);
+        refePrice=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Activity");
+        Query query=refePrice.orderByChild("activity").equalTo(Activity);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -74,13 +74,31 @@ public class showbooking_Cart extends AppCompatActivity
                 OwnerAdd add=new OwnerAdd();
                 add=dataSnapshot.getValue(OwnerAdd.class);
                 sprice=add.getPrice();
+                price.setText((CharSequence) price);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
+
+        refeShopName=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+        Query query1=refeShopName.orderByChild("shopID").equalTo(shopID);
+        query1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                Owner owner=new Owner();
+                owner=dataSnapshot.getValue(Owner.class);
+                sname=owner.getShopName();
+                name.setText(sname);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         reference= FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking");
         reference.addValueEventListener(new ValueEventListener() {
@@ -94,7 +112,6 @@ public class showbooking_Cart extends AppCompatActivity
                     {
                         date1.setText(cBookShop.getDate());
                         time1.setText(cBookShop.getTime());
-                        price.setText(cBookShop.getPrice());
                         name.setText(cBookShop.getShopName());
                     }
                 }
