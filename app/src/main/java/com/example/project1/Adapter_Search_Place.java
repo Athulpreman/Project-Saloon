@@ -58,10 +58,10 @@ public class Adapter_Search_Place extends RecyclerView.Adapter<Adapter_Search_Pl
             {
 
 
-                SharedPreferences.Editor editor=context.getSharedPreferences("BookPlace",MODE_PRIVATE).edit();
-                editor.putString("shopID",owners.get(position).getShopID());
-                editor.commit();
                 Intent intent=new Intent(v.getContext(),Booking_shop_Customer_1st.class);
+                intent.putExtra("shopID",owners.get(position).getShopID());
+                intent.putExtra("price","");
+                intent.putExtra("activity","");
                 v.getContext().startActivity(intent);
 
             }

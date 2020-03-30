@@ -69,10 +69,10 @@ public class BookAppoinment extends AppCompatActivity
         tprice=(TextView)findViewById(R.id.price);
         rs=(TextView)findViewById(R.id.rs);
 
-        SharedPreferences preferences=getSharedPreferences("Book",MODE_PRIVATE);
-        shopID=preferences.getString("shopID",null);
-        price=preferences.getString("price",null);
-        aactivity=preferences.getString("activity",null);
+        Intent intent=getIntent();
+        shopID=intent.getStringExtra("shopID");
+        price=intent.getStringExtra("price");
+        aactivity=intent.getStringExtra("activity");
 
 
         try
@@ -252,8 +252,8 @@ public class BookAppoinment extends AppCompatActivity
                     else
                     {
                         //checking customer booked on the same date
-                        refCheckCustomerBooked=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking").child(getDate);
-                        Query query=refCheckCustomerBooked.orderByChild("date").equalTo(formattedDate);
+                        refCheckCustomerBooked=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking");
+                        Query query=refCheckCustomerBooked.orderByChild("date").equalTo(getDate);
                         query.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -331,7 +331,8 @@ public class BookAppoinment extends AppCompatActivity
                                     editor.putString("mobile",mob);
                                     editor.putString("address",shopAdress);
                                     editor.putString("shopName",shopName);
-                                    editor.commit();
+                                    editor.putString("price",price);
+                                    editor.apply();
 
                                     Intent intent1=new Intent(getApplicationContext(),Check_Availability_Of_Shop.class);
                                     startActivity(intent1);

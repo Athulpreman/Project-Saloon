@@ -1,8 +1,10 @@
 package com.example.project1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,9 +27,10 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
     EditText shopName,ownName,empName,ownMob,empMob,address;
     Button book;
     ImageView im1,im2,im3;
-    String shopID;
+    String shopID,activity,price;
     Owner owner;
     DatabaseReference reference;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,18 +49,10 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
         im2=(ImageView)findViewById(R.id.img2);
         im3=(ImageView)findViewById(R.id.img3);
 
-        SharedPreferences sharedPreferences=getSharedPreferences("BookShop",MODE_PRIVATE);
-        shopID=sharedPreferences.getString("shoID","");
-        if (shopID.equals("")||shopID.isEmpty()||shopID.equals(null))
-        {
-            SharedPreferences sharedPreferences1=getSharedPreferences("BookPlace",MODE_PRIVATE);
-            shopID=sharedPreferences.getString("shoID","");
-            if (shopID.equals("")||shopID.isEmpty()||shopID.equals(null))
-            {
-                SharedPreferences sharedPreferences2=getSharedPreferences("Book",MODE_PRIVATE);
-                shopID=sharedPreferences.getString("shoID","");
-            }
-        }
+        Intent intent=getIntent();
+        shopID=intent.getStringExtra("shopID");
+        activity=intent.getStringExtra("activity");
+        price=intent.getStringExtra("price");
 
         reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
         owner=new Owner();
@@ -98,9 +93,47 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent inte=new Intent(getApplicationContext(),BookAppoinment.class);
+                inte.putExtra("shopID",shopID);
+                inte.putExtra("price",price);
+                inte.putExtra("activity",activity);
                 startActivity(inte);
             }
         });
 
+    }
+    @Override
+    public void onBackPressed()
+    {
+        builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure want to LOGOUT ?") .setTitle("Cancel");
+
+        //Setting message manually and performing action on button click
+        builder.setMessage("Are you sure want to cancel ?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        SharedPreferences.Editor editor=getSharedPreferences("Booking",MODE_PRIVATE).edit();
+                        editor.clear();
+                        editor.commit();
+                        Toast.makeText(getApplicationContext(),"Booking cancelled", Toast.LENGTH_SHORT).show();
+
+                        Intent intent=new Intent(getApplicationContext(),CustomerSignedIn1.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        //  Action for 'NO' Button
+                        dialog.cancel();
+                    }
+                });
+
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        alert.setTitle("LOGOUT");
+        alert.show();
     }
 }

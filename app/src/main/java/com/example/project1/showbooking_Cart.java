@@ -18,6 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -27,10 +28,10 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class showbooking_Cart extends AppCompatActivity
 {
-    String MobNoo;
+    String MobNoo,shopID,Activity,sprice;
     String date,time;
     TextView price,name,date1,time1;
-    DatabaseReference reference;
+    DatabaseReference reference,refe;
     CBookShop cBookShop,cBook;
     Button showMap,showQR;
     ImageView imgQR;
@@ -61,6 +62,25 @@ public class showbooking_Cart extends AppCompatActivity
         Intent intent=getIntent();
         date=intent.getStringExtra("Date");
         time=intent.getStringExtra("Time");
+        shopID=intent.getStringExtra("shopID");
+        Activity=intent.getStringExtra("Activity");
+
+        /*refe=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Activity");
+        Query query=refe.orderByChild("activity").equalTo(Activity);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                OwnerAdd add=new OwnerAdd();
+                add=dataSnapshot.getValue(OwnerAdd.class);
+                sprice=add.getPrice();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
 
         reference= FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking");
         reference.addValueEventListener(new ValueEventListener() {

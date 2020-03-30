@@ -37,11 +37,11 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
     DatabaseReference reference;
     CBookShop cBookShop;
     int i,click;
-    String selected;
+    String selected="";
     String[]array;
     int []listBookingStatus;
     Button Book;
-    String sdate,sactivity,sshopID,smob,sname,sshopName,saddress,qrstring,stime;
+    String sdate,sactivity,sshopID,smob,sname,sshopName,saddress,qrstring,stime,price;
     DatabaseReference ref,customerRef;
     TextView progressText;
     ProgressBar progressBar;
@@ -149,7 +149,7 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                     qrstring=smob+"-"+sdate+"-"+selected;
 
                     ref = FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(sshopID).child("Booking").child(selected);
-                    customerRef= FirebaseDatabase.getInstance().getReference().child("Customer").child(smob).child("Booking").child(selected);
+                    customerRef= FirebaseDatabase.getInstance().getReference().child("Customer").child(smob).child("Booking").child(sdate);
 
                     cBookShop.time=selected;
                     cBookShop.Date=sdate;
@@ -160,6 +160,7 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                     cBookShop.ShopID=sshopID;
                     cBookShop.CustomerMob=smob;
                     cBookShop.CustomerName=sname;
+                    cBookShop.Price=price;
 
                     reference.child(selected).setValue(cBookShop).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

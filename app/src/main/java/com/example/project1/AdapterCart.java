@@ -69,6 +69,8 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CustomerViewHo
                 Intent intent=new Intent(v.getContext(),showbooking_Cart.class);
                 intent.putExtra("Date",list.get(position).getDate());
                 intent.putExtra("Time",list.get(position).getTime());
+                intent.putExtra("shopID",list.get(position).getShopID());
+                intent.putExtra("Activity",list.get(position).getActivity());
                 v.getContext().startActivity(intent);
             }
         });

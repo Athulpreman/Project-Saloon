@@ -76,13 +76,36 @@
                         android:background="@drawable/textbox"
                         android:padding="11dp"
                         android:id="@+id/loginPassword" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="40dp">
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="invisible"
+                            android:outlineAmbientShadowColor="@color/textColor"
+                            android:outlineSpotShadowColor="#fff"
+                            android:id="@+id/Progressba" />
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="Checking Details"
+                            android:textColor="@color/textColor"
+                            android:textSize="17dp"
+                            android:visibility="invisible"
+                            android:id="@+id/ProgressbaText"
+                            android:layout_marginLeft="20dp"/>
+                    </LinearLayout>
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:text="Login"
                         android:textColor="@color/textColor_white"
                         android:textSize="18dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="5dp"
                         android:background="@drawable/button_black_rectangle"
                         android:padding="11dp"
                         android:textStyle="bold"

@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity
     DatabaseReference reference;
     Customer customer;
     private static int timout=4000;
+    ProgressBar progressBar;
+    TextView progressText;
 
     //signup
     Button gotologin,bsignup;
@@ -74,6 +77,9 @@ public class MainActivity extends AppCompatActivity
         ephoneNo=(EditText)findViewById(R.id.loginMobNo);
         epasswoed=(EditText)findViewById(R.id.loginPassword);
 
+        progressBar=(ProgressBar)findViewById(R.id.Progressba);
+        progressText=(TextView)findViewById(R.id.ProgressbaText);
+
         customer=new Customer();
         reference= FirebaseDatabase.getInstance().getReference().child("Customer");
 
@@ -98,6 +104,9 @@ public class MainActivity extends AppCompatActivity
                 }
                 else
                 {
+                    progressText.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
+
                     String code="91";
                     mobno="+" + code + mobno;
                     Query query=reference.orderByChild("mobileNum").equalTo(mobno);
@@ -130,12 +139,16 @@ public class MainActivity extends AppCompatActivity
                                     else
                                     {
                                         Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_SHORT).show();
+                                        progressText.setVisibility(View.INVISIBLE);
+                                        progressBar.setVisibility(View.INVISIBLE);
                                     }
                                 }
                             }
                             else
                             {
                                 ephoneNo.setError("User dont exists");
+                                progressText.setVisibility(View.INVISIBLE);
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
 
@@ -241,6 +254,9 @@ public class MainActivity extends AppCompatActivity
                     }
                     else
                     {
+                        progressText.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.VISIBLE);
+
                         String code="91";
                         mobno="+" + code + mobno;
                         Query query=reference.orderByChild("mobileNum").equalTo(mobno);
@@ -273,12 +289,16 @@ public class MainActivity extends AppCompatActivity
                                         else
                                         {
                                             Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_SHORT).show();
+                                            progressText.setVisibility(View.INVISIBLE);
+                                            progressBar.setVisibility(View.INVISIBLE);
                                         }
                                     }
                                 }
                                 else
                                 {
                                     ephoneNo.setError("User dont exists");
+                                    progressText.setVisibility(View.INVISIBLE);
+                                    progressBar.setVisibility(View.INVISIBLE);
                                 }
                             }
 
@@ -360,6 +380,9 @@ public class MainActivity extends AppCompatActivity
                     }
                     else
                     {
+                        progressText.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.VISIBLE);
+
                         String code="91";
                         sphoneno="+" + code + smobno;
 
@@ -376,6 +399,8 @@ public class MainActivity extends AppCompatActivity
                                 {
                                     eephoneNo.setError("Customer already exist..! Try Login");
                                     eephoneNo.requestFocus();
+                                    progressText.setVisibility(View.INVISIBLE);
+                                    progressBar.setVisibility(View.INVISIBLE);
                                 }
                                 else
                                 {
@@ -383,6 +408,8 @@ public class MainActivity extends AppCompatActivity
                                     intent.putExtra("signMobile",sphoneno);
                                     intent.putExtra("signPassword",spassword);
                                     intent.putExtra("signName",sname);
+                                    progressText.setVisibility(View.INVISIBLE);
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     startActivity(intent);
 
 
@@ -395,7 +422,9 @@ public class MainActivity extends AppCompatActivity
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError)
                             {
-
+                                Toast.makeText(MainActivity.this, "Database error", Toast.LENGTH_SHORT).show();
+                                progressText.setVisibility(View.INVISIBLE);
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         });
 

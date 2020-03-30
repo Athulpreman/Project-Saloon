@@ -21,7 +21,8 @@
                 android:layout_height="wrap_content"
                 android:text="Booking Details"
                 android:textStyle="bold"
-                android:textSize="35dp"
+                android:fontFamily="@font/neo_latina_ap"
+                android:textSize="50dp"
                 android:gravity="center"
                 android:textColor="#000"/>
 
@@ -35,6 +36,7 @@
             <TextView android:background="@drawable/textbox"
                 android:layout_height="40dp"
                 android:textSize="18dp"
+                android:gravity="center"
                 android:id="@+id/shopName"
                 android:textColor="@color/textColor"
                 android:layout_width="match_parent"/>
@@ -48,6 +50,7 @@
             <TextView android:background="@drawable/textbox"
                 android:layout_height="40dp"
                 android:textSize="18dp"
+                android:gravity="center"
                 android:id="@+id/dateBooking"
                 android:textColor="@color/textColor"
                 android:layout_width="match_parent"/>
@@ -61,6 +64,7 @@
             <TextView android:background="@drawable/textbox"
                 android:layout_height="40dp"
                 android:textSize="18dp"
+                android:gravity="center"
                 android:textColor="@color/textColor"
                 android:id="@+id/timeBooking"
                 android:layout_width="match_parent"/>
@@ -75,6 +79,7 @@
                 android:layout_height="40dp"
                 android:id="@+id/Amount"
                 android:textSize="18dp"
+                android:gravity="center"
                 android:textColor="@color/textColor"
                 android:layout_width="match_parent"/>
             <Button
@@ -95,6 +100,15 @@
                 android:background="@drawable/button_black_rectangle"
                 android:textColor="@color/textColor_white"
                 android:text="Show QR Code"/>
+            <Button
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/cancelBooking"
+                android:layout_gravity="center"
+                android:background="@drawable/button_black_rectangle"
+                android:textColor="@color/textColor_white"
+                android:text="Cancel booking"/>
             <ImageView
                 android:layout_width="350dp"
                 android:layout_gravity="center"
