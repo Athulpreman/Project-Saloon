@@ -1,132 +1,185 @@
-<LinearLayout android:layout_height="match_parent"
+<ScrollView android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TableLayout
+    <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center">
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <TableRow android:layout_marginEnd="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp">
-            <LinearLayout android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-                <Button android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="10dp"
-                    android:id="@+id/one"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10AM - 11AM"/>
-            </LinearLayout>
-            <LinearLayout android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-                <Button android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="10dp"
-                    android:id="@+id/two"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="11AM - 12PM"/>
-            </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chose your time"
+            android:textSize="35dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:fontFamily="@font/neo_latina_ap"
+            android:textAlignment="center"
+            android:layout_margin="20dp"/>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
 
+            <TableRow android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp">
+                <LinearLayout android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <Button android:layout_width="130dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/one"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:text="10AM - 11AM"/>
+                </LinearLayout>
+                <LinearLayout android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <Button android:layout_width="130dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/two"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:text="11AM - 12PM"/>
+                </LinearLayout>
+
+            </TableRow>
+            <TableRow android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp">
+                <LinearLayout android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <Button android:layout_width="130dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/three"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:text="12PM - 1PM"/>
+                </LinearLayout>
+                <LinearLayout android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <Button android:layout_width="130dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/four"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:text="2PM - 3PM"/>
+                </LinearLayout>
+
+            </TableRow>
+            <TableRow android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp">
+                <LinearLayout android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <Button android:layout_width="130dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/five"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:text="3PM - 4PM"/>
+                </LinearLayout>
+                <LinearLayout android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <Button android:layout_width="130dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/six"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:text="4PM - 5PM"/>
+                </LinearLayout>
+
+            </TableRow>
+            <TableRow android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp">
+                <LinearLayout android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <Button android:layout_width="130dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/seven"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:text="5PM - 6PM"/>
+                </LinearLayout>
+                <LinearLayout android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <Button android:layout_width="130dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/eight"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:text="6PM - 7PM"/>
+                </LinearLayout>
+
+            </TableRow>
+
+        </TableLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+        <TableRow android:layout_marginTop="10dp">
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_marginLeft="60dp"
+                android:outlineAmbientShadowColor="@color/textColor"
+                android:outlineSpotShadowColor="#fff"
+                android:id="@+id/Progressba" />
+            <TextView android:text="Making Your Booking"
+                android:textColor="@color/textColor"
+                android:visibility="invisible"
+                android:layout_marginTop="12dp"
+                android:textSize="17dp"
+                android:id="@+id/ProgressbaText"
+                android:layout_marginLeft="20dp"/>
         </TableRow>
-        <TableRow android:layout_marginEnd="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp">
-            <LinearLayout android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-                <Button android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="10dp"
-                    android:id="@+id/three"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="12PM - 1PM"/>
-            </LinearLayout>
-            <LinearLayout android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-                <Button android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="10dp"
-                    android:id="@+id/four"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2PM - 3PM"/>
-            </LinearLayout>
-
-        </TableRow>
-        <TableRow android:layout_marginEnd="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp">
-            <LinearLayout android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-                <Button android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="10dp"
-                    android:id="@+id/five"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3PM - 4PM"/>
-            </LinearLayout>
-            <LinearLayout android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-                <Button android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="10dp"
-                    android:id="@+id/six"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4PM - 5PM"/>
-            </LinearLayout>
-
-        </TableRow>
-        <TableRow android:layout_marginEnd="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp">
-            <LinearLayout android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-                <Button android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="10dp"
-                    android:id="@+id/seven"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5PM - 6PM"/>
-            </LinearLayout>
-            <LinearLayout android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-                <Button android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="10dp"
-                    android:id="@+id/eight"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="6PM - 7PM"/>
-            </LinearLayout>
-
-        </TableRow>
-
-    </TableLayout>
+        </TableLayout>
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:text="Book"
+            android:fontFamily="@font/neo_latina_ap"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_margin="30dp"
+            android:textColor="@color/textColor_white"
+            android:background="@drawable/button_black_rectangle"
+            android:id="@+id/bookButtonTime"/>
 
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

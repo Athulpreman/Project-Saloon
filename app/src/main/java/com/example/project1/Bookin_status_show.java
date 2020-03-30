@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -48,6 +49,10 @@ public class Bookin_status_show extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookin_status_show);
 
+        SharedPreferences.Editor editor=getSharedPreferences("Book",MODE_PRIVATE).edit();
+        editor.clear();
+        editor.commit();
+
         gotoHome=(Button)findViewById(R.id.gotoHome);
         gotoHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,9 +64,9 @@ public class Bookin_status_show extends AppCompatActivity
             }
         });
     }
-   /* @Override
+    @Override
     public void onBackPressed()
     {
 
-    }*/
+    }
 }

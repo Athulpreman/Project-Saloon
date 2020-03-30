@@ -67,6 +67,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
     int i=0;
 
+    String shopID;
+
     DatabaseReference refOwnerName,refee;
 
     ViewPager viewPager;
@@ -479,6 +481,10 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     sSearchType =SelectSearchingType.getSelectedItem().toString();
                     sSearchItem=ACTextView.getText().toString();
 
+                    SharedPreferences.Editor editor=getSharedPreferences("Book",MODE_PRIVATE).edit();
+                    editor.clear();
+                    editor.commit();
+
                     if (sSearchItem.isEmpty())
                     {
                         ACTextView.setError("Field is empty");
@@ -501,13 +507,19 @@ public class CustomerSignedIn1 extends AppCompatActivity
                                         own=snap.getValue(Owner.class);
                                         if (own.ShopName.equalsIgnoreCase(sSearchItem))
                                         {
+                                            shopID=own.ShopID;
+                                            SharedPreferences.Editor editor=getSharedPreferences("BookShop",MODE_PRIVATE).edit();
+                                            editor.putString("shoID",shopID);
+                                            Toast.makeText(CustomerSignedIn1.this, shopID, Toast.LENGTH_SHORT).show();
+                                            editor.commit();
+
+                                            Toast.makeText(CustomerSignedIn1.this, shopID, Toast.LENGTH_SHORT).show();
                                             Intent intent=new Intent(getApplicationContext(),Booking_shop_Customer_1st.class);
-                                            intent.putExtra(own.ShopID,"shopId");
                                             startActivity(intent);
+                                            break;
                                         }
                                         else
                                         {
-                                            Toast.makeText(CustomerSignedIn1.this, "No Shop Exist By That Name", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -45,8 +46,18 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
         im2=(ImageView)findViewById(R.id.img2);
         im3=(ImageView)findViewById(R.id.img3);
 
-        Intent intent=getIntent();
-        shopID=intent.getStringExtra("shopID");
+        SharedPreferences sharedPreferences=getSharedPreferences("BookShop",MODE_PRIVATE);
+        shopID=sharedPreferences.getString("shoID","");
+        if (shopID.equals("")||shopID.isEmpty()||shopID.equals(null))
+        {
+            SharedPreferences sharedPreferences1=getSharedPreferences("BookPlace",MODE_PRIVATE);
+            shopID=sharedPreferences.getString("shoID","");
+            if (shopID.equals("")||shopID.isEmpty()||shopID.equals(null))
+            {
+                SharedPreferences sharedPreferences2=getSharedPreferences("Book",MODE_PRIVATE);
+                shopID=sharedPreferences.getString("shoID","");
+            }
+        }
 
         reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
         owner=new Owner();
@@ -87,7 +98,6 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent inte=new Intent(getApplicationContext(),BookAppoinment.class);
-                inte.putExtra("shopID",shopID);
                 startActivity(inte);
             }
         });

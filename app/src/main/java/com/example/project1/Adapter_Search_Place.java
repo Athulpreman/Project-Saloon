@@ -2,6 +2,7 @@ package com.example.project1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Adapter_Search_Place extends RecyclerView.Adapter<Adapter_Search_Place.OwnerViewHolder>
 {
@@ -53,8 +56,12 @@ public class Adapter_Search_Place extends RecyclerView.Adapter<Adapter_Search_Pl
             @Override
             public void onClick(View v)
             {
+
+
+                SharedPreferences.Editor editor=context.getSharedPreferences("BookPlace",MODE_PRIVATE).edit();
+                editor.putString("shopID",owners.get(position).getShopID());
+                editor.commit();
                 Intent intent=new Intent(v.getContext(),Booking_shop_Customer_1st.class);
-                intent.putExtra("shopID",owners.get(position).getShopID());
                 v.getContext().startActivity(intent);
 
             }

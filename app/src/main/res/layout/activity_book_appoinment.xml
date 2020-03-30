@@ -13,7 +13,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="20dp">
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,29 +89,12 @@
                 android:background="@drawable/textbox"
                 android:textSize="16dp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Select a time"
-                android:textColor="@color/textColor"
-                android:textSize="16dp"
-                android:layout_marginTop="20dp"/>
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/getTime"
-                android:textAlignment="center"
-                android:textColor="@color/textColor"
-                android:entries="@array/shoptimeselection"
-                android:paddingRight="15dp"
-                android:paddingEnd="15dp"
-                android:background="@drawable/textbox" />
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="1">
 
-                <TableRow android:layout_marginTop="40dp">
+                <TableRow android:layout_marginTop="20dp">
                     <ProgressBar
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -133,7 +120,7 @@
                         android:background="@drawable/button_black_rectangle"
                         android:textColor="#fff"
                         android:id="@+id/BookAppoinmentNext"
-                        android:layout_marginTop="50dp"/>
+                        android:layout_marginTop="20dp"/>
                 </TableRow>
 
             </TableLayout>

@@ -2,6 +2,7 @@ package com.example.project1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHome.CustomerViewHolder>
 {
@@ -61,10 +64,16 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
             @Override
             public void onClick(View v)
             {
+
+
+                SharedPreferences.Editor editor=context.getSharedPreferences("Book",MODE_PRIVATE).edit();
+                editor.putString("shopID",list.get(position).getShopID());
+                editor.putString("price",list.get(position).getPrice());
+                editor.putString("activity",list.get(position).getActivity());
+                editor.commit();
+
+
                 Intent intent=new Intent(v.getContext(),Booking_shop_Customer_1st.class);
-                intent.putExtra("shopID",list.get(position).getShopID());
-                intent.putExtra("price",list.get(position).getPrice());
-                intent.putExtra("activity",list.get(position).getActivity());
                 v.getContext().startActivity(intent);
             }
         });
@@ -92,7 +101,6 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
             t2=(TextView)ownerView.findViewById(R.id.StyleName);
             imageView=(ImageView) ownerView.findViewById(R.id.Imgg);
             cardView=(CardView)ownerView.findViewById(R.id.CustomerCard);
-
 
         }
 
