@@ -32,9 +32,8 @@ import java.util.TimerTask;
 
 public class Check_Availability_Of_Shop extends AppCompatActivity
 {
-    String selectedDate;
     Button b1,b2,b3,b4,b5,b6,b7,b8;
-    DatabaseReference reference;
+    DatabaseReference reference,refePrice,refeShopname;
     CBookShop cBookShop;
     int i,click;
     String selected="";
@@ -43,7 +42,7 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
     Button Book;
     String sdate,sactivity,sshopID,smob,sname,sshopName,saddress,qrstring,stime,price;
     DatabaseReference ref,customerRef;
-    TextView progressText;
+    TextView progressText,showActivity,showPrice;
     ProgressBar progressBar;
 
     @Override
@@ -63,6 +62,8 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
         b8=(Button)findViewById(R.id.eight);
         progressBar=(ProgressBar)findViewById(R.id.Progressba);
         progressText=(TextView)findViewById(R.id.ProgressbaText);
+        showActivity=(TextView)findViewById(R.id.service);
+        showPrice=(TextView)findViewById(R.id.price);
 
         SharedPreferences sharedPreferences=getSharedPreferences("Book",MODE_PRIVATE);
         sactivity=sharedPreferences.getString("activity",null);
@@ -80,6 +81,27 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
         listBookingStatus= new int[]{0, 0, 0, 0, 0, 0, 0, 0};
         array=new String[]{"0","0","0","0","0","0","0","0","0"};
 
+        refePrice=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(sshopID).child("Activity");
+        Query query=refePrice.orderByChild("activity").equalTo(sactivity);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    OwnerAdd add=new OwnerAdd();
+                    add=snapshot.getValue(OwnerAdd.class);
+                    price=add.getPrice();
+                    showPrice.setText(price);
+                    showActivity.setText(sactivity);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(sshopID).child("Booking").child(sdate);
         reference.addValueEventListener(new ValueEventListener() {

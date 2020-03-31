@@ -1,0 +1,79 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Location"
+        android:textSize="40dp"
+        android:textColor="@color/textColor"
+        android:fontFamily="@font/destroy_earthroughbb_ap"
+        android:gravity="center"
+        android:layout_marginBottom="35dp"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp">
+        <TextView android:text="Latitude"
+            android:textColor="@color/textColor"
+            android:textSize="15dp"/>
+        <EditText android:background="@drawable/textbox"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/latitude"/>
+        <TextView android:text="Longitude"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/textColor"
+            android:textSize="15dp"/>
+        <EditText android:background="@drawable/textbox"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/longitude"/>
+    </TableLayout>
+    <Button
+        android:layout_width="200dp"
+        android:textColor="@color/textColor_white"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_black_rectangle"
+        android:text="Show Current location"
+        android:id="@+id/currentLocation"/>
+    <Button
+        android:layout_width="200dp"
+        android:textColor="@color/textColor_white"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_black_rectangle"
+        android:text="Verify from map"
+        android:layout_marginTop="15dp"
+        android:id="@+id/verifyUsingMap"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/check1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:textSize="16dp"
+            android:text="Verify"/>
+
+    </LinearLayout>
+    <Button
+        android:layout_width="200dp"
+        android:textColor="@color/textColor_white"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_black_rectangle"
+        android:text="add this location"
+        android:layout_marginTop="5dp"
+        android:id="@+id/addLocation"/>
+
+</LinearLayout>

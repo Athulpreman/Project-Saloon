@@ -27,7 +27,7 @@
                         android:layout_height="wrap_content"
                         android:text="Welcome"
                         android:textStyle="bold"
-                        android:fontFamily="@font/goblin_one"
+                        android:fontFamily="@font/atomic_age"
                         android:textColor="@color/textColor"
                         android:textSize="40dp"
                         android:gravity="center"/>
@@ -37,7 +37,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="40dp"
-                        android:fontFamily="@font/goblin_one"
+                        android:fontFamily="@font/neo_latina_ap"
                         android:gravity="center"
                         android:text="You have booked successfuly "
                         android:textColor="@color/textColor"

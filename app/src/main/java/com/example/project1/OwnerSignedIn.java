@@ -3,14 +3,11 @@ package com.example.project1;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,20 +24,20 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 public class OwnerSignedIn extends AppCompatActivity
 {
-    EditText Amount,Time,ModelName;
+    EditText Amount,ModelName;
     Spinner Activity;
     Button Submit,AddImg;
-    String sActivity,sAmount,sTime,sModelName,sModelImage,sShopId;
+    String sActivity,sAmount,sModelName,sModelImage="",sShopId;
     ImageView iimg;
     OwnerAdd ownerAdd;
     DatabaseReference reference,ref;
     String shopID1;
     Query query;
+    int clicked=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,7 +55,6 @@ public class OwnerSignedIn extends AppCompatActivity
 
         Activity=(Spinner)findViewById(R.id.ownerAddSpinnerActivity);
         Amount=(EditText)findViewById(R.id.ownerAddAmount);
-        Time=(EditText)findViewById(R.id.ownerAddTime);
         ModelName=(EditText)findViewById(R.id.ownerModelName);
 
         Submit=(Button)findViewById(R.id.OwnerAddSubmitButton);
@@ -74,6 +70,7 @@ public class OwnerSignedIn extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                clicked=1;
                 Intent i=new Intent(Intent.ACTION_GET_CONTENT);
                 i.setType("image/*");
                 startActivityForResult(i,1);
@@ -89,7 +86,6 @@ public class OwnerSignedIn extends AppCompatActivity
             {
                 sActivity=Activity.getSelectedItem().toString();
                 sAmount=Amount.getText().toString();
-                sTime=Time.getText().toString();
                 sModelName=ModelName.getText().toString();
 
                 if (sAmount.isEmpty())
@@ -97,20 +93,21 @@ public class OwnerSignedIn extends AppCompatActivity
                     Amount.setError("Enter mount");
                     Amount.requestFocus();
                 }
-                else if (sTime.isEmpty())
-                {
-                    Time.setError("Enter mount");
-                    Time.requestFocus();
-                }
                 else if (sModelName.isEmpty())
                 {
                     ModelName.setError("Enter mount");
                     ModelName.requestFocus();
                 }
-                else if (sModelImage.isEmpty())
+                else if (sModelImage.isEmpty()||sModelImage.equals(""))
                 {
-                    Toast.makeText(getApplicationContext(), "Select a Model Image", Toast.LENGTH_SHORT).show();
-
+                    if (clicked==1)
+                    {
+                        Toast.makeText(getApplicationContext(), "Wait for the image to load", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Select a Model Image", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else
                     {
@@ -128,7 +125,6 @@ public class OwnerSignedIn extends AppCompatActivity
                                 {
                                     ownerAdd.setActivity(sActivity);
                                     ownerAdd.setPrice(sAmount);
-                                    ownerAdd.setTime(sTime);
                                     ownerAdd.setModelName(sModelName);
                                     ownerAdd.setModelImg(sModelImage);
                                     ownerAdd.setShopID(sShopId);
@@ -138,14 +134,13 @@ public class OwnerSignedIn extends AppCompatActivity
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                                         {
-                                            ref= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID1).child("Activity");
-                                            ref.push().setValue(ownerAdd).addOnSuccessListener(new OnSuccessListener<Void>()
+                                            ref= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID1).child("Activity").child(sActivity);
+                                            ref.setValue(ownerAdd).addOnSuccessListener(new OnSuccessListener<Void>()
                                             {
                                                 @Override
                                                 public void onSuccess(Void aVoid)
                                                 {
                                                     Toast.makeText(getApplicationContext(), "Added successfully", Toast.LENGTH_SHORT).show();
-                                                    Time.setText("");
                                                     Amount.setText("");
                                                     ModelName.setText("");
                                                     iimg.setImageResource(R.drawable.hair);

@@ -1,20 +1,24 @@
 package com.example.project1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class OwnerPage extends AppCompatActivity
 {
     String shopID1;
-    Button AddActivity,Logout;
     Toast backToast;
     long backpress;
+    CardView c1,c2,c3,c4,c5,c6,c7,c8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,10 +30,16 @@ public class OwnerPage extends AppCompatActivity
         SharedPreferences sharedPreferences=getSharedPreferences("OwnerLogin",MODE_PRIVATE);
         shopID1=sharedPreferences.getString("shopID",null);
 
-        AddActivity=(Button)findViewById(R.id.OwnerPageAddActivityButton);
-        Logout=(Button)findViewById(R.id.OwnerPageLogout);
+        c1=(CardView)findViewById(R.id.card1);
+        c2=(CardView)findViewById(R.id.card2);
+        c3=(CardView)findViewById(R.id.card3);
+        c4=(CardView)findViewById(R.id.card4);
+        c5=(CardView)findViewById(R.id.card5);
+        c6=(CardView)findViewById(R.id.card6);
+        c7=(CardView)findViewById(R.id.card7);
+        c8=(CardView)findViewById(R.id.card8);
 
-        Logout.setOnClickListener(new View.OnClickListener()
+        c6.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -44,7 +54,7 @@ public class OwnerPage extends AppCompatActivity
             }
         });
 
-        AddActivity.setOnClickListener(new View.OnClickListener()
+        c3.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -52,6 +62,14 @@ public class OwnerPage extends AppCompatActivity
 
                 Intent intent1=new Intent(getApplicationContext(),OwnerSignedIn.class);
                 startActivity(intent1);
+            }
+        });
+        c8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+              Intent intent=new Intent(getApplicationContext(),Location_Owner.class);
+                startActivity(intent);
             }
         });
     }

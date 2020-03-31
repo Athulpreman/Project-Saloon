@@ -1,8 +1,10 @@
 package com.example.project1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -10,10 +12,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,13 +36,17 @@ public class showbooking_Cart extends AppCompatActivity
 {
     String MobNoo,shopID,Activity,sprice,sname;
     String date,time;
-    TextView price,name,date1,time1;
-    DatabaseReference reference,refeShopName,refePrice;
+    TextView price,shopName,date1,time1;
+    DatabaseReference reference,refeShopName,refePrice,refecancelCutomer,refecancelOwner;
     CBookShop cBookShop,cBook;
-    Button showMap,showQR;
+    Button showMap,showQR,cancel;
     ImageView imgQR;
     Bitmap bitmap;
     String qrString;
+    ProgressBar progressBar;
+    TextView progressText;
+    AlertDialog.Builder builder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +56,16 @@ public class showbooking_Cart extends AppCompatActivity
         cBookShop=new CBookShop();
         cBook=new CBookShop();
 
-        name=(TextView) findViewById(R.id.shopName);
+        shopName=(TextView) findViewById(R.id.shopName);
         time1=(TextView) findViewById(R.id.timeBooking);
         date1=(TextView) findViewById(R.id.dateBooking);
         price=(TextView) findViewById(R.id.Amount);
         showMap=(Button)findViewById(R.id.shoMap);
+        cancel=(Button)findViewById(R.id.cancelBooking);
         showQR=(Button)findViewById(R.id.showQRCode);
         imgQR=(ImageView)findViewById(R.id.imgQR);
+        progressBar=(ProgressBar)findViewById(R.id.Progressba);
+        progressText=(TextView)findViewById(R.id.ProgressbaText);
 
         imgQR.setVisibility(View.INVISIBLE);
 
@@ -71,15 +84,18 @@ public class showbooking_Cart extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                OwnerAdd add=new OwnerAdd();
-                add=dataSnapshot.getValue(OwnerAdd.class);
-                sprice=add.getPrice();
-                price.setText((CharSequence) price);
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    OwnerAdd add=new OwnerAdd();
+                    add=snapshot.getValue(OwnerAdd.class);
+                    sprice=add.getPrice();
+                    price.setText(sprice);
+                }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
             }
         });
 
@@ -89,14 +105,18 @@ public class showbooking_Cart extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                Owner owner=new Owner();
-                owner=dataSnapshot.getValue(Owner.class);
-                sname=owner.getShopName();
-                name.setText(sname);
+                for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
+                {
+                    Owner owner=new Owner();
+                    owner=dataSnapshot1.getValue(Owner.class);
+                    sname=owner.ShopName;
+                    Toast.makeText(showbooking_Cart.this, sname, Toast.LENGTH_SHORT).show();
+                    shopName.setText(sname);
+                }
             }
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
             }
         });
 
@@ -110,9 +130,9 @@ public class showbooking_Cart extends AppCompatActivity
                     cBookShop=snapshot.getValue(CBookShop.class);
                     if (cBookShop.Date.equals(date))
                     {
+
                         date1.setText(cBookShop.getDate());
                         time1.setText(cBookShop.getTime());
-                        name.setText(cBookShop.getShopName());
                     }
                 }
             }
@@ -139,6 +159,7 @@ public class showbooking_Cart extends AppCompatActivity
                             BarcodeEncoder barcodeEncoder=new BarcodeEncoder();
                             bitmap=barcodeEncoder.createBitmap(bitMatrix);
                             imgQR.setImageBitmap(bitmap);
+
                         }
                         catch (WriterException e)
                         {
@@ -154,8 +175,84 @@ public class showbooking_Cart extends AppCompatActivity
                 {
                     Toast.makeText(showbooking_Cart.this, "Error loading QR code", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+                AlertDialog.Builder adb = new AlertDialog.Builder(showbooking_Cart.this);
+                adb.setTitle("Cancel");
+                adb.setMessage("Are you want to cancel?");
+                adb.setCancelable(false);
+                String yesButtonText = "Yes";
+                String noButtonText = "No";
+                adb.setPositiveButton(yesButtonText, new DialogInterface.OnClickListener()
+                { @Override public void onClick(DialogInterface dialog, int which)
+                {
+                    progressText.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
+                    refecancelCutomer=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking");
+                    refecancelOwner=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Booking").child(date);
+                    Query query2=refecancelOwner.orderByChild("time").equalTo(time);
+                    query2.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                        {
+                            for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                            {
+                                snapshot.getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid)
+                                    {
+                                        progressText.setText("Canceling");
+                                        Query query3=refecancelCutomer.orderByChild("date").equalTo(date);
+                                        query3.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                            {
+                                                for (DataSnapshot snapshot1:dataSnapshot.getChildren())
+                                                {
+                                                    snapshot1.getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid)
+                                                        {
+                                                            Toast.makeText(showbooking_Cart.this, "Cancelled succesfully", Toast.LENGTH_SHORT).show();
+                                                            progressText.setVisibility(View.INVISIBLE);
+                                                            progressBar.setVisibility(View.INVISIBLE);
+
+                                                            Intent intent1=new Intent(getApplicationContext(),CustomerSignedIn1.class);
+                                                            startActivity(intent1);
+                                                        }
+                                                    });
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
 
+                }
+                }); adb.setNegativeButton(noButtonText, new DialogInterface.OnClickListener()
+            { @Override public void onClick(DialogInterface dialog, int which)
+            {
+
+            } });
+                adb.show();
             }
         });
         showMap.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +262,7 @@ public class showbooking_Cart extends AppCompatActivity
 
             }
         });
+
 
     }
 }

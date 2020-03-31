@@ -1082,6 +1082,9 @@ public class CustomerSignedIn1 extends AppCompatActivity
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id)
                                 {
+
+
+
                                     SharedPreferences.Editor editor=getSharedPreferences("UserLogin",MODE_PRIVATE).edit();
                                     editor.clear();
                                     editor.commit();
