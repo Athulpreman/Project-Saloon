@@ -69,7 +69,7 @@
                         android:layout_height="89dp"
                         android:layout_gravity="center"
                         android:layout_margin="4dp"
-                        app:cardCornerRadius="60dp">
+                        app:cardCornerRadius="45dp">
 
                         <TextView
                             android:layout_width="match_parent"

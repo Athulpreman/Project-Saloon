@@ -107,7 +107,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
-                    android:background="@drawable/home"
+                    android:background="@drawable/shome"
                     android:paddingRight="5dp"
                     android:shadowColor="#fff" />
 

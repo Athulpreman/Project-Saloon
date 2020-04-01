@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,18 +23,19 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Catagory_Search extends AppCompatActivity
 {
     TextView activityName;
-    String acName;
-    DatabaseReference refee,databaseReference,ref;
+    String acName,Name;
+    DatabaseReference refee,refOwnerName,ref,ref1,ref2;
     RecyclerView recyclerView;
-    ArrayList<Owner> list;
-    ArrayList<String> sShopID;
-    ArrayList<String> shoplist;
-    Adapter_Search_Place adapter11;
-    Owner owner111,owner1;
+    ArrayList<OwnerAdd> list;
+    ArrayList<Owner> listowner;
+    ArrayList<String> shopList;
+    Adapter_Search_Place adapter;
+    Owner owner,owner1;
     String s;
 
     @Override
@@ -50,88 +52,42 @@ public class Catagory_Search extends AppCompatActivity
 
         Intent intent=getIntent();
         acName=intent.getStringExtra("activity");
-        Toast.makeText(this, acName, Toast.LENGTH_SHORT).show();
+
         activityName.setText(acName);
-        owner111=new Owner();
         owner1=new Owner();
+        owner=new Owner();
 
-        sShopID=new ArrayList<String>();
-        shoplist=new ArrayList<String>();
-        list=new ArrayList<Owner>();
 
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
-        databaseReference.addValueEventListener(new ValueEventListener()
-        {
+        shopList=new ArrayList<String>();
+        list=new ArrayList<OwnerAdd>();
+        listowner=new ArrayList<Owner>();
+
+        ref1=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+        ref1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                for (DataSnapshot snapOwnerName:dataSnapshot.getChildren())
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
-                    owner111=new Owner();
-                    owner111=snapOwnerName.getValue(Owner.class);
-                    String Namee=owner111.ShopID;
-                    sShopID.add(Namee);
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError)
-            {
-                Toast.makeText(getApplicationContext(), "Error....!", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-        if (sShopID.isEmpty())
-        {
-            Toast.makeText(this, "Empty list", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            Toast.makeText(this, "not empty", Toast.LENGTH_SHORT).show();
-        }
-
-        for (String o:sShopID)
-        {
-            refee= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(o).child("Activity");
-            refee.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                {
-                    for (DataSnapshot studentDatasnapshot : dataSnapshot.getChildren())
+                    Log.d("aaaaaa","b");
+                    owner=snapshot.getValue(Owner.class);
+                    ref2=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(owner.ShopID).child("Activity");
+                    Query query=ref2.orderByChild("activity").equalTo(acName);
+                    query.addListenerForSingleValueEvent(new ValueEventListener()
                     {
-                        OwnerAdd owner = studentDatasnapshot.getValue(OwnerAdd.class);
-                        if (owner.Activity.equalsIgnoreCase(acName))
-                        {
-                            shoplist.add(owner.ShopID);
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError)
-                {
-                    Toast.makeText(getApplicationContext(),"something wnt wrong",Toast.LENGTH_LONG).show();
-                }
-            });
-            if (shoplist.isEmpty())
-            {
-                Toast.makeText(this, "No shop has this service", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                for (String ap:shoplist)
-                {
-                    ref=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
-                    Query query=ref.orderByChild("shopID").equalTo(ap);
-                    query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                         {
-                            Owner own=new Owner();
-                            own=dataSnapshot.getValue(Owner.class);
-                            list.add(own);
+                            int count=Integer.parseInt(dataSnapshot.getChildrenCount());
+                            for (DataSnapshot snapshot1:dataSnapshot.getChildren())
+                            {
+                                Log.d("aaaaaa","c");
+                                if (snapshot1.exists())
+                                {
+                                    listowner.add(owner);
+                                    Log.d("aaaaaa","d");
+                                }
+                            }
                         }
 
                         @Override
@@ -139,11 +95,57 @@ public class Catagory_Search extends AppCompatActivity
 
                         }
                     });
-                    adapter11= new Adapter_Search_Place(Catagory_Search.this,list);
-                    recyclerView.setAdapter(adapter11);
+                }
+                adapter = new Adapter_Search_Place(Catagory_Search.this, listowner);
+                recyclerView.setAdapter(adapter);
+                Log.d("aaaaaa","e");
+                CToast c=new CToast();
+                if (listowner.isEmpty())
+                {
+
+                    c.toast(getApplicationContext(),"empty",1);
+                }else
+                {
+                    c.toast(getApplicationContext(),"not  empty",1);
                 }
             }
-        }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        /*for (int i=0;i<listowner.size();i++)
+        {
+            Owner own=new Owner();
+            own=listowner.get(i);
+            String id=own.ShopID;
+            ref=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+            Query query=ref.orderByChild("activity").equalTo(acName);
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
+                    for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                    {
+                        Owner owner=new Owner();
+                        owner=snapshot.getValue(Owner.class);
+                        listowner.add(owner);
+                        Log.d("aaaaaa","c");
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            Log.d("aaaaaa","d");
+
+        }*/
     }
 }
+

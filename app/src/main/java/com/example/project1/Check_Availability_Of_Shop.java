@@ -33,14 +33,14 @@ import java.util.TimerTask;
 public class Check_Availability_Of_Shop extends AppCompatActivity
 {
     Button b1,b2,b3,b4,b5,b6,b7,b8;
-    DatabaseReference reference,refePrice,refeShopname;
+    DatabaseReference reference,refePrice;
     CBookShop cBookShop;
     int i,click;
     String selected="";
     String[]array;
     int []listBookingStatus;
     Button Book;
-    String sdate,sactivity,sshopID,smob,sname,sshopName,saddress,qrstring,stime,price;
+    String sdate,sactivity,sshopID,smob,sname,sshopName,saddress,qrstring,price;
     DatabaseReference ref,customerRef;
     TextView progressText,showActivity,showPrice;
     ProgressBar progressBar;

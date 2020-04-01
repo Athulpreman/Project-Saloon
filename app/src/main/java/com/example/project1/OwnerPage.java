@@ -54,7 +54,7 @@ public class OwnerPage extends AppCompatActivity
             }
         });
 
-        c3.setOnClickListener(new View.OnClickListener()
+        c2.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)

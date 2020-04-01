@@ -1,6 +1,7 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:gravity="top"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -10,10 +11,13 @@
         android:gravity="bottom">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:text="Active Bookings"
-            android:textSize="35dp"
+            android:textSize="38dp"
             android:gravity="center"
+            android:textColor="@color/textColor"
+            android:textStyle="bold"
+            android:fontFamily="@font/fredoka_one"
             android:layout_marginBottom="15dp"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -83,7 +87,7 @@
                     android:layout_marginRight="30dp"
                     android:paddingRight="5dp"
                     android:shadowColor="#fff"
-                    android:background="@drawable/cart"/>
+                    android:background="@drawable/scart"/>
                 <Button
                     android:layout_width="2dp"
                     android:layout_height="40dp"
