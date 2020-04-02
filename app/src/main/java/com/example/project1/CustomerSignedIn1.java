@@ -153,13 +153,14 @@ public class CustomerSignedIn1 extends AppCompatActivity
         recyclerView=(RecyclerView)findViewById(R.id.rvCustomerHome);
         recyclerView.setLayoutManager(new GridLayoutManager(this,3));
 
+        shopList.clear();
         refOwnerName= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
         refOwnerName.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                shopList.clear();
+
                 for (DataSnapshot snapOwnerName:dataSnapshot.getChildren())
                 {
                     owner=new Owner();
@@ -186,15 +187,13 @@ public class CustomerSignedIn1 extends AppCompatActivity
             {
                 for (int j=0;j<shopList.size();j++)
                 {
-
+                    list.clear();
                     Name=shopList.get(j);
                     refee1 = FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(Name).child("Activity");
-
                     refee1.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                         {
-                            list.clear();
                             for (DataSnapshot datasnapshot1 : dataSnapshot.getChildren())
                             {
                                 if (dataSnapshot.exists())
@@ -255,13 +254,13 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 recyclerView=(RecyclerView)findViewById(R.id.rvCustomerHome);
                 recyclerView.setLayoutManager(new GridLayoutManager(this,3));
 
+                shopList.clear();
                 refOwnerName= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
                 refOwnerName.addValueEventListener(new ValueEventListener()
                 {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
-                        shopList.clear();
                         for (DataSnapshot snapOwnerName:dataSnapshot.getChildren())
                         {
                             owner2 = new Owner();
@@ -289,14 +288,13 @@ public class CustomerSignedIn1 extends AppCompatActivity
                         for (int j=0;j<shopList.size();j++)
                         {
 
+                            list.clear();
                             String Name1=shopList.get(j);
                             refee1= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(Name1).child("Activity");
-
                             refee1.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                                 {
-                                    list.clear();
                                     for (DataSnapshot datasnapshot1 : dataSnapshot.getChildren())
                                     {
                                         if (dataSnapshot.exists())
@@ -1017,7 +1015,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     i1.setType("image/*");
                     startActivityForResult(i1,1);
 
-                    }
+                }
 
             });
 
@@ -1099,8 +1097,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
                                 {
                                     //  Action for 'NO' Button
                                     dialog.cancel();
-                                 }
-                             });
+                                }
+                            });
 
                     //Creating dialog box
                     AlertDialog alert = builder.create();

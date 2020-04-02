@@ -29,14 +29,16 @@ public class Catagory_Search extends AppCompatActivity
 {
     TextView activityName;
     String acName,Name;
-    DatabaseReference refee,refOwnerName,ref,ref1,ref2;
+    DatabaseReference refee,refOwnerName,ref,ref1,ref2,ref3;
     RecyclerView recyclerView;
     ArrayList<OwnerAdd> list;
     ArrayList<Owner> listowner;
     ArrayList<String> shopList;
+    ArrayList<String> hasshopList;
     Adapter_Search_Place adapter;
     Owner owner,owner1;
     String s;
+    int count,count2,j,i,k;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,6 +61,7 @@ public class Catagory_Search extends AppCompatActivity
 
 
         shopList=new ArrayList<String>();
+        hasshopList=new ArrayList<String>();
         list=new ArrayList<OwnerAdd>();
         listowner=new ArrayList<Owner>();
 
@@ -67,43 +70,30 @@ public class Catagory_Search extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
+                i=0;
+                count= (int) dataSnapshot.getChildrenCount();
                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
-                    Log.d("aaaaaa","b");
-                    owner=snapshot.getValue(Owner.class);
-                    ref2=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(owner.ShopID).child("Activity");
-                    Query query=ref2.orderByChild("activity").equalTo(acName);
-                    query.addListenerForSingleValueEvent(new ValueEventListener()
+                    if (dataSnapshot.exists())
                     {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                        {
-                            int count=Integer.parseInt(dataSnapshot.getChildrenCount());
-                            for (DataSnapshot snapshot1:dataSnapshot.getChildren())
-                            {
-                                Log.d("aaaaaa","c");
-                                if (snapshot1.exists())
-                                {
-                                    listowner.add(owner);
-                                    Log.d("aaaaaa","d");
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
+                        Log.d("aaaaaa","b");
+                        owner=snapshot.getValue(Owner.class);
+                        String id=owner.ShopID;
+                        shopList.add(id);
+                    }
+                    i++;
+                    if (count==i)
+                    {
+                        Log.d("aaaaaaashoplstSize", String.valueOf(shopList.size()));
+                       addOwner();
+                    }
                 }
-                adapter = new Adapter_Search_Place(Catagory_Search.this, listowner);
-                recyclerView.setAdapter(adapter);
-                Log.d("aaaaaa","e");
+
                 CToast c=new CToast();
                 if (listowner.isEmpty())
                 {
 
-                    c.toast(getApplicationContext(),"empty",1);
+                    c.toast(getApplicationContext(),String.valueOf(count),1);
                 }else
                 {
                     c.toast(getApplicationContext(),"not  empty",1);
@@ -115,26 +105,41 @@ public class Catagory_Search extends AppCompatActivity
 
             }
         });
-
-
-        /*for (int i=0;i<listowner.size();i++)
+    }
+    public void addOwner()
+    {
+        j=0;
+        for (final String s:shopList)
         {
-            Owner own=new Owner();
-            own=listowner.get(i);
-            String id=own.ShopID;
-            ref=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
-            Query query=ref.orderByChild("activity").equalTo(acName);
+            Log.d("aaaaaassss",s);
+            ref2=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(s).child("Activity");
+            Query query=ref2.orderByChild("activity").equalTo(acName);
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                 {
-                    for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                    if (dataSnapshot.exists())
                     {
-                        Owner owner=new Owner();
-                        owner=snapshot.getValue(Owner.class);
-                        listowner.add(owner);
                         Log.d("aaaaaa","c");
-
+                        hasshopList.add(s);
+                        j++;
+                        Log.d("aaaaaa  ShoSice  j", String.valueOf(hasshopList.size()));
+                        Log.d("aaaaaa  ShoSice  i", String.valueOf(shopList.size()));
+                        Log.d("aaaaaa  ShoSice  j", String.valueOf(j));
+                        if (j==shopList.size())
+                        {
+                            Log.d("aaaaaaaHasshoplstSize", String.valueOf(hasshopList.size()));
+                            findOwner();
+                        }
+                    }
+                    else
+                    {
+                        j++;
+                        if (j==shopList.size())
+                        {
+                            Log.d("aaaaaaaHasshoplstSize", String.valueOf(hasshopList.size()));
+                            findOwner();
+                        }
                     }
                 }
 
@@ -143,9 +148,43 @@ public class Catagory_Search extends AppCompatActivity
 
                 }
             });
-            Log.d("aaaaaa","d");
 
-        }*/
+
+        }
+    }
+    public void findOwner()
+    {
+        for (String s2:hasshopList)
+        {
+            k=0;
+            Log.d("aaaaaa","d");
+            ref3=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+            Query query=ref3.orderByChild("shopID").equalTo(s2);
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
+                   for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                   {
+                       Log.d("aaaaaa","e");
+                       owner1=snapshot.getValue(Owner.class);
+                       listowner.add(owner1);
+                       k++;
+                       if (k==hasshopList.size())
+                       {
+                           Log.d("aaaaaa","f");
+                           Log.d("aaaaaaalistOwner", String.valueOf(listowner.size()));
+                           adapter = new Adapter_Search_Place(Catagory_Search.this, listowner);
+                           recyclerView.setAdapter(adapter);
+                       }
+                   }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError)
+                {
+                }
+            });
+        }
     }
 }
 
