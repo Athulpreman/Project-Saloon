@@ -16,14 +16,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CustomerViewHolder>
+public class AdapterBookingHistory extends RecyclerView.Adapter<AdapterBookingHistory.CustomerViewHolder>
 {
     private ValueEventListener mCtx;
     private ArrayList<CBookShop> list;
     Context context;
     DatabaseReference reference;
 
-    AdapterCart(Context context, ArrayList<CBookShop> itemList)
+    AdapterBookingHistory(Context context, ArrayList<CBookShop> itemList)
     {
 
         this.context = context;
@@ -33,50 +33,35 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CustomerViewHo
 
     @NonNull
     @Override
-    public AdapterCart.CustomerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public AdapterBookingHistory.CustomerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         LayoutInflater layoutInflater=LayoutInflater.from(context);
         View view=layoutInflater.inflate(R.layout.cardview_cart,null);
-        return new AdapterCart.CustomerViewHolder(view);
+        return new AdapterBookingHistory.CustomerViewHolder(view);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull  final AdapterCart.CustomerViewHolder holder, final int position)
+    public void onBindViewHolder(@NonNull  final AdapterBookingHistory.CustomerViewHolder holder, final int position)
     {
         holder.t1.setText(list.get(position).getShopID());
         holder.t2.setText(list.get(position).getDate());
         holder.t3.setText(list.get(position).getTime());
-        holder.t5.setText(list.get(position).getPrice());
         String status;
         status=list.get(position).statusBit;
         if (status.equals("0"))
         {
-            holder.t4.setText("Pending");
+            holder.t4.setText("Upcoming");
         }
         else if ((status.equals("1")))
         {
-            holder.t4.setText("Active");
+            holder.t4.setText("Finished");
         }
         else if ((status.equals("2")))
         {
             holder.t4.setText("Declined");
         }
-        holder.viewOenerButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent=new Intent(v.getContext(),showbooking_Cart.class);
-                intent.putExtra("Date",list.get(position).getDate());
-                intent.putExtra("Time",list.get(position).getTime());
-                intent.putExtra("shopID",list.get(position).getShopID());
-                intent.putExtra("Activity",list.get(position).getActivity());
-                intent.putExtra("Price",list.get(position).getPrice());
-                v.getContext().startActivity(intent);
-            }
-        });
-
+        holder.viewOenerButton.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -87,7 +72,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CustomerViewHo
 
     class CustomerViewHolder extends RecyclerView.ViewHolder
     {
-        TextView t1,t2,t3,t4,t5;
+        TextView t1,t2,t3,t4;
         Button viewOenerButton;
 
 
@@ -99,7 +84,6 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CustomerViewHo
             t2=(TextView)ownerView.findViewById(R.id.cvDate);
             t3=(TextView)ownerView.findViewById(R.id.cvTime);
             t4=(TextView)ownerView.findViewById(R.id.cvStatus);
-            t5=(TextView)ownerView.findViewById(R.id.cvPrice);
             viewOenerButton=(Button)ownerView.findViewById(R.id.cvViewButton);
 
         }

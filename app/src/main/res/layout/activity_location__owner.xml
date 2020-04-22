@@ -24,6 +24,9 @@
         <EditText android:background="@drawable/textbox"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:editable="false"
+            android:inputType="none"
+            android:paddingLeft="17dp"
             android:id="@+id/latitude"/>
         <TextView android:text="Longitude"
             android:layout_marginTop="20dp"
@@ -32,6 +35,9 @@
         <EditText android:background="@drawable/textbox"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:editable="false"
+            android:inputType="none"
+            android:paddingLeft="17dp"
             android:id="@+id/longitude"/>
     </TableLayout>
     <Button

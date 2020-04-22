@@ -72,6 +72,14 @@ public class OwnerPage extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        c1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getApplicationContext(),ScanQrShop.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onBackPressed()

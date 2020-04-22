@@ -8,14 +8,15 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:id="@+id/cvCart"
+        android:layout_margin="5dp"
         android:layout_height="match_parent"
-        app:cardBackgroundColor="#88EBE9E9"
-        app:cardCornerRadius="30dp">
+        app:cardBackgroundColor="#88EBE9E9">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_margin="10dp"
             android:orientation="vertical">
 
             <TableLayout
@@ -28,7 +29,7 @@
 
                 <TableRow>
                     <TextView
-                        android:layout_width="150dp"
+                        android:layout_width="130dp"
                         android:gravity="center"
                         android:text="Shop "
                         android:textSize="18dp"/>
@@ -40,7 +41,7 @@
                 </TableRow>
                 <TableRow android:layout_marginTop="8dp">
                     <TextView
-                        android:layout_width="150dp"
+                        android:layout_width="130dp"
                         android:gravity="center"
                         android:text="Date"
                         android:textSize="18dp"/>
@@ -52,7 +53,7 @@
                 </TableRow>
                 <TableRow android:layout_marginTop="8dp">
                     <TextView
-                        android:layout_width="150dp"
+                        android:layout_width="130dp"
                         android:gravity="center"
                         android:text="Time"
                         android:textSize="18dp"/>
@@ -64,7 +65,19 @@
                 </TableRow>
                 <TableRow android:layout_marginTop="8dp">
                     <TextView
-                        android:layout_width="150dp"
+                        android:layout_width="130dp"
+                        android:gravity="center"
+                        android:text="Price"
+                        android:textSize="18dp"/>
+                    <TextView android:text="........"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:background="@drawable/tesxbox_rectangle"
+                        android:id="@+id/cvPrice"/>
+                </TableRow>
+                <TableRow android:layout_marginTop="8dp">
+                    <TextView
+                        android:layout_width="130dp"
                         android:gravity="center"
                         android:text="Status"
                         android:textSize="18dp"/>

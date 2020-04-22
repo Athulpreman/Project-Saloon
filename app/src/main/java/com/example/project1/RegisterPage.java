@@ -162,28 +162,6 @@ public class RegisterPage extends AppCompatActivity
                             }
                             else
                             {
-                                owner.setOwnerName(sOwnerName);
-                                owner.setShopName(sShopName);
-                                owner.setShopID(sShopID);
-                                owner.setPlace(sPlace);
-                                owner.setOwnerMobile(sOwnerMobile);
-                                owner.setAddress(sAddress);
-                                owner.setEmployeeName(sEmployeeName);
-                                owner.setEmployeeMobile(sEmployeeMobile);
-                                owner.setPassword(sPassword);
-                                owner.setImage1(sImage1);
-                                owner.setImage2(sImage2);
-                                owner.setImage3(sImage3);
-
-                                ref=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(sShopID);
-
-                                ref.setValue(owner).addOnSuccessListener(new OnSuccessListener<Void>()
-                                {
-                                    @Override
-                                    public void onSuccess(Void aVoid)
-                                    {
-                                        Toast.makeText(getApplicationContext(), "Shop Registered Successfuly", Toast.LENGTH_SHORT).show();
-
                                         eOwnerName.setText("");
                                         eShopName.setText("");
                                         eShopID.setText("");
@@ -198,10 +176,22 @@ public class RegisterPage extends AppCompatActivity
                                         iimg2.setImageResource(R.drawable.hair);
                                         iimg3.setImageResource(R.drawable.hair);
 
-                                        Intent intent=new Intent(getApplicationContext(),OwnerPermissionCheck.class);
+                                        Intent intent=new Intent(getApplicationContext(),OTP_Owner.class);
+                                        intent.putExtra("sOwnerName",sOwnerName);
+                                        intent.putExtra("sShopName",sShopName);
+                                        intent.putExtra("sShopID",sShopID);
+                                        intent.putExtra("sPlace",sPlace);
+                                        intent.putExtra("sOwnerMobile",sOwnerMobile);
+                                        intent.putExtra("sAddress",sAddress);
+                                        intent.putExtra("sEmployeeName",sEmployeeName);
+                                        intent.putExtra("sEmployeeMobile",sEmployeeMobile);
+                                        intent.putExtra("sPassword",sPassword);
+                                        intent.putExtra("sImage1",sImage1);
+                                        intent.putExtra("sImage2",sImage2);
+                                        intent.putExtra("sImage3",sImage3);
                                         startActivity(intent);
-                                    }
-                                });
+
+
                             }
                         }
 

@@ -336,6 +336,9 @@ public class BookAppoinment extends AppCompatActivity
                                     editor.putString("price",price);
                                     editor.apply();
 
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    progressText.setVisibility(View.INVISIBLE);
+
                                     Intent intent1=new Intent(getApplicationContext(),Check_Availability_Of_Shop.class);
                                     startActivity(intent1);
 

@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <androidx.cardview.widget.CardView android:layout_height="200dp"
+    <androidx.cardview.widget.CardView android:layout_height="wrap_content"
         android:layout_width="145dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/CustomerCard"
@@ -53,7 +53,6 @@
                 android:textSize="20dp"
                 android:textAlignment="center"
                 android:textStyle="bold"/>
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

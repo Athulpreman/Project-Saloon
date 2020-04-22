@@ -35,6 +35,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/proName"
                         android:textStyle="bold"
+                        android:textColor="@color/textColor"
                         android:fontFamily="@font/hpunk_ap"
                         android:textSize="25dp"
                         android:text="Name"/>
@@ -42,6 +43,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/proPhone"
+                        android:textColor="@color/textColor"
                         android:fontFamily="@font/hpunk_ap"
                         android:text="12345657890"/>
                 </LinearLayout>

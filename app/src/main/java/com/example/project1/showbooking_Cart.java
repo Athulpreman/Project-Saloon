@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -46,6 +47,7 @@ public class showbooking_Cart extends AppCompatActivity
     ProgressBar progressBar;
     TextView progressText;
     AlertDialog.Builder builder;
+    ScrollView scroll;
 
 
     @Override
@@ -66,6 +68,9 @@ public class showbooking_Cart extends AppCompatActivity
         imgQR=(ImageView)findViewById(R.id.imgQR);
         progressBar=(ProgressBar)findViewById(R.id.Progressba);
         progressText=(TextView)findViewById(R.id.ProgressbaText);
+
+        scroll = (ScrollView) this.findViewById(R.id.scroll);
+
 
         imgQR.setVisibility(View.INVISIBLE);
 
@@ -130,9 +135,9 @@ public class showbooking_Cart extends AppCompatActivity
                     cBookShop=snapshot.getValue(CBookShop.class);
                     if (cBookShop.Date.equals(date))
                     {
-
                         date1.setText(cBookShop.getDate());
                         time1.setText(cBookShop.getTime());
+                        qrString=cBookShop.qrCode;
                     }
                 }
             }
@@ -148,10 +153,13 @@ public class showbooking_Cart extends AppCompatActivity
             {
                 if (!MobNoo.isEmpty()&&!date.isEmpty()&&!time.isEmpty())
                 {
-                    qrString=MobNoo+"-"+date+"-"+time;
+
                     if (qrString!=null)
                     {
+                        LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(1000,1000);
+                        imgQR.setLayoutParams(parms);
                         imgQR.setVisibility(View.VISIBLE);
+                        scroll.scrollTo(0, scroll.getBottom());
                         try
                         {
                             MultiFormatWriter multiFormatWriter=new MultiFormatWriter();

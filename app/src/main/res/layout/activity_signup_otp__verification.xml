@@ -17,7 +17,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="400dp"
                 android:layout_marginTop="6dp"
                 android:orientation="vertical">
 
@@ -31,17 +31,24 @@
 
                     <TableRow android:gravity="center">
                         <TextView android:text="Verify Your Number"
-                            android:textSize="25dp"
+                            android:textSize="30dp"
                             android:textStyle="bold"
                             android:layout_gravity="center"
                             android:textColor="@color/textColor"/>
                     </TableRow>
                     <TableRow android:layout_marginTop="20dp"
                         android:gravity="center">
-                        <TextView android:text="Please enter otp received in nnumber"
+                        <TextView android:text="Please enter otp received in owner "
                             android:textSize="17dp"
                             android:textColor="@color/textColor"/>
                     </TableRow>
+
+                <TableRow android:layout_marginTop="7dp"
+                    android:gravity="center">
+                    <TextView android:text="owner mobile nuber....... "
+                        android:textSize="17dp"
+                        android:textColor="@color/textColor"/>
+                </TableRow>
 
                 </TableLayout>
 
@@ -50,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
                     <EditText

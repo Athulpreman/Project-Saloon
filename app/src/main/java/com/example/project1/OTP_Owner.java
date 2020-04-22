@@ -22,33 +22,30 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
-public class signupOTP_Verification extends AppCompatActivity
+public class OTP_Owner extends AppCompatActivity
 {
     String verificationcode,mobno,password,name;
     ProgressBar progressBar;
     EditText editText;
     Button button;
     FirebaseAuth mAuth;
-    DatabaseReference reference;
-    Customer customer;
     AlertDialog.Builder builder;
     CToast c;
 
+
+    String sOwnerName,sShopName,sShopID,sOwnerMobile,sPlace,sAddress,sEmployeeName,sEmployeeMobile,sPassword,sImage1="",sImage2="",sImage3="";
+    DatabaseReference referencee,ref;
+    Owner owner;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup_otp__verification);
-        this.setTitle("OTP Verification");
+        setContentView(R.layout.activity_o_t_p__owner);
 
 
         progressBar=(ProgressBar)findViewById(R.id.progressbar);
@@ -56,16 +53,24 @@ public class signupOTP_Verification extends AppCompatActivity
         button=(Button)findViewById(R.id.signupOTP_verificationButton);
 
         mAuth=FirebaseAuth.getInstance();
-        customer=new Customer();
         c=new CToast();
+        owner=new Owner();
 
         Intent intent=getIntent();
-        mobno=intent.getStringExtra("signMobile");
-        password=intent.getStringExtra("signPassword");
-        name=intent.getStringExtra("signName");
+        sOwnerMobile=intent.getStringExtra("sOwnerMobile");
+        sShopName=intent.getStringExtra("sShopName");
+        sShopID=intent.getStringExtra("sShopID");
+        sOwnerName=intent.getStringExtra("sOwnerName");
+        sPlace=intent.getStringExtra("sPlace");
+        sAddress=intent.getStringExtra("sAddress");
+        sEmployeeName=intent.getStringExtra("sEmployeeName");
+        sEmployeeMobile=intent.getStringExtra("sEmployeeMobile");
+        sPassword=intent.getStringExtra("sPassword");
+        sImage1=intent.getStringExtra("sImage1");
+        sImage2=intent.getStringExtra("sImage2");
+        sImage3=intent.getStringExtra("sImage3");
 
-        reference= FirebaseDatabase.getInstance().getReference().child("Customer").child(mobno);
-
+        mobno="+91"+sOwnerMobile;
         sendVerificationCode(mobno);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +88,6 @@ public class signupOTP_Verification extends AppCompatActivity
 
             }
         });
-
     }
     public void verfyCode(String code)
     {
@@ -100,30 +104,32 @@ public class signupOTP_Verification extends AppCompatActivity
             {
                 if (task.isSuccessful())
                 {
+                    owner.setOwnerName(sOwnerName);
+                    owner.setShopName(sShopName);
+                    owner.setShopID(sShopID);
+                    owner.setPlace(sPlace);
+                    owner.setOwnerMobile(sOwnerMobile);
+                    owner.setAddress(sAddress);
+                    owner.setEmployeeName(sEmployeeName);
+                    owner.setEmployeeMobile(sEmployeeMobile);
+                    owner.setPassword(sPassword);
+                    owner.setImage1(sImage1);
+                    owner.setImage2(sImage2);
+                    owner.setImage3(sImage3);
 
+                    ref=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(sShopID);
 
-                    customer.setName(name);
-                    customer.setMobileNum(mobno);
-                    customer.setPassword(password);
-
-                    reference.setValue(customer).addOnSuccessListener(new OnSuccessListener<Void>()
+                    ref.setValue(owner).addOnSuccessListener(new OnSuccessListener<Void>()
                     {
                         @Override
                         public void onSuccess(Void aVoid)
                         {
                             c.toast(getApplicationContext(),"Sucessfully Registered",1);
+
+                            Intent intent=new Intent(getApplicationContext(),OwnerPermissionCheck.class);
+                            startActivity(intent);
                         }
                     });
-
-                    Intent intent = new Intent(getApplicationContext(), CustomerSignedIn1.class);
-
-                    SharedPreferences.Editor editor=getSharedPreferences("UserLogin",MODE_PRIVATE).edit();
-                    editor.putString("MobNo",mobno);
-                    editor.putString("Name",name);
-                    editor.commit();
-
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
                 }
                 else
                 {
@@ -136,7 +142,7 @@ public class signupOTP_Verification extends AppCompatActivity
 
     public void sendVerificationCode(String num)
     {
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(num,60, TimeUnit.SECONDS,signupOTP_Verification.this,mmCall);
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(num,60, TimeUnit.SECONDS,OTP_Owner.this,mmCall);
 
     }
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mmCall=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {

@@ -26,9 +26,9 @@ public class CToast
         {
             Toast toast=Toast.makeText(context,s,Toast.LENGTH_SHORT);
             View view =toast.getView();
-            view.setBackgroundColor(Color.GREEN);
+            view.setBackgroundColor(Color.BLACK);
             TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
-            toastMessage.setTextColor(Color.BLACK);
+            toastMessage.setTextColor(Color.WHITE);
             toast.show();
         }
     }

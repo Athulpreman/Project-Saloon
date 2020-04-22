@@ -1,4 +1,4 @@
-<LinearLayout android:layout_height="200dp"
+<LinearLayout android:layout_height="wrap_content"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -9,6 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:id="@+id/cvSearch"
+        android:layout_margin="8dp"
         android:layout_height="match_parent"
         app:cardBackgroundColor="#88EBE9E9">
 
@@ -16,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_margin="10dp"
             android:orientation="vertical">
 
             <TableLayout

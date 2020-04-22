@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +33,7 @@ public class OwnerViewDetails_From_Cardview extends AppCompatActivity
     Button Permit;
     DatabaseReference reference,ref;
     Owner owner;
+    CToast c;
 
 
     @Override
@@ -55,6 +57,8 @@ public class OwnerViewDetails_From_Cardview extends AppCompatActivity
         iimg1=(ImageView)findViewById(R.id.img1);
         iimg2=(ImageView)findViewById(R.id.img2);
         iimg3=(ImageView)findViewById(R.id.img3);
+
+        c=new CToast();
 
         reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
         owner=new Owner();
@@ -102,16 +106,23 @@ public class OwnerViewDetails_From_Cardview extends AppCompatActivity
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
                         for (DataSnapshot snapshot:dataSnapshot.getChildren())
-                        {   Log.d("cccc","for");
-                            snapshot.getRef().child("status").setValue(true);
-                            Toast.makeText(getApplicationContext(), owner.getShopID()+" Has accepted", Toast.LENGTH_SHORT).show();
+                        {
+                            snapshot.getRef().child("status").setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid)
+                                {
+                                    c.toast(getApplicationContext(),owner.getShopID()+" Has accepted",1);
+                                    Intent intent1=new Intent(getApplicationContext(),AdminPage.class);
+                                    startActivity(intent1);
+                                }
+                            });
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError)
                     {
-                        Toast.makeText(getApplicationContext(), "Error....!", Toast.LENGTH_SHORT).show();
+                        c.toast(getApplicationContext(),"Error....!",0);
                     }
                 });
             }

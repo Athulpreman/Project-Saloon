@@ -7,6 +7,7 @@
     <color name="back2">#DD3498DB</color>
     <color name="textColor">#000</color>
     <color name="textColor_white">#fff</color>
+    <color name="light_black">#E8000000</color>
 
 
     <color name="booked">#FF0000</color>

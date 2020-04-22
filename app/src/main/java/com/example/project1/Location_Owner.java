@@ -116,7 +116,8 @@ public class Location_Owner extends AppCompatActivity
                 longi=(longitude.getText().toString());
                if (!lati.equals("")&&!longi.equals(""))
                {
-                   Intent intent=new Intent(getApplicationContext(), com.example.project1.VerifyFromMap.class);
+
+                   Intent intent=new Intent(getApplicationContext(),MapsActivity.class);
                    intent.putExtra("longi",longitude.getText().toString());
                    intent.putExtra("lati",latitude.getText().toString());
                    startActivity(intent);
@@ -146,6 +147,7 @@ public class Location_Owner extends AppCompatActivity
                                 {
                                     latitude.setText(String.valueOf( location.getLatitude()));
                                     longitude.setText(String.valueOf(location.getLongitude()));
+
                                 }
                             }
                         }

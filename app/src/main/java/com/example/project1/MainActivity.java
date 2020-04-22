@@ -56,18 +56,23 @@ public class MainActivity extends AppCompatActivity
 
         SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
         String value=sharedPreferences.getString("MobNo",null);
+
+        SharedPreferences sharedPreference=getSharedPreferences("OwnerLogin",MODE_PRIVATE);
+        String value1=sharedPreference.getString("shopID",null);
+
         if (value!=null)
         {
             Intent intent=new Intent(getApplicationContext(),CustomerSignedIn1.class);
             startActivity(intent);
         }
-
-        SharedPreferences sharedPreference=getSharedPreferences("OwnerLogin",MODE_PRIVATE);
-        String value1=sharedPreference.getString("shopID",null);
-        if (value1!=null)
+        else if (value1!=null)
         {
             Intent intent=new Intent(getApplicationContext(),OwnerPage.class);
             startActivity(intent);
+        }
+        else
+        {
+
         }
 
         blogin=(Button)findViewById(R.id.loginButtonlogin);

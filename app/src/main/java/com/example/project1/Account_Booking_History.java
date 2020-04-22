@@ -25,11 +25,12 @@ public class Account_Booking_History extends AppCompatActivity
 {
     DatabaseReference refeecart;
     RecyclerView recyclerViewcart;
-    AdapterCart adaptercart;
+    AdapterBookingHistory adapterBookingHistory;
     ArrayList<CBookShop> listcart;
     CBookShop cBookShop;
     Customer customer;
     String MobNoo;
+    int a,b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,9 @@ public class Account_Booking_History extends AppCompatActivity
         cBookShop=new CBookShop();
         listcart=new ArrayList<CBookShop>();
 
+
+        a=Integer.parseInt(formattedDate.replaceAll("[\\D]",""));
+
         SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
         MobNoo=sharedPreferences.getString("MobNo",null);
 
@@ -61,7 +65,8 @@ public class Account_Booking_History extends AppCompatActivity
                 {
                     cBookShop=new CBookShop();
                     cBookShop=snapshot.getValue(CBookShop.class);
-                    if (cBookShop.Date.compareTo(formattedDate)<0)
+                    b=Integer.parseInt(cBookShop.getDate().replaceAll("[\\D]",""));
+                    if (a>b&&cBookShop.statusBit.equals("1"))
                     {
                         listcart.add(cBookShop);
                     }
@@ -74,8 +79,8 @@ public class Account_Booking_History extends AppCompatActivity
                 {
                     Toast.makeText(Account_Booking_History.this, "not empty", Toast.LENGTH_SHORT).show();
                 }
-                adaptercart = new AdapterCart(Account_Booking_History.this, listcart);
-                recyclerViewcart.setAdapter(adaptercart);
+                adapterBookingHistory = new AdapterBookingHistory(Account_Booking_History.this, listcart);
+                recyclerViewcart.setAdapter(adapterBookingHistory);
             }
 
             @Override
