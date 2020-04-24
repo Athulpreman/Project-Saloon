@@ -36,7 +36,7 @@ public class AdapterBookingHistory extends RecyclerView.Adapter<AdapterBookingHi
     public AdapterBookingHistory.CustomerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         LayoutInflater layoutInflater=LayoutInflater.from(context);
-        View view=layoutInflater.inflate(R.layout.cardview_cart,null);
+        View view=layoutInflater.inflate(R.layout.cardview_booking_history,null);
         return new AdapterBookingHistory.CustomerViewHolder(view);
     }
 
@@ -47,21 +47,21 @@ public class AdapterBookingHistory extends RecyclerView.Adapter<AdapterBookingHi
         holder.t1.setText(list.get(position).getShopID());
         holder.t2.setText(list.get(position).getDate());
         holder.t3.setText(list.get(position).getTime());
-        String status;
-        status=list.get(position).statusBit;
-        if (status.equals("0"))
+        holder.t4.setText("Finished");
+
+        holder.viewOenerButton.setOnClickListener(new View.OnClickListener()
         {
-            holder.t4.setText("Upcoming");
-        }
-        else if ((status.equals("1")))
-        {
-            holder.t4.setText("Finished");
-        }
-        else if ((status.equals("2")))
-        {
-            holder.t4.setText("Declined");
-        }
-        holder.viewOenerButton.setVisibility(View.INVISIBLE);
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(context.getApplicationContext(),CustomerRateShop.class);
+                intent.putExtra("phone",list.get(position).getCustomerMob());
+                intent.putExtra("qrString",list.get(position).getQrCode());
+                intent.putExtra("shopID",list.get(position).getShopID());
+                intent.putExtra("activity",list.get(position).getActivity());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

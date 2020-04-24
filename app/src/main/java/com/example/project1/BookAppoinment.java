@@ -283,7 +283,6 @@ public class BookAppoinment extends AppCompatActivity
                                                         name=customer1.mobileNum;
                                                         mob=customer1.name;
                                                     }
-
                                                     else
                                                     {
                                                     }
@@ -297,8 +296,6 @@ public class BookAppoinment extends AppCompatActivity
 
                                         }
                                     });
-
-
                                     //getting the shop details
                                     refee1=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
                                     Query query1=refee.orderByChild("shopID").equalTo(shopID);
@@ -376,7 +373,6 @@ public class BookAppoinment extends AppCompatActivity
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return day;
     }
 

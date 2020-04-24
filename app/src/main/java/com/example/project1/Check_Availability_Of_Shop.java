@@ -160,7 +160,7 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                         }
                     }, 5000);
 
-                    qrstring="-"+sshopID+"-"+smob+"-"+sdate+"-"+selected;
+                    qrstring=sshopID+"-"+smob+"-"+sdate+"-"+selected;
 
                     ref = FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(sshopID).child("Booking").child(selected);
                     customerRef= FirebaseDatabase.getInstance().getReference().child("Customer").child(smob).child("Booking").child(sdate);
@@ -210,7 +210,6 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT).show();
                     refresh();
                     b1.setBackground(getResources().getDrawable(R.drawable.selecteddseat));
                     selected="10-11";
@@ -229,7 +228,6 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_SHORT).show();
                     refresh();
                     b2.setBackground(getResources().getDrawable(R.drawable.selecteddseat));
                     selected="11-12";
@@ -248,7 +246,6 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "3", Toast.LENGTH_SHORT).show();
                     refresh();
                     b3.setBackground(getResources().getDrawable(R.drawable.selecteddseat));
                     selected="12-13";
@@ -267,7 +264,6 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "4", Toast.LENGTH_SHORT).show();
                     refresh();
                     b4.setBackground(getResources().getDrawable(R.drawable.selecteddseat));
                     selected="14-15";
@@ -286,7 +282,6 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "5", Toast.LENGTH_SHORT).show();
                     refresh();
                     b5.setBackground(getResources().getDrawable(R.drawable.selecteddseat));
                     selected="15-16";
@@ -305,7 +300,6 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "6", Toast.LENGTH_SHORT).show();
                     refresh();
                     b6.setBackground(getResources().getDrawable(R.drawable.selecteddseat));
                     selected="16-17";
@@ -324,7 +318,6 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "7", Toast.LENGTH_SHORT).show();
                     refresh();
                     b7.setBackground(getResources().getDrawable(R.drawable.selecteddseat));
                     selected="17-18";
@@ -343,7 +336,6 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "8", Toast.LENGTH_SHORT).show();
                     refresh();
                     b8.setBackground(getResources().getDrawable(R.drawable.selecteddseat));
                     selected="18-19";

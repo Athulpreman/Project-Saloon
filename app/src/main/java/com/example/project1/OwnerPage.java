@@ -1,5 +1,6 @@
 package com.example.project1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -10,8 +11,17 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class OwnerPage extends AppCompatActivity
 {
@@ -19,6 +29,9 @@ public class OwnerPage extends AppCompatActivity
     Toast backToast;
     long backpress;
     CardView c1,c2,c3,c4,c5,c6,c7,c8;
+    TextView ownerMob,shopID,shopName;
+    ImageView shopIMG;
+    DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,6 +51,35 @@ public class OwnerPage extends AppCompatActivity
         c6=(CardView)findViewById(R.id.card6);
         c7=(CardView)findViewById(R.id.card7);
         c8=(CardView)findViewById(R.id.card8);
+
+        ownerMob=(TextView)findViewById(R.id.opOwnerNumber);
+        shopID=(TextView)findViewById(R.id.opShopID);
+        shopName=(TextView)findViewById(R.id.opShopName);
+
+        shopIMG=(ImageView)findViewById(R.id.opShopImg);
+
+        ref= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+        Query query=ref.orderByChild("shopID").equalTo(shopID1);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    Owner owner=new Owner();
+                    owner=snapshot.getValue(Owner.class);
+                    ownerMob.setText(owner.OwnerMobile);
+                    shopName.setText(owner.ShopName);
+                    shopID.setText(owner.ShopID);
+                    Picasso.get().load(owner.Image1).into(shopIMG);
+                    ref.removeEventListener(this);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+            }
+        });
 
         c6.setOnClickListener(new View.OnClickListener()
         {

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +32,7 @@ public class Account_Booking_History extends AppCompatActivity
     Customer customer;
     String MobNoo;
     int a,b;
+    TextView noHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class Account_Booking_History extends AppCompatActivity
 
         this.setTitle("My Cart");
 
+        noHistory=(TextView)findViewById(R.id.noBookingHistoryTextView);
+
         recyclerViewcart=(RecyclerView)findViewById(R.id.rrvCart);
         recyclerViewcart.setHasFixedSize(true);
         recyclerViewcart.setLayoutManager(new LinearLayoutManager(this));
@@ -46,11 +50,12 @@ public class Account_Booking_History extends AppCompatActivity
         final Calendar c = Calendar.getInstance();
         final SimpleDateFormat df = new SimpleDateFormat("yyyy,MM,dd");
         final String formattedDate = df.format(c.getTime());
+        a=Integer.parseInt(formattedDate.replaceAll("[\\D]",""));
         cBookShop=new CBookShop();
         listcart=new ArrayList<CBookShop>();
 
 
-        a=Integer.parseInt(formattedDate.replaceAll("[\\D]",""));
+
 
         SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
         MobNoo=sharedPreferences.getString("MobNo",null);
@@ -66,21 +71,20 @@ public class Account_Booking_History extends AppCompatActivity
                     cBookShop=new CBookShop();
                     cBookShop=snapshot.getValue(CBookShop.class);
                     b=Integer.parseInt(cBookShop.getDate().replaceAll("[\\D]",""));
-                    if (a>b&&cBookShop.statusBit.equals("1"))
+                    if (a>=b&&cBookShop.statusBit.equals("1"))
                     {
                         listcart.add(cBookShop);
                     }
                 }
                 if (listcart.isEmpty())
                 {
-                    Toast.makeText(Account_Booking_History.this, "empty lis", Toast.LENGTH_SHORT).show();
+                    noHistory.setVisibility(View.VISIBLE);
                 }
                 else
                 {
-                    Toast.makeText(Account_Booking_History.this, "not empty", Toast.LENGTH_SHORT).show();
+                    adapterBookingHistory = new AdapterBookingHistory(Account_Booking_History.this, listcart);
+                    recyclerViewcart.setAdapter(adapterBookingHistory);
                 }
-                adapterBookingHistory = new AdapterBookingHistory(Account_Booking_History.this, listcart);
-                recyclerViewcart.setAdapter(adapterBookingHistory);
             }
 
             @Override

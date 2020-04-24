@@ -7,13 +7,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,10 +31,13 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
     EditText shopName,ownName,empName,ownMob,empMob,address;
     Button book;
     ImageView im1,im2,im3;
-    String shopID,activity,price;
+    String shopID,activity,price,MobNoo;
     Owner owner;
-    DatabaseReference reference;
+    DatabaseReference reference,reffav,reffav1;
     AlertDialog.Builder builder;
+    ImageView addToFav;
+    int a,b,c;
+    boolean state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -48,6 +55,10 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
         im1=(ImageView)findViewById(R.id.img1);
         im2=(ImageView)findViewById(R.id.img2);
         im3=(ImageView)findViewById(R.id.img3);
+        addToFav=(ImageView)findViewById(R.id.addToFav);
+
+        SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
+        MobNoo=sharedPreferences.getString("MobNo",null);
 
         Intent intent=getIntent();
         shopID=intent.getStringExtra("shopID");
@@ -57,15 +68,49 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
         reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
         owner=new Owner();
 
+        findFav();
+
+        /*reffav=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Favourite");
+        reffav.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if (!dataSnapshot.exists())
+                {
+                    addToFav.setImageResource(R.drawable.fav_unfav);
+                }
+                a=0;
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    a++;
+                    CFav cFav=new CFav();
+                    cFav=snapshot.getValue(CFav.class);
+                    if (cFav.activity.equals(activity)&&cFav.shopID.equals(shopID))
+                    {
+                        addToFav.setImageResource(R.drawable.fav_fav);
+                    }
+                    if (a==dataSnapshot.getChildrenCount())
+                    {
+                        addToFav.setImageResource(R.drawable.fav_unfav);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
+
         Query query=reference.orderByChild("shopID").equalTo(shopID);
         query.addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
+                for (DataSnapshot dataSnapshot11:dataSnapshot.getChildren())
                 {
-                    owner=dataSnapshot1.getValue(Owner.class);
+                    owner=dataSnapshot11.getValue(Owner.class);
 
                     ownName.setText(owner.getOwnerName());
                     shopName.setText(owner.getShopName());
@@ -87,6 +132,76 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
                 Toast.makeText(Booking_shop_Customer_1st.this, "Database Error....!", Toast.LENGTH_SHORT).show();
             }
         });
+        addToFav.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if (state==false)
+                {
+                    CToast cToast=new CToast();
+                    cToast.toast(getApplicationContext(),"Please Waite",0);
+                }
+                else
+                {
+                    if (c==0)
+                    {
+                        Log.d("aaaaa","if");
+                        CFav cFav=new CFav();
+                        cFav.activity=activity;
+                        cFav.shopID=shopID;
+                        reffav=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Favourite");
+                        reffav.push().setValue(cFav).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid)
+                            {
+                                CToast cToast=new CToast();
+                                cToast.toast(getApplicationContext(),"Added to favourite list",0);
+                                findFav();
+                            }
+                        });
+                    }
+                    else
+                    {
+                        Log.d("aaaaa","else");
+                        reffav=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Favourite");
+                        Query query1=reffav.orderByChild("shopID").equalTo(shopID);
+                        query1.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                            {
+                                Log.d("aaaaa","before for");
+                                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                                {
+                                    Log.d("aaaaa","for");
+                                    CFav cFav=new CFav();
+                                    cFav=snapshot.getValue(CFav.class);
+                                    if (cFav.activity.equals(activity))
+                                    {
+                                        Log.d("aaaaa","2if");
+                                        snapshot.getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid)
+                                            {
+                                                Log.d("aaaaa","removed");
+                                                CToast cToast=new CToast();
+                                                cToast.toast(getApplicationContext(),"Removed from favourite list",0);
+                                                findFav();
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+        });
         book.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -101,39 +216,68 @@ public class Booking_shop_Customer_1st extends AppCompatActivity
         });
 
     }
+    public void favdisplay(int x)
+    {
+        c=x;
+        state=true;
+        if(x==0)
+        {
+            addToFav.setImageResource(R.drawable.fav_unfav);
+        }
+        if (x==1)
+        {
+            addToFav.setImageResource(R.drawable.fav_fav);
+        }
+    }
+    public void findFav()
+    {
+        state=false;
+        b=0;
+        reffav1=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Favourite");
+        reffav1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if (!dataSnapshot.exists())
+                {
+                    b=0;
+                    favdisplay(b);
+                }
+                a=0;
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    a++;
+                    CFav cFav=new CFav();
+                    cFav=snapshot.getValue(CFav.class);
+                    if (cFav.activity.equals(activity)&&cFav.shopID.equals(shopID))
+                    {
+                        b=1;
+                        favdisplay(b);
+                    }
+                    if (a==dataSnapshot.getChildrenCount())
+                    {
+                        if (b!=1)
+                        {
+                            favdisplay(b);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
     @Override
     public void onBackPressed()
     {
-        builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure want to LOGOUT ?") .setTitle("Cancel");
+        SharedPreferences.Editor editor=getSharedPreferences("Booking",MODE_PRIVATE).edit();
+        editor.clear();
+        editor.commit();
 
-        //Setting message manually and performing action on button click
-        builder.setMessage("Are you sure want to cancel ?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        SharedPreferences.Editor editor=getSharedPreferences("Booking",MODE_PRIVATE).edit();
-                        editor.clear();
-                        editor.commit();
-                        Toast.makeText(getApplicationContext(),"Booking cancelled", Toast.LENGTH_SHORT).show();
-
-                        Intent intent=new Intent(getApplicationContext(),CustomerSignedIn1.class);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        //  Action for 'NO' Button
-                        dialog.cancel();
-                    }
-                });
-
-        //Creating dialog box
-        AlertDialog alert = builder.create();
-        //Setting the title manually
-        alert.setTitle("LOGOUT");
-        alert.show();
+        Intent intent=new Intent(getApplicationContext(),CustomerSignedIn1.class);
+        startActivity(intent);
     }
 }

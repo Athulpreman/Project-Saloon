@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +39,7 @@ public class showbooking_Cart extends AppCompatActivity
     String MobNoo,shopID,Activity,sprice,sname;
     String date,time;
     TextView price,shopName,date1,time1;
-    DatabaseReference reference,refeShopName,refePrice,refecancelCutomer,refecancelOwner;
+    DatabaseReference reference,refeShopName,refePrice,refecancelCutomer,refecancelOwner,refQR;
     CBookShop cBookShop,cBook;
     Button showMap,showQR,cancel;
     ImageView imgQR;
@@ -137,7 +138,6 @@ public class showbooking_Cart extends AppCompatActivity
                     {
                         date1.setText(cBookShop.getDate());
                         time1.setText(cBookShop.getTime());
-                        qrString=cBookShop.qrCode;
                     }
                 }
             }
@@ -151,38 +151,61 @@ public class showbooking_Cart extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                if (!MobNoo.isEmpty()&&!date.isEmpty()&&!time.isEmpty())
-                {
-
-                    if (qrString!=null)
+                refQR=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking");
+                Query query2=refQR.orderByChild("date").equalTo(date);
+                query2.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
-                        LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(1000,1000);
-                        imgQR.setLayoutParams(parms);
-                        imgQR.setVisibility(View.VISIBLE);
-                        scroll.scrollTo(0, scroll.getBottom());
-                        try
+                        for (DataSnapshot snapshot:dataSnapshot.getChildren())
                         {
-                            MultiFormatWriter multiFormatWriter=new MultiFormatWriter();
-                            BitMatrix bitMatrix=multiFormatWriter.encode(qrString, BarcodeFormat.QR_CODE,330,330);
-                            BarcodeEncoder barcodeEncoder=new BarcodeEncoder();
-                            bitmap=barcodeEncoder.createBitmap(bitMatrix);
-                            imgQR.setImageBitmap(bitmap);
+                            CBookShop cBookShop=new CBookShop();
+                            cBookShop=snapshot.getValue(CBookShop.class);
+                            if (cBookShop.statusBit.equals("0"))
+                            {
+                                Log.d("aaaa","aa");
+                                qrString=cBookShop.qrCode;
+                                    if (qrString!=null)
+                                    {
+                                        LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(1000,1000);
+                                        imgQR.setLayoutParams(parms);
+                                        imgQR.setVisibility(View.VISIBLE);
+                                        scroll.scrollTo(0, scroll.getBottom());
+                                        try
+                                        {
+                                            MultiFormatWriter multiFormatWriter=new MultiFormatWriter();
+                                            BitMatrix bitMatrix=multiFormatWriter.encode(qrString, BarcodeFormat.QR_CODE,330,330);
+                                            BarcodeEncoder barcodeEncoder=new BarcodeEncoder();
+                                            bitmap=barcodeEncoder.createBitmap(bitMatrix);
+                                            imgQR.setImageBitmap(bitmap);
+
+                                        }
+                                        catch (WriterException e)
+                                        {
+                                            Toast.makeText(showbooking_Cart.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                else
+                                {
+                                    LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(0,0);
+                                    imgQR.setLayoutParams(parms);
+                                    Intent intent1=new Intent(getApplicationContext(),CustomerSignedIn1.class);
+                                    startActivity(intent1);
+                                }
 
                         }
-                        catch (WriterException e)
-                        {
-                            Toast.makeText(showbooking_Cart.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
                     }
-                    else
-                    {
-                        Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT).show();
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
                     }
-                }
-                else
-                {
-                    Toast.makeText(showbooking_Cart.this, "Error loading QR code", Toast.LENGTH_SHORT).show();
-                }
+                });
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -255,11 +278,12 @@ public class showbooking_Cart extends AppCompatActivity
 
 
                 }
-                }); adb.setNegativeButton(noButtonText, new DialogInterface.OnClickListener()
+                });
+                adb.setNegativeButton(noButtonText, new DialogInterface.OnClickListener()
             { @Override public void onClick(DialogInterface dialog, int which)
             {
-
-            } });
+            }
+            });
                 adb.show();
             }
         });

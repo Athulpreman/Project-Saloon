@@ -93,7 +93,7 @@ public class ScanQrResult extends AppCompatActivity
             time.setText("Error...!");
             date.setText("Error...!");
             status.setText("Error...!");
-            scanImg.setImageResource(R.drawable.scan_cross_mark);
+            scanImg.setImageResource(R.drawable.vector_cross);
             accept.setVisibility(View.INVISIBLE);
             decline.setVisibility(View.INVISIBLE);
 
@@ -113,7 +113,7 @@ public class ScanQrResult extends AppCompatActivity
             time.setText("Error...!");
             date.setText("Error...!");
             status.setText("Not on the currect Shop");
-            scanImg.setImageResource(R.drawable.scan_cross_mark);
+            scanImg.setImageResource(R.drawable.vector_cross);
             accept.setVisibility(View.INVISIBLE);
             decline.setVisibility(View.INVISIBLE);
 
@@ -136,7 +136,7 @@ public class ScanQrResult extends AppCompatActivity
                         time.setText("Error...!");
                         date.setText("Error...!");
                         status.setText("Error...!");
-                        scanImg.setImageResource(R.drawable.scan_cross_mark);
+                        scanImg.setImageResource(R.drawable.vector_cross);
                         accept.setVisibility(View.INVISIBLE);
                         decline.setVisibility(View.INVISIBLE);
 
@@ -154,7 +154,7 @@ public class ScanQrResult extends AppCompatActivity
                         time.setText(items[3]);
                         date.setText(items[2]);
                         status.setText("Not on the currect DATE");
-                        scanImg.setImageResource(R.drawable.scan_cross_mark);
+                        scanImg.setImageResource(R.drawable.vector_cross);
                         accept.setVisibility(View.INVISIBLE);
                         decline.setVisibility(View.INVISIBLE);
 
@@ -185,7 +185,7 @@ public class ScanQrResult extends AppCompatActivity
                         time.setText("Error...!");
                         date.setText("Error...!");
                         status.setText("Error...!");
-                        scanImg.setImageResource(R.drawable.scan_cross_mark);
+                        scanImg.setImageResource(R.drawable.vector_cross);
                         accept.setVisibility(View.INVISIBLE);
                         decline.setVisibility(View.INVISIBLE);
 
@@ -202,7 +202,7 @@ public class ScanQrResult extends AppCompatActivity
                         mobile.setText(items[1]);
                         time.setText(items[3]);
                         date.setText(items[2]);
-                        scanImg.setImageResource(R.drawable.scan_cross_mark);
+                        scanImg.setImageResource(R.drawable.vector_cross);
                     }
                 }
                 @Override
@@ -232,11 +232,13 @@ public class ScanQrResult extends AppCompatActivity
                                 decline.setVisibility(View.INVISIBLE);
                                 progressBar.setVisibility(View.INVISIBLE);
                                 progreeText.setVisibility(View.INVISIBLE);
+                                scanImg.setImageResource(R.drawable.vector_pending_green);
                             }
                             else
                             {
                                 status.setText("not On Time");
                                 acceptingStatus=1;
+                                scanImg.setImageResource(R.drawable.vector_pending);
                             }
                             progressBar.setVisibility(View.INVISIBLE);
                             progreeText.setVisibility(View.INVISIBLE);
@@ -259,7 +261,6 @@ public class ScanQrResult extends AppCompatActivity
                     builder = new AlertDialog.Builder(ScanQrResult.this);
                     builder.setMessage("Customer is not on time. Accept now ?") .setTitle("Accept");
 
-                    //Setting message manually and performing action on button click
                     builder.setMessage("Customer is not on time. Accept now ?")
                             .setCancelable(false)
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -271,14 +272,11 @@ public class ScanQrResult extends AppCompatActivity
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id)
                                 {
-                                    //  Action for 'NO' Button
                                     dialog.cancel();
                                 }
                             });
 
-                    //Creating dialog box
                     AlertDialog alert = builder.create();
-                    //Setting the title manually
                     alert.setTitle("Accept");
                     alert.show();
                 }
@@ -299,16 +297,14 @@ public class ScanQrResult extends AppCompatActivity
     }
     public void Book()
     {
-        refee= FirebaseDatabase.getInstance().getReference().child("Customer");
-        final Query query=refee.orderByChild("mobileNum").equalTo(items[1]);
+        refee= FirebaseDatabase.getInstance().getReference().child("Customer").child(items[1]).child("Booking");
+        final Query query=refee.orderByChild("date").equalTo(items[2]);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
-                    Customer customer=new Customer();
-                    customer=snapshot.getValue(Customer.class);
                     snapshot.getRef().child("statusBit").setValue("1").addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid)
@@ -325,7 +321,8 @@ public class ScanQrResult extends AppCompatActivity
                                             @Override
                                             public void onSuccess(Void aVoid)
                                             {
-
+                                                Toast.makeText(ScanQrResult.this, "Sucess", Toast.LENGTH_SHORT).show();
+                                                scanImg.setImageResource(R.drawable.scan_tick_mark);
                                             }
                                         });
                                     }
@@ -346,5 +343,12 @@ public class ScanQrResult extends AppCompatActivity
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent=new Intent(getApplicationContext(),OwnerPage.class);
+        startActivity(intent);
     }
 }

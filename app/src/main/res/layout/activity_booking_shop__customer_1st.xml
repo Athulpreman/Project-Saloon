@@ -15,6 +15,13 @@
                 android:textStyle="bold"
                 android:text="Shop Details"
                 android:layout_margin="20dp"/>
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/fav_unfav"
+                android:layout_gravity="right"
+                android:layout_marginRight="30dp"
+                android:id="@+id/addToFav"/>
 
             <TableLayout
                 android:layout_width="match_parent"

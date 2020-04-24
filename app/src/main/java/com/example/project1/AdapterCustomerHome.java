@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -52,12 +54,42 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
         return new AdapterCustomerHome.CustomerViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull  final CustomerViewHolder holder, final int position)
     {
+        reference=FirebaseDatabase.getInstance().getReference().child("Customer").child(holder.MobNoo).child("Favourite");
+        Query query1=reference.orderByChild("shopID").equalTo(list.get(position).getShopID());
+        query1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                Log.d("aaaaa","before for");
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    Log.d("aaaaa","for");
+                    CFav cFav=new CFav();
+                    cFav=snapshot.getValue(CFav.class);
+                    if (cFav.activity.equals(list.get(position).Activity))
+                    {
+                        holder.fav.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
         holder.t1.setText(list.get(position).getPrice());
         holder.t2.setText(list.get(position).getModelName());
+        if (list.get(position).rating==0.0)
+        {
+            holder.rating.setText("Unrated");
+            holder.rating.setTextSize(1,15);
+        }
+        else
+        {
+            holder.rating.setText(String.format("%.1f", list.get(position).getRating()));
+        }
         Picasso.get().load(list.get(position).getModelImg()).into(holder.imageView);
         holder.cardView.setOnClickListener(new View.OnClickListener()
         {
@@ -83,9 +115,10 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
 
     class CustomerViewHolder extends RecyclerView.ViewHolder
     {
-        TextView t1,t2;
-        ImageView imageView;
+        TextView t1,t2,rating;
+        ImageView imageView,fav;
         CardView cardView;
+        String MobNoo;
 
 
         public CustomerViewHolder(@NonNull View ownerView)
@@ -94,8 +127,13 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
 
             t1=(TextView) ownerView.findViewById(R.id.price);
             t2=(TextView)ownerView.findViewById(R.id.StyleName);
+            rating=(TextView)ownerView.findViewById(R.id.ratingTextNumber);
             imageView=(ImageView) ownerView.findViewById(R.id.Imgg);
+            fav=(ImageView) ownerView.findViewById(R.id.favouriteimage);
             cardView=(CardView)ownerView.findViewById(R.id.CustomerCard);
+
+            SharedPreferences sharedPreferences=context.getSharedPreferences("UserLogin",MODE_PRIVATE);
+            MobNoo=sharedPreferences.getString("MobNo",null);
 
         }
 

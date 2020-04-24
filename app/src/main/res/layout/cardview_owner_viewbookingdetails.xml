@@ -1,0 +1,119 @@
+<LinearLayout android:layout_height="300dp"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/cvCart"
+        android:layout_margin="5dp"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="#88EBE9E9">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:stretchColumns="1"
+                android:orientation="vertical">
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="130dp"
+                        android:gravity="center"
+                        android:text="Name "
+                        android:textSize="18dp"/>
+                    <TextView android:text="........"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:background="@drawable/tesxbox_rectangle"
+                        android:id="@+id/ovbcName"/>
+                </TableRow>
+                <TableRow android:layout_marginTop="8dp">
+                    <TextView
+                        android:layout_width="130dp"
+                        android:gravity="center"
+                        android:text="Date"
+                        android:textSize="18dp"/>
+                    <TextView android:text="........"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:background="@drawable/tesxbox_rectangle"
+                        android:id="@+id/ovbcDate"/>
+                </TableRow>
+                <TableRow android:layout_marginTop="8dp">
+                    <TextView
+                        android:layout_width="130dp"
+                        android:gravity="center"
+                        android:text="Time"
+                        android:textSize="18dp"/>
+                    <TextView android:text="........"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:background="@drawable/tesxbox_rectangle"
+                        android:id="@+id/ovbcTime"/>
+                </TableRow>
+                <TableRow android:layout_marginTop="8dp">
+                    <TextView
+                        android:layout_width="130dp"
+                        android:gravity="center"
+                        android:text="Price"
+                        android:textSize="18dp"/>
+                    <TextView android:text="........"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:background="@drawable/tesxbox_rectangle"
+                        android:id="@+id/ovbcPrice"/>
+                </TableRow>
+                <TableRow android:layout_marginTop="8dp">
+                    <TextView
+                        android:layout_width="130dp"
+                        android:gravity="center"
+                        android:text="Service"
+                        android:textSize="18dp"/>
+                    <TextView android:text="........"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:background="@drawable/tesxbox_rectangle"
+                        android:id="@+id/ovbcService"/>
+                </TableRow>
+
+                <TableRow android:layout_marginTop="8dp">
+                    <TextView
+                        android:layout_width="130dp"
+                        android:gravity="center"
+                        android:text="Mobile"
+                        android:textSize="18dp"/>
+                    <TextView android:text="........"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:background="@drawable/tesxbox_rectangle"
+                        android:id="@+id/ovbcMobile"/>
+                </TableRow>
+
+            </TableLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:layout_marginTop="25dp">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

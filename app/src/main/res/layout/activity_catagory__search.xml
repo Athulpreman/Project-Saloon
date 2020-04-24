@@ -33,4 +33,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/rvSearchResult"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:text="No Shop"
+        android:layout_marginTop="90dp"
+        android:visibility="invisible"
+        android:id="@+id/noShopTextView"/>
+
 </LinearLayout>

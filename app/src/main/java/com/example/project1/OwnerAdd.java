@@ -5,17 +5,20 @@ import java.io.Serializable;
 public class OwnerAdd
 {
     String Price,Activity,ModelImg,ModelName,ShopID;
+    double rating;
 
     public OwnerAdd()
     {
+        rating=0.0;
     }
 
-    public OwnerAdd(String price, String activity , String modelImg, String modelName, String shopID) {
+    public OwnerAdd(String price, String activity, String modelImg, String modelName, String shopID, double rating) {
         Price = price;
         Activity = activity;
         ModelImg = modelImg;
         ModelName = modelName;
         ShopID = shopID;
+        this.rating = rating;
     }
 
     public String getPrice() {
@@ -56,5 +59,13 @@ public class OwnerAdd
 
     public void setShopID(String shopID) {
         ShopID = shopID;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }

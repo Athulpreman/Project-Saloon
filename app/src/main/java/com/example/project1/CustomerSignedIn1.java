@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -52,7 +53,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
     DatabaseReference refee1;
     AdapterCustomerHome adapter;
     Adapter_Search_Place adapter11;
-
+    int l,m,n;
 
     RecyclerView recyclerView;
 
@@ -160,14 +161,21 @@ public class CustomerSignedIn1 extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-
+                l=0;
+                shopList.clear();
                 for (DataSnapshot snapOwnerName:dataSnapshot.getChildren())
                 {
+                    l++;
+                    Log.d("aaaaa","for1");
                     owner=new Owner();
                     owner=snapOwnerName.getValue(Owner.class);
                     String Namee=owner.ShopID;
                     shopList.add(Namee);
-
+                    if (l==dataSnapshot.getChildrenCount())
+                    {
+                        Log.d("aaaa","call1");
+                        shopmame();
+                    }
                 }
 
             }
@@ -176,46 +184,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
             public void onCancelled(@NonNull DatabaseError databaseError)
             {
                 Toast.makeText(getApplicationContext(), "Error....!", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-        refee=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
-        refee.addListenerForSingleValueEvent(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-            {
-                for (int j=0;j<shopList.size();j++)
-                {
-                    list.clear();
-                    Name=shopList.get(j);
-                    refee1 = FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(Name).child("Activity");
-                    refee1.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                        {
-                            for (DataSnapshot datasnapshot1 : dataSnapshot.getChildren())
-                            {
-                                if (dataSnapshot.exists())
-                                {
-                                    OwnerAdd ownerAdd = datasnapshot1.getValue(OwnerAdd.class);
-                                    list.add(ownerAdd);
-                                }
-                            }
-                            adapter = new AdapterCustomerHome(CustomerSignedIn1.this, list);
-                            recyclerView.setAdapter(adapter);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Toast.makeText(getApplicationContext(), "something wnt wrong", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
@@ -255,12 +223,14 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 recyclerView.setLayoutManager(new GridLayoutManager(this,3));
 
                 shopList.clear();
+                Log.d("aaaa","aaaaa");
                 refOwnerName= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
                 refOwnerName.addValueEventListener(new ValueEventListener()
                 {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
+                        shopList.clear();
                         for (DataSnapshot snapOwnerName:dataSnapshot.getChildren())
                         {
                             owner2 = new Owner();
@@ -268,6 +238,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
                             owner2 =snapOwnerName.getValue(Owner.class);
                             String Namee= owner2.ShopID;
                             shopList.add(Namee);
+                            shopmame();
                         }
 
                     }
@@ -279,48 +250,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
                     }
                 });
-                refee=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
-                refee.addListenerForSingleValueEvent(new ValueEventListener()
-                {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                    {
-                        for (int j=0;j<shopList.size();j++)
-                        {
-
-                            list.clear();
-                            String Name1=shopList.get(j);
-                            refee1= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(Name1).child("Activity");
-                            refee1.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                                {
-                                    for (DataSnapshot datasnapshot1 : dataSnapshot.getChildren())
-                                    {
-                                        if (dataSnapshot.exists())
-                                        {
-                                            OwnerAdd ownerAdd = datasnapshot1.getValue(OwnerAdd.class);
-                                            list.add(ownerAdd);
-                                        }
-                                    }
-                                    adapter = new AdapterCustomerHome(CustomerSignedIn1.this, list);
-                                    recyclerView.setAdapter(adapter);
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                    Toast.makeText(getApplicationContext(), "something wnt wrong", Toast.LENGTH_LONG).show();
-                                }
-                            });
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
             }
 
             bHome =(Button)findViewById(R.id.home);
@@ -902,6 +831,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
             listcart=new ArrayList<CBookShop>();
 
             DateList2.clear();
+            m=Integer.parseInt(formattedDate.replaceAll("[\\D]",""));
             refeecart=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking");
             refeecart.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -911,7 +841,11 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     {
                         cBookShop=new CBookShop();
                         cBookShop=snapshot.getValue(CBookShop.class);
-                        DateList2.add(cBookShop);
+                        n=Integer.parseInt(cBookShop.getDate().replaceAll("[\\D]",""));
+                        if (cBookShop.statusBit.equals("0")&&m<=n)
+                        {
+                            DateList2.add(cBookShop);
+                        }
                     }
                     if (DateList2.isEmpty())
                     {
@@ -1180,5 +1114,96 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 });
             }
         }
+    }
+    public void shopmame()
+    {
+
+        refee=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+        refee.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                for (int j=0;j<shopList.size();j++)
+                {
+
+                    list.clear();
+                    String Name1=shopList.get(j);
+                    refee1= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(Name1).child("Activity");
+                    refee1.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                        {
+                            for (DataSnapshot datasnapshot1 : dataSnapshot.getChildren())
+                            {
+                                if (dataSnapshot.exists())
+                                {
+                                    OwnerAdd ownerAdd = datasnapshot1.getValue(OwnerAdd.class);
+                                    list.add(ownerAdd);
+                                    Log.d("aaaa",ownerAdd.ShopID);
+                                }
+                            }
+                            adapter = new AdapterCustomerHome(CustomerSignedIn1.this, list);
+                            recyclerView.setAdapter(adapter);
+                            //nameShop();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Toast.makeText(getApplicationContext(), "something wnt wrong", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+    public void nameShop()
+    {
+        refee=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+        refee.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                for (int j=0;j<shopList.size();j++)
+                {
+                    list.clear();
+                    Name=shopList.get(j);
+                    refee1 = FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(Name).child("Activity");
+                    refee1.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                        {
+                            for (DataSnapshot datasnapshot1 : dataSnapshot.getChildren())
+                            {
+                                Log.d("aaaaa","for1");
+                                if (dataSnapshot.exists())
+                                {
+                                    OwnerAdd ownerAdd = datasnapshot1.getValue(OwnerAdd.class);
+                                    list.add(ownerAdd);
+                                }
+                            }
+                            adapter = new AdapterCustomerHome(CustomerSignedIn1.this, list);
+                            recyclerView.setAdapter(adapter);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Toast.makeText(getApplicationContext(), "something wnt wrong", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

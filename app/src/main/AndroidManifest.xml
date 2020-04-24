@@ -32,7 +32,9 @@
         android:roundIcon="@drawable/hair"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScanQrResult"></activity>
+        <activity android:name=".CustomerRateShop"></activity>
+        <activity android:name=".OwnerViewBookings" />
+        <activity android:name=".ScanQrResult" />
         <activity android:name=".ScanQrShop" />
         <activity android:name=".OTP_Owner" />
         <!--

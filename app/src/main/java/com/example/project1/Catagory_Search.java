@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +34,7 @@ public class Catagory_Search extends AppCompatActivity
     Owner owner,owner1;
     String s;
     int count,j,i,k;
+    TextView noShop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,6 +47,7 @@ public class Catagory_Search extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         activityName=(TextView)findViewById(R.id.activityName);
+        noShop=(TextView)findViewById(R.id.noShopTextView);
 
         Intent intent=getIntent();
         acName=intent.getStringExtra("activity");
@@ -77,6 +80,10 @@ public class Catagory_Search extends AppCompatActivity
                     i++;
                     if (count==i)
                     {
+                        if (shopList.isEmpty())
+                        {
+                            noShop.setVisibility(View.VISIBLE);
+                        }
                        addOwner();
                     }
                 }
@@ -131,6 +138,10 @@ public class Catagory_Search extends AppCompatActivity
     {
         for (String s2:hasshopList)
         {
+            if (hasshopList.isEmpty())
+            {
+                noShop.setVisibility(View.VISIBLE);
+            }
             k=0;
             ref3=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
             Query query=ref3.orderByChild("shopID").equalTo(s2);
