@@ -96,6 +96,14 @@ public class OwnerPage extends AppCompatActivity
             }
         });
 
+        c1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getApplicationContext(),ScanQrShop.class);
+                startActivity(intent);
+            }
+        });
         c2.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -106,6 +114,24 @@ public class OwnerPage extends AppCompatActivity
                 startActivity(intent1);
             }
         });
+        c3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getApplicationContext(),OwnerViewUpcomingBookings.class);
+                startActivity(intent);
+            }
+        });
+        c4.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getApplicationContext(),OwnerManageServices.class);
+                startActivity(intent);
+            }
+        });
         c8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -114,14 +140,7 @@ public class OwnerPage extends AppCompatActivity
                 startActivity(intent);
             }
         });
-        c1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent=new Intent(getApplicationContext(),ScanQrShop.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
     public void onBackPressed()

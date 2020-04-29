@@ -32,8 +32,11 @@
         android:layout_marginTop="10dp"
         android:text="                 Thank  you  for  concerning   about give rating and feebback  for our  sevice  and facilities ."/>
     <RatingBar
-        android:layout_width="300dp"
+        android:layout_width="240dp"
         android:layout_height="40dp"
+        android:numStars="5"
+        android:rating="1"
+        android:stepSize="1"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:id="@+id/ratingbar"/>

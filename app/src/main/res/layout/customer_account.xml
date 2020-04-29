@@ -51,7 +51,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:background="#39CACACA"
-                android:layout_height="12dp"/>
+                android:layout_height="11dp"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -71,7 +71,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:background="#948E8E"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.25dp"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -91,7 +91,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:background="#948E8E"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.25dp"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -110,7 +110,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:background="#948E8E"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.25dp"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -130,12 +130,12 @@
             <Button
                 android:layout_width="match_parent"
                 android:background="#948E8E"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.25dp"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:background="#948E8E"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.25dp"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -155,7 +155,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:background="#948E8E"
-                android:layout_height="0.5dp"/>
+                android:layout_height="0.25dp"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -175,7 +175,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:background="#39CACACA"
-                android:layout_height="12dp"/>
+                android:layout_height="8dp"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:textSize="14dp"
                 android:textStyle="bold"
                 android:text="V 3.2.0"/>

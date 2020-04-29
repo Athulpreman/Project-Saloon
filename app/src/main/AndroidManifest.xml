@@ -32,7 +32,11 @@
         android:roundIcon="@drawable/hair"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerRateShop"></activity>
+        <activity android:name=".OwnerEditService"></activity>
+        <activity android:name=".OwnerManageServices" />
+        <activity android:name=".OwnerViewUpcomingBookings" />
+        <activity android:name=".Account_Favourite" />
+        <activity android:name=".CustomerRateShop" />
         <activity android:name=".OwnerViewBookings" />
         <activity android:name=".ScanQrResult" />
         <activity android:name=".ScanQrShop" />

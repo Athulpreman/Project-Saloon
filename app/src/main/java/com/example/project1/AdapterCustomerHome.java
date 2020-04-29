@@ -63,10 +63,8 @@ public class AdapterCustomerHome extends RecyclerView.Adapter<AdapterCustomerHom
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                Log.d("aaaaa","before for");
                 for (DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
-                    Log.d("aaaaa","for");
                     CFav cFav=new CFav();
                     cFav=snapshot.getValue(CFav.class);
                     if (cFav.activity.equals(list.get(position).Activity))

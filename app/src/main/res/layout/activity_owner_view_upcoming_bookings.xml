@@ -1,0 +1,103 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upcoming Bookings"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="35dp"
+        android:fontFamily="@font/neo_latina_ap"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="30dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textAlignment="center"
+                android:text="Select Date"/>
+            <TextView
+                android:layout_margin="1dp"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:background="@drawable/textbox"
+                android:gravity="center"
+                android:id="@+id/upcomingBookingDate"
+                android:layout_marginLeft="15dp"/>
+
+        </LinearLayout>
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_black_rectangle"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/textColor_white"
+            android:text="Search"
+            android:id="@+id/viewUpcomingBookingSearchButton"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="25dp"
+            android:text="View todays Booking   "
+            android:id="@+id/ViewTodaysbooingTextview"
+            android:textColor="#D3002AFF"
+            android:textAlignment="center"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/OwnerViewUpcomingBookingrv"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:visibility="invisible"
+            android:textSize="18dp"
+            android:text="No Bookings in the given date"
+            android:id="@+id/noBookingTextview"
+            android:layout_marginTop="150dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_height="40dp">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:outlineAmbientShadowColor="@color/textColor"
+                android:outlineSpotShadowColor="#fff"
+                android:id="@+id/Progressba" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Checking Details"
+                android:textColor="@color/textColor"
+                android:textSize="17dp"
+                android:visibility="invisible"
+                android:id="@+id/ProgressbaText"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

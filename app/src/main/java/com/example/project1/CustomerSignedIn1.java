@@ -92,7 +92,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
     ImageView proPic;
     TextView TproName,TphoneNo;
     String sProName,sPhoneNo,sProPic="";
-    Button Notification,MyBookingHistory, ManageProfile,Feedback,Help;
+    Button Notification,MyBookingHistory, ManageProfile,Feedback,Help,Favourite;
     DatabaseReference propicReference,refe;
     Intent i1=new Intent(Intent.ACTION_GET_CONTENT);
 
@@ -166,18 +166,15 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 for (DataSnapshot snapOwnerName:dataSnapshot.getChildren())
                 {
                     l++;
-                    Log.d("aaaaa","for1");
                     owner=new Owner();
                     owner=snapOwnerName.getValue(Owner.class);
                     String Namee=owner.ShopID;
                     shopList.add(Namee);
                     if (l==dataSnapshot.getChildrenCount())
                     {
-                        Log.d("aaaa","call1");
                         shopmame();
                     }
                 }
-
             }
 
             @Override
@@ -223,7 +220,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 recyclerView.setLayoutManager(new GridLayoutManager(this,3));
 
                 shopList.clear();
-                Log.d("aaaa","aaaaa");
                 refOwnerName= FirebaseDatabase.getInstance().getReference().child("ShopOwners");
                 refOwnerName.addValueEventListener(new ValueEventListener()
                 {
@@ -240,9 +236,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
                             shopList.add(Namee);
                             shopmame();
                         }
-
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError)
                     {
@@ -251,7 +245,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     }
                 });
             }
-
             bHome =(Button)findViewById(R.id.home);
             bSearch =(Button)findViewById(R.id.search);
             bCatagory =(Button)findViewById(R.id.catagory);
@@ -449,7 +442,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                                         }
                                     }
                                 }
-
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError)
                                 {
@@ -487,7 +479,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                                             }
                                         }
                                     }
-
                                     if (list1.isEmpty())
                                     {
                                         tvResult.setText("No Shope In The Given Place");
@@ -500,7 +491,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                                     }
 
                                 }
-
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError)
                                 {
@@ -913,6 +903,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
             ManageProfile =(Button)findViewById(R.id.manageAdress);
             Feedback=(Button)findViewById(R.id.feedback);
             Help=(Button)findViewById(R.id.help);
+            Favourite=(Button)findViewById(R.id.favouriteList);
             proPic=(ImageView)findViewById(R.id.proPic);
             TproName=(TextView)findViewById(R.id.proName);
             TphoneNo=(TextView)findViewById(R.id.proPhone);
@@ -996,6 +987,14 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 {
                     Intent i1=new Intent(CustomerSignedIn1.this,Account_Help.class);
                     startActivity(i1);
+                }
+            });
+            Favourite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent intent=new Intent(getApplicationContext(),Account_Favourite.class);
+                    startActivity(intent);
                 }
             });
 
@@ -1140,7 +1139,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                                 {
                                     OwnerAdd ownerAdd = datasnapshot1.getValue(OwnerAdd.class);
                                     list.add(ownerAdd);
-                                    Log.d("aaaa",ownerAdd.ShopID);
                                 }
                             }
                             adapter = new AdapterCustomerHome(CustomerSignedIn1.this, list);
@@ -1181,7 +1179,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
                         {
                             for (DataSnapshot datasnapshot1 : dataSnapshot.getChildren())
                             {
-                                Log.d("aaaaa","for1");
                                 if (dataSnapshot.exists())
                                 {
                                     OwnerAdd ownerAdd = datasnapshot1.getValue(OwnerAdd.class);

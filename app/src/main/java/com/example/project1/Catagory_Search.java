@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +36,8 @@ public class Catagory_Search extends AppCompatActivity
     String s;
     int count,j,i,k;
     TextView noShop;
+    ProgressBar progressBar;
+    TextView progressText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -48,6 +51,9 @@ public class Catagory_Search extends AppCompatActivity
 
         activityName=(TextView)findViewById(R.id.activityName);
         noShop=(TextView)findViewById(R.id.noShopTextView);
+
+        progressBar=(ProgressBar)findViewById(R.id.Progressba);
+        progressText=(TextView)findViewById(R.id.ProgressbaText);
 
         Intent intent=getIntent();
         acName=intent.getStringExtra("activity");
@@ -82,6 +88,8 @@ public class Catagory_Search extends AppCompatActivity
                     {
                         if (shopList.isEmpty())
                         {
+                            progressText.setVisibility(View.INVISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
                             noShop.setVisibility(View.VISIBLE);
                         }
                        addOwner();
@@ -140,6 +148,8 @@ public class Catagory_Search extends AppCompatActivity
         {
             if (hasshopList.isEmpty())
             {
+                progressText.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
                 noShop.setVisibility(View.VISIBLE);
             }
             k=0;
@@ -156,6 +166,9 @@ public class Catagory_Search extends AppCompatActivity
                        k++;
                        if (k==hasshopList.size())
                        {
+                           progressText.setVisibility(View.INVISIBLE);
+                           progressBar.setVisibility(View.INVISIBLE);
+
                            adapter = new Adapter_Search_Place(Catagory_Search.this, listowner);
                            recyclerView.setAdapter(adapter);
                        }

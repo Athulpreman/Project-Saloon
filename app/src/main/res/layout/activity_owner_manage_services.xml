@@ -1,0 +1,38 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Services"
+        android:textSize="35dp"
+        android:textAlignment="center"
+        android:layout_margin="30dp"
+        android:fontFamily="@font/neo_latina_ap"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rvManageServices"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            android:textSize="17dp"
+            android:text="No service added in your shop"
+            android:layout_marginTop="190dp"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+</LinearLayout>
