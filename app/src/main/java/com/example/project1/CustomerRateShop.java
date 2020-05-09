@@ -20,16 +20,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class CustomerRateShop extends AppCompatActivity
 {
     RatingBar ratingBar;
     TextView ratingText;
-    String subject,feedback,qrString,phone,shopID,activity;
+    String subject,feedback,qrString,phone,shopID,activity,currentDate;
     int rating;
     EditText esubject,efeedback;
     Button submit;
     ProgressBar progressBar;
-    TextView progressText;
+    TextView progressText,complaint;
     CRate cRate;
     int a,coum;
     double drating=0.0;
@@ -40,6 +43,10 @@ public class CustomerRateShop extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_rate_shop);
 
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy,MM,dd");
+        currentDate = df.format(c.getTime());
+
         ratingBar=(RatingBar)findViewById(R.id.ratingbar);
         ratingText=(TextView)findViewById(R.id.ratingTextview);
         esubject=(EditText)findViewById(R.id.ratingsubject);
@@ -47,6 +54,7 @@ public class CustomerRateShop extends AppCompatActivity
         submit=(Button)findViewById(R.id.ratingSubmit);
         progressBar=(ProgressBar)findViewById(R.id.Progressba);
         progressText=(TextView)findViewById(R.id.ProgressbaText);
+        complaint=(TextView)findViewById(R.id.customerGiveComplaint);
 
         cRate=new CRate();
 
@@ -60,6 +68,20 @@ public class CustomerRateShop extends AppCompatActivity
         ratingBar.setStepSize(1);
         ratingBar.setRating(1);
         ratingText.setText("Rating : "+ratingBar.getProgress());
+
+        complaint.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent1=new Intent(getApplicationContext(),CustomerGiveComplaint.class);
+                intent1.putExtra("shopID",shopID);
+                intent1.putExtra("qrString",qrString);
+                intent1.putExtra("activity",activity);
+                intent1.putExtra("phone",phone);
+                startActivity(intent1);
+            }
+        });
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener()
         {
@@ -96,6 +118,7 @@ public class CustomerRateShop extends AppCompatActivity
                     cRate.feedback=feedback;
                     cRate.subject=subject;
                     cRate.qrString=qrString;
+                    cRate.date=currentDate;
 
                     DatabaseReference reference;
                     reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Activity").child(activity).child("Rating").child(phone);

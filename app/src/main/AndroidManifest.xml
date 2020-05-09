@@ -32,7 +32,11 @@
         android:roundIcon="@drawable/hair"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OwnerEditService"></activity>
+        <activity android:name=".OwnerViewEachRating"></activity>
+        <activity android:name=".OwnerViewRating" />
+        <activity android:name=".OwnerViewComplaints" />
+        <activity android:name=".CustomerGiveComplaint" />
+        <activity android:name=".OwnerEditService" />
         <activity android:name=".OwnerManageServices" />
         <activity android:name=".OwnerViewUpcomingBookings" />
         <activity android:name=".Account_Favourite" />

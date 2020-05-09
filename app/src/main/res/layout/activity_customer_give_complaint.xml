@@ -1,0 +1,78 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forward Complaint"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginTop="45dp"
+        android:textSize="35dp"
+        android:fontFamily="@font/neo_latina_ap"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject"
+            android:layout_marginTop="30dp"
+            android:textSize="17dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/textbox"
+            android:id="@+id/complaintSubject"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject"
+            android:textSize="17dp"
+            android:layout_marginTop="25dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/textbox"
+            android:id="@+id/complaintDescription"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_black_rectangle"
+                android:text="cancel"
+                android:layout_marginRight="25dp"
+                android:id="@+id/complaintCancel"
+                android:textColor="@color/textColor_white"
+                android:gravity="center"
+                android:layout_gravity="center" />
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_black_rectangle"
+                android:text="Forward"
+                android:layout_marginLeft="25dp"
+                android:id="@+id/complaintForward"
+                android:textColor="@color/textColor_white"
+                android:gravity="center"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,53 @@
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40dp"
+        android:text="All Services"
+        android:gravity="center"
+        android:layout_margin="25dp"
+        android:fontFamily="@font/neo_latina_ap"
+        android:textStyle="bold"
+        android:textColor="@color/light_black"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:id="@+id/recyclerating"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:text="Favourite is empty"
+        android:visibility="invisible"
+        android:textStyle="bold"
+        android:layout_marginTop="150dp"
+        android:id="@+id/noFavourite"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_height="40dp">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:outlineAmbientShadowColor="@color/textColor"
+            android:outlineSpotShadowColor="#fff"
+            android:id="@+id/Progressba" />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Checking Details"
+            android:textColor="@color/textColor"
+            android:textSize="17dp"
+            android:id="@+id/ProgressbaText"
+            android:layout_marginLeft="20dp"/>
+    </LinearLayout>
+
+</LinearLayout>

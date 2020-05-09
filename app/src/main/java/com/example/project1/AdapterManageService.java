@@ -45,7 +45,6 @@ public class AdapterManageService extends RecyclerView.Adapter<AdapterManageServ
         return new AdapterManageService.CustomerViewHolder(view);
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull  final AdapterManageService.CustomerViewHolder holder, final int position)
     {
@@ -66,25 +65,27 @@ public class AdapterManageService extends RecyclerView.Adapter<AdapterManageServ
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
-                        dataSnapshot.getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>()
+                        for (DataSnapshot snapshot:dataSnapshot.getChildren())
                         {
-                            @Override
-                            public void onSuccess(Void aVoid)
+                            snapshot.getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>()
                             {
-                                CToast cToast=new CToast();
-                                cToast.toast(context,"Deleted The Service",1);
+                                @Override
+                                public void onSuccess(Void aVoid)
+                                {
+                                    CToast cToast=new CToast();
+                                    cToast.toast(context,"Deleted The Service",1);
 
-                                list.remove(position);
-                                notifyItemRemoved(position);
-                                notifyItemRangeChanged(position, list.size());
-                                holder.itemView.setVisibility(View.GONE);
-                            }
-                        });
+                                    list.remove(position);
+                                    notifyItemRemoved(position);
+                                    notifyItemRangeChanged(position, list.size());
+                                    holder.itemView.setVisibility(View.GONE);
+                                }
+                            });
+                        }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError)
                     {
-
                     }
                 });
             }

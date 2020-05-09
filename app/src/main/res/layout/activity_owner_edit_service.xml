@@ -33,7 +33,7 @@
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:src="@drawable/hair"
-                android:id="@+id/imgo"/>
+                android:id="@+id/oesimg"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -103,7 +103,7 @@
                     android:textSize="18dp"/>
                 <EditText
                     android:gravity="center"
-                    android:id="@+id/favcvshop"
+                    android:id="@+id/oesModelName"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:inputType="textPostalAddress"
@@ -120,7 +120,7 @@
                     android:textSize="18dp"/>
                 <EditText
                     android:gravity="center"
-                    android:id="@+id/oesPrice"
+                    android:id="@+id/oesModelPrice"
                     android:layout_height="40dp"
                     android:inputType="number"
                     android:layout_gravity="center"
@@ -144,7 +144,7 @@
                 android:text="cancel"
                 android:textSize="18dp"
                 android:textAlignment="center"
-                android:id="@+id/manageServiceEditBitton"
+                android:id="@+id/oescance"
                 android:layout_marginRight="30dp"
                 android:textColor="@color/textColor_white"
                 android:layout_height="40dp"/>
@@ -154,7 +154,7 @@
                 android:layout_marginLeft="20dp"
                 android:textSize="18dp"
                 android:textAlignment="center"
-                android:id="@+id/manageServiceDeleteBitton"
+                android:id="@+id/oessave"
                 android:textColor="@color/textColor_white"
                 android:background="@drawable/button_black_rectangle"
                 android:layout_height="40dp"/>

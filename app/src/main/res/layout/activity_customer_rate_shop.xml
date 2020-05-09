@@ -31,6 +31,32 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:text="                 Thank  you  for  concerning   about give rating and feebback  for our  sevice  and facilities ."/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19dp"
+            android:text="Have any problem ? "
+            android:textAlignment="textEnd"
+            android:textStyle="italic" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19dp"
+            android:id="@+id/customerGiveComplaint"
+            android:text="Complaint here"
+            android:textAlignment="textEnd"
+            android:textStyle="bold"
+            android:textColor="#6275ED"/>
+
+    </LinearLayout>
+
     <RatingBar
         android:layout_width="240dp"
         android:layout_height="40dp"

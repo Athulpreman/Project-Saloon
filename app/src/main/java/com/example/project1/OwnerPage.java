@@ -28,7 +28,7 @@ public class OwnerPage extends AppCompatActivity
     String shopID1;
     Toast backToast;
     long backpress;
-    CardView c1,c2,c3,c4,c5,c6,c7,c8;
+    CardView c1,c2,c3,c4,c5,c6,c7,c8,c9;
     TextView ownerMob,shopID,shopName;
     ImageView shopIMG;
     DatabaseReference ref;
@@ -51,6 +51,7 @@ public class OwnerPage extends AppCompatActivity
         c6=(CardView)findViewById(R.id.card6);
         c7=(CardView)findViewById(R.id.card7);
         c8=(CardView)findViewById(R.id.card8);
+        c9=(CardView)findViewById(R.id.cardrating);
 
         ownerMob=(TextView)findViewById(R.id.opOwnerNumber);
         shopID=(TextView)findViewById(R.id.opShopID);
@@ -132,11 +133,28 @@ public class OwnerPage extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        c5.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getApplicationContext(),OwnerViewComplaints.class);
+                startActivity(intent);
+            }
+        });
         c8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
               Intent intent=new Intent(getApplicationContext(),Location_Owner.class);
+                startActivity(intent);
+            }
+        });
+        c9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getApplicationContext(),OwnerViewRating.class);
                 startActivity(intent);
             }
         });
