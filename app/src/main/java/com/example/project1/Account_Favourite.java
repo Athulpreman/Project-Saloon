@@ -6,20 +6,30 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Account_Favourite extends AppCompatActivity
 {
@@ -33,6 +43,10 @@ public class Account_Favourite extends AppCompatActivity
     TextView noFav;
     ProgressBar progressBar;
     TextView progressText;
+    SliderLayout sliderLayout;
+    HashMap<String,String>hashMap;
+    DatabaseReference refer;
+    ArrayList<Owner>listimg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,6 +56,139 @@ public class Account_Favourite extends AppCompatActivity
 
         SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
         MobNoo=sharedPreferences.getString("MobNo",null);
+
+        listimg=new ArrayList<Owner>();
+        /*
+        sliderLayout=(SliderLayout)findViewById(R.id.sliderLayout);
+        hashMap=new HashMap<String, String>();
+
+        refer=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+        refer.addValueEventListener(new ValueEventListener()
+        {
+            int k=0,m=0;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    k++;
+                    if (k<4)
+                    {
+                        Owner owner=snapshot.getValue(Owner.class);
+                        listimg.add(owner);
+                    }
+                    else
+                    {
+                        m=1;
+                        for (int i=0;i<listimg.size()-1;i++)
+                        {
+                            hashMap.put(listimg.get(i).ShopName,listimg.get(i).Image1);
+                        }
+                        for (String name:hashMap.keySet())
+                        {
+                            TextSliderView textSliderView=new TextSliderView(Account_Favourite.this);
+                            textSliderView.description(name).image(hashMap.get(name))
+                                    .setScaleType(BaseSliderView.ScaleType.Fit).
+                                    setOnSliderClickListener((BaseSliderView.OnSliderClickListener) getApplicationContext());
+                            textSliderView.bundle(new Bundle());
+                            textSliderView.getBundle().putString("extra",name);
+                            sliderLayout.addSlider(textSliderView);
+                        }
+                        sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
+                        sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+                        sliderLayout.setCustomAnimation(new DescriptionAnimation());
+                        sliderLayout.setDuration(3000);
+                        sliderLayout.addOnPageChangeListener((ViewPagerEx.OnPageChangeListener) getApplicationContext());
+                    }
+                }
+                if (m==0)
+                {
+                    for (int i=0;i<listimg.size()-1;i++)
+                    {
+                        hashMap.put(listimg.get(i).ShopName,listimg.get(i).Image1);
+                    }
+                    for (String name:hashMap.keySet())
+                    {
+                        TextSliderView textSliderView=new TextSliderView(Account_Favourite.this);
+                        textSliderView.description(name).image(hashMap.get(name))
+                                .setScaleType(BaseSliderView.ScaleType.Fit).
+                                setOnSliderClickListener((BaseSliderView.OnSliderClickListener) Account_Favourite.this);
+                        textSliderView.bundle(new Bundle());
+                        textSliderView.getBundle().putString("extra",name);
+                        sliderLayout.addSlider(textSliderView);
+                    }
+                    sliderLayout.setPresetTransformer(SliderLayout.Transformer.Accordion);
+                    sliderLayout.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+                    sliderLayout.setCustomAnimation(new DescriptionAnimation());
+                    sliderLayout.setDuration(3000);
+                    sliderLayout.addOnPageChangeListener((ViewPagerEx.OnPageChangeListener) getApplicationContext());
+
+
+
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+            }
+        });
+*/
+
+
+        //
+
+
+
+        refer=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+        refer.addValueEventListener(new ValueEventListener()
+        {
+            int k=0,m=0;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    k++;
+                    if (k<4)
+                    {
+                        Owner owner=snapshot.getValue(Owner.class);
+                        listimg.add(owner);
+                    }
+                    else
+                    {
+                        slider();
+                        break;
+                    }
+                    if (k==dataSnapshot.getChildrenCount())
+                    {
+                        slider();
+                        break;
+                    }
+                }
+                slider();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //
 
         list=new ArrayList<CFav>();
         listService=new ArrayList<OwnerAdd>();
@@ -87,6 +234,7 @@ public class Account_Favourite extends AppCompatActivity
             }
         });
     }
+
     public void showfav()
     {
         if (list.isEmpty())
@@ -133,5 +281,23 @@ public class Account_Favourite extends AppCompatActivity
                 }
             }
         }
+    }
+    public void slider()
+    {
+        SliderView sliderView = findViewById(R.id.imageSlider);
+
+        AdapterSlider adapter = new AdapterSlider(this);
+        adapter.renewItems(listimg);
+        sliderView.setSliderAdapter(adapter);
+
+        sliderView.setIndicatorAnimation(IndicatorAnimations.WORM);
+        //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        sliderView.setIndicatorSelectedColor(Color.RED);
+        sliderView.setIndicatorUnselectedColor(Color.GRAY);
+        sliderView.setScrollTimeInSec(4);
+        //set scroll delay in seconds :
+        sliderView.startAutoCycle();
     }
 }

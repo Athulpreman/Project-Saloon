@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +37,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -54,6 +58,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
     AdapterCustomerHome adapter;
     Adapter_Search_Place adapter11;
     int l,m,n;
+    ArrayList<Owner>listimg;
 
     RecyclerView recyclerView;
 
@@ -70,9 +75,8 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
     String shopID;
 
-    DatabaseReference refOwnerName,refee;
+    DatabaseReference refOwnerName,refee,refer;
 
-    ViewPager viewPager;
 
     //cart
     DatabaseReference refeecart;
@@ -104,10 +108,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
         SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
         MobNoo=sharedPreferences.getString("MobNo",null);
-
-        viewPager=(ViewPager) findViewById(R.id.viewpager);
-        ImageAdapter adapterimg=new ImageAdapter(this);
-        viewPager.setAdapter(adapterimg);
 
         bHome =(Button)findViewById(R.id.home);
         bSearch =(Button)findViewById(R.id.search);
@@ -147,9 +147,48 @@ public class CustomerSignedIn1 extends AppCompatActivity
         cgetOwner=new CgetOwner();
 
         list=new ArrayList<OwnerAdd>();
+        listimg=new ArrayList<Owner>();
         shopList=new ArrayList<String>();
         DateList=new ArrayList<String>();
         DateList2=new ArrayList<CBookShop>();
+
+
+
+        refer=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+        refer.addValueEventListener(new ValueEventListener()
+        {
+            int k=0,m=0;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    k++;
+                    if (k<4)
+                    {
+                        Owner owner=snapshot.getValue(Owner.class);
+                        listimg.add(owner);
+                    }
+                    else
+                    {
+                        slider();
+                        break;
+                    }
+                    if (k==dataSnapshot.getChildrenCount())
+                    {
+                        slider();
+                        break;
+                    }
+                }
+                slider();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+            }
+        });
+
+
 
         recyclerView=(RecyclerView)findViewById(R.id.rvCustomerHome);
         recyclerView.setLayoutManager(new GridLayoutManager(this,3));
@@ -191,7 +230,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
         {
             setContentView(R.layout.activity_customer_signed_in1);
             this.setTitle("Home");
-
             {
                 String Name;
                 Toast backToast;
@@ -205,16 +243,44 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
                 int i=0;
 
-                ViewPager viewPager;
-
                 cgetOwner=new CgetOwner();
 
                 list=new ArrayList<OwnerAdd>();
                 shopList=new ArrayList<String>();
 
-                viewPager=(ViewPager) findViewById(R.id.viewpager);
-                ImageAdapter adapterimg=new ImageAdapter(this);
-                viewPager.setAdapter(adapterimg);
+                refer=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
+                refer.addValueEventListener(new ValueEventListener()
+                {
+                    int k=0,m=0;
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                    {
+                        for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                        {
+                            k++;
+                            if (k<4)
+                            {
+                                Owner owner=snapshot.getValue(Owner.class);
+                                listimg.add(owner);
+                            }
+                            else
+                            {
+                                slider();
+                                break;
+                            }
+                            if (k==dataSnapshot.getChildrenCount())
+                            {
+                                slider();
+                                break;
+                            }
+                        }
+                        slider();
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError)
+                    {
+                    }
+                });
 
                 recyclerView=(RecyclerView)findViewById(R.id.rvCustomerHome);
                 recyclerView.setLayoutManager(new GridLayoutManager(this,3));
@@ -1202,5 +1268,23 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
             }
         });
+    }
+    public void slider()
+    {
+        SliderView sliderView = findViewById(R.id.imageSlider);
+
+        AdapterSlider adapter = new AdapterSlider(this);
+        adapter.renewItems(listimg);
+        sliderView.setSliderAdapter(adapter);
+
+        sliderView.setIndicatorAnimation(IndicatorAnimations.WORM);
+        //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        sliderView.setIndicatorSelectedColor(Color.RED);
+        sliderView.setIndicatorUnselectedColor(Color.GRAY);
+        sliderView.setScrollTimeInSec(4);
+        //set scroll delay in seconds :
+        sliderView.startAutoCycle();
     }
 }

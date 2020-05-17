@@ -119,9 +119,10 @@ public class CustomerRateShop extends AppCompatActivity
                     cRate.subject=subject;
                     cRate.qrString=qrString;
                     cRate.date=currentDate;
+                    cRate.mobile=phone;
 
                     DatabaseReference reference;
-                    reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Activity").child(activity).child("Rating").child(phone);
+                    reference= FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Activity").child(activity).child("Rating").child(qrString);
                     reference.setValue(cRate).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid)

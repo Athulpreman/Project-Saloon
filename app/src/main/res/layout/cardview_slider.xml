@@ -1,0 +1,34 @@
+<com.smarteist.autoimageslider.SliderView
+    android:id="@+id/imageSlider"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    app:sliderAnimationDuration="600"
+    app:sliderAutoCycleDirection="back_and_forth"
+    app:sliderAutoCycleEnabled="true"
+    app:sliderIndicatorAnimationDuration="600"
+    app:sliderIndicatorGravity="center_horizontal|bottom"
+    app:sliderIndicatorMargin="15dp"
+    app:sliderIndicatorOrientation="horizontal"
+    app:sliderIndicatorPadding="3dp"
+    app:sliderIndicatorRadius="2dp"
+    app:sliderScrollTimeInSec="1"
+    app:sliderStartAutoCycle="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:src="@drawable/hair"
+        android:scaleType="fitXY"
+        android:id="@+id/iv_auto_image_slider"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="19dp"
+        android:id="@+id/tv_auto_image_slider"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:fontFamily="@font/neo_latina_ap"
+        android:layout_marginTop="120dp"/>
+</com.smarteist.autoimageslider.SliderView>

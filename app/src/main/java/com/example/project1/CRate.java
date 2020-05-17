@@ -3,18 +3,19 @@ package com.example.project1;
 public class CRate
 {
     int reating;
-    String subject,feedback,qrString,date;
+    String subject,feedback,qrString,date,mobile;
 
     public CRate()
     {
     }
 
-    public CRate(int reating, String subject, String feedback, String qrString, String date) {
+    public CRate(int reating, String subject, String feedback, String qrString, String date, String mobile) {
         this.reating = reating;
         this.subject = subject;
         this.feedback = feedback;
         this.qrString = qrString;
         this.date = date;
+        this.mobile = mobile;
     }
 
     public int getReating() {
@@ -55,5 +56,13 @@ public class CRate
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }
