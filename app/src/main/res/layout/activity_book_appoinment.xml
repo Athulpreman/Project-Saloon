@@ -1,134 +1,140 @@
-<LinearLayout android:layout_height="match_parent"
+<ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Book an Appoinment"
-                android:textSize="50dp"
-                android:textStyle="bold"
-                android:textColor="@color/textColor"
-                android:gravity="center"
-                android:fontFamily="@font/neo_latina_ap"
-                android:layout_marginTop="20dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="When do you want to come ???"
-                android:textColor="@color/textColor"
-                android:textSize="20dp"
-                android:layout_marginTop="30dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chose yours Service"
-                    android:textColor="@color/textColor"
-                    android:textSize="16dp"
-                    android:layout_marginTop="40dp"/>
-                <TextView
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:text="Price"
-                    android:id="@+id/price"
-                    android:layout_marginTop="40dp"
-                    android:textSize="17dp"
-                    android:textColor="@color/textColor"
-                    android:textAlignment="textEnd"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:id="@+id/rs"
-                    android:text="Rs"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-            <AutoCompleteTextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/textbox"
-                android:id="@+id/au"
-                android:textSize="18dp"
-                android:textAlignment="center"/>
-            <TextView
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:text="Select a day"
-                android:textSize="16dp"
-                android:layout_marginTop="20dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:textAlignment="center"
-                android:inputType="none"
-                android:paddingLeft="13dp"
-                android:editable="false"
-                android:id="@+id/getDate"
-                android:paddingRight="18dp"
-                android:textColor="@color/textColor"
-                android:background="@drawable/textbox"
-                android:textSize="16dp"/>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="1">
-
-                <TableRow android:layout_marginTop="20dp">
-                    <ProgressBar
-                        android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Book an Appoinment"
+                    android:textSize="50dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/textColor"
+                    android:gravity="center"
+                    android:fontFamily="@font/neo_latina_ap"
+                    android:layout_marginTop="20dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="When do you want to come ???"
+                    android:textColor="@color/textColor"
+                    android:textSize="20dp"
+                    android:layout_marginTop="30dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="invisible"
-                        android:layout_marginLeft="60dp"
-                        android:outlineAmbientShadowColor="@color/textColor"
-                        android:outlineSpotShadowColor="#fff"
-                        android:id="@+id/Progressba" />
-                    <TextView android:text="Checking Availability"
+                        android:text="Chose yours Service"
                         android:textColor="@color/textColor"
-                        android:visibility="invisible"
-                        android:layout_marginTop="12dp"
+                        android:textSize="16dp"
+                        android:layout_marginTop="40dp"/>
+                    <TextView
+                        android:layout_width="190dp"
+                        android:layout_height="wrap_content"
+                        android:text="Price"
+                        android:id="@+id/price"
+                        android:layout_marginTop="40dp"
                         android:textSize="17dp"
-                        android:id="@+id/ProgressbaText"
-                        android:layout_marginLeft="20dp"/>
-                </TableRow>
-                <TableRow>
-                    <TextView/>
-                    <Button
-                        android:layout_marginLeft="90dp"
-                        android:text="next"
-                        android:textSize="20dp"
-                        android:background="@drawable/button_black_rectangle"
-                        android:textColor="#fff"
-                        android:id="@+id/BookAppoinmentNext"
-                        android:layout_marginTop="20dp"/>
-                </TableRow>
+                        android:textColor="@color/textColor"
+                        android:textAlignment="textEnd"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:id="@+id/rs"
+                        android:text="Rs"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/textbox"
+                    android:id="@+id/au"
+                    android:textSize="18dp"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="Select a day"
+                    android:textSize="16dp"
+                    android:layout_marginTop="20dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textAlignment="center"
+                    android:inputType="none"
+                    android:paddingLeft="13dp"
+                    android:editable="false"
+                    android:id="@+id/getDate"
+                    android:paddingRight="18dp"
+                    android:textColor="@color/textColor"
+                    android:background="@drawable/textbox"
+                    android:textSize="16dp"/>
 
-            </TableLayout>
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1">
+
+                    <TableRow android:layout_marginTop="20dp">
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="invisible"
+                            android:layout_marginLeft="60dp"
+                            android:outlineAmbientShadowColor="@color/textColor"
+                            android:outlineSpotShadowColor="#fff"
+                            android:id="@+id/Progressba" />
+                        <TextView android:text="Checking Availability"
+                            android:textColor="@color/textColor"
+                            android:visibility="invisible"
+                            android:layout_marginTop="12dp"
+                            android:textSize="17dp"
+                            android:id="@+id/ProgressbaText"
+                            android:layout_marginLeft="20dp"/>
+                    </TableRow>
+                    <TableRow>
+                        <TextView/>
+                        <Button
+                            android:layout_marginLeft="90dp"
+                            android:text="next"
+                            android:textSize="20dp"
+                            android:background="@drawable/button_black_rectangle"
+                            android:textColor="#fff"
+                            android:id="@+id/BookAppoinmentNext"
+                            android:layout_marginTop="20dp"/>
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
-
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

@@ -142,6 +142,14 @@ public class OwnerPage extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        c7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getApplicationContext(),Owner_About.class);
+                startActivity(intent);
+            }
+        });
         c8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

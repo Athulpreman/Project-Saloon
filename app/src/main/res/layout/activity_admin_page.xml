@@ -12,5 +12,14 @@
             android:background="@drawable/button_black_rectangle"
             android:textColor="@color/textColor_white"
             android:id="@+id/checkForNewShop"/>
+    <Button
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Search and edit shop"
+        android:textSize="17dp"
+        android:background="@drawable/button_black_rectangle"
+        android:textColor="@color/textColor_white"
+        android:id="@+id/searchshopA"/>
 
     </LinearLayout>

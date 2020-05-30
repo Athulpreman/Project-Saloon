@@ -21,11 +21,12 @@
             <com.smarteist.autoimageslider.SliderView
                 android:id="@+id/imageSlider"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                app:sliderAnimationDuration="600"
-                app:sliderAutoCycleDirection="back_and_forth"
+                android:layout_height="240dp"
+                app:sliderAnimationDuration="1800"
+                app:sliderAutoCycleDirection="right"
                 app:sliderAutoCycleEnabled="true"
-                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorAnimationDuration="1000"
+                android:layout_margin="8dp"
                 app:sliderIndicatorGravity="center_horizontal|bottom"
                 app:sliderIndicatorMargin="15dp"
                 app:sliderIndicatorOrientation="horizontal"
@@ -33,10 +34,9 @@
                 app:sliderIndicatorRadius="2dp"
                 app:sliderIndicatorSelectedColor="#5A5A5A"
                 app:sliderIndicatorUnselectedColor="#FFF"
-                app:sliderScrollTimeInSec="1"
+                app:sliderScrollTimeInSec="5"
                 android:layout_marginBottom="5dp"
                 app:sliderStartAutoCycle="true" />
-
 
 
             <androidx.recyclerview.widget.RecyclerView

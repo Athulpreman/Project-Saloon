@@ -1,114 +1,121 @@
-<LinearLayout android:layout_height="match_parent"
+<ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:gravity="center">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add Service"
-            android:textSize="50dp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:fontFamily="@font/neo_latina_ap"
-            android:textColor="@color/textColor"/>
+        android:gravity="center"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <LinearLayout android:layout_height="wrap_content"
+        <LinearLayout android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_margin="25dp"
             android:orientation="vertical"
             android:gravity="center">
-
-            <TableLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_margin="15dp">
-                <TextView android:text="Chose Service"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/textColor"/>
-                <Spinner
-                    android:id="@+id/ownerAddSpinnerActivity"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/textbox"
-                    android:entries="@array/ShopActivities"
-                    android:paddingLeft="19dp"
-                    android:textColor="#fff" />
-                <TextView android:text="Enter Amount"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="25dp"
-                    android:textColor="@color/textColor"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:textColor="@color/textColor"
-                    android:maxLines="1"
-                    android:paddingLeft="19dp"
-                    android:inputType="number"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/textbox"
-                    android:id="@+id/ownerAddAmount" />
-                <LinearLayout android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                android:orientation="horizontal"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:src="@drawable/hair"
-                        android:id="@+id/ownerShowSelectedImg"
-                        android:layout_marginTop="15dp"/>
-                    <Button
-                        android:layout_width="120dp"
-                        android:layout_height="40dp"
-                        android:text="Browse"
-                        android:background="@drawable/button_black_rectangle"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginLeft="40dp"
-                        android:id="@+id/ownerBrowseImg"
-                        android:textColor="#fff"
-                       />
-                </LinearLayout>
-                <TextView android:text="Model Name"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:textColor="@color/textColor"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:textColor="@color/textColor"
-                    android:maxLines="1"
-                    android:textColorHint="@color/textColor"
-                    android:paddingLeft="19dp"
-                    android:inputType="textPostalAddress"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/textbox"
-                    android:id="@+id/ownerModelName" />
-                <Button android:layout_height="40dp"
-                    android:layout_width="match_parent"
-                    android:background="@drawable/button_black_rectangle"
-                    android:layout_margin="30dp"
-                    android:textColor="#fff"
-                    android:textSize="18dp"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:text="Add"
-                    android:id="@+id/OwnerAddSubmitButton"
-                    />
+                android:layout_height="wrap_content"
+                android:text="Add Service"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:fontFamily="@font/neo_latina_ap"
+                android:textColor="@color/textColor"/>
 
-            </TableLayout>
+            <LinearLayout android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_margin="25dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="15dp">
+                    <TextView android:text="Chose Service"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/textColor"/>
+                    <Spinner
+                        android:id="@+id/ownerAddSpinnerActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/textbox"
+                        android:entries="@array/ShopActivities"
+                        android:paddingLeft="19dp"
+                        android:textColor="#fff" />
+                    <TextView android:text="Enter Amount"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="25dp"
+                        android:textColor="@color/textColor"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textColor="@color/textColor"
+                        android:maxLines="1"
+                        android:paddingLeft="19dp"
+                        android:inputType="number"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/textbox"
+                        android:id="@+id/ownerAddAmount" />
+                    <LinearLayout android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:src="@drawable/hair"
+                            android:id="@+id/ownerShowSelectedImg"
+                            android:layout_marginTop="15dp"/>
+                        <Button
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:text="Browse"
+                            android:background="@drawable/button_black_rectangle"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginLeft="40dp"
+                            android:id="@+id/ownerBrowseImg"
+                            android:textColor="#fff"
+                            />
+                    </LinearLayout>
+                    <TextView android:text="Model Name"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/textColor"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textColor="@color/textColor"
+                        android:maxLines="1"
+                        android:textColorHint="@color/textColor"
+                        android:paddingLeft="19dp"
+                        android:inputType="textPostalAddress"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/textbox"
+                        android:id="@+id/ownerModelName" />
+                    <Button android:layout_height="40dp"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/button_black_rectangle"
+                        android:layout_margin="30dp"
+                        android:textColor="#fff"
+                        android:textSize="18dp"
+                        android:gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="center"
+                        android:text="Add"
+                        android:id="@+id/OwnerAddSubmitButton"
+                        />
+
+                </TableLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

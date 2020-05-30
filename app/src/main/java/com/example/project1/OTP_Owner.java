@@ -204,4 +204,10 @@ public class OTP_Owner extends AppCompatActivity
         alert.setTitle("LOGOUT");
         alert.show();
     }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+    }
 }

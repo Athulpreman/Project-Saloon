@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -95,9 +96,9 @@ public class AdapterManageService extends RecyclerView.Adapter<AdapterManageServ
             @Override
             public void onClick(View v)
             {
+                Toast.makeText(context, list.get(position).Activity, Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(context,OwnerEditService.class);
-                intent.putExtra(list.get(position).ShopID,"shopID");
-                intent.putExtra(list.get(position).Activity,"Activity");
+                intent.putExtra("Activity",list.get(position).getActivity());
                 context.startActivity(intent);
             }
         });

@@ -51,6 +51,10 @@ public class AdminCheckNewShopAcceptance extends AppCompatActivity
                         list.add(owner);
                     }
                 }
+                if (list.isEmpty())
+                {
+                    Toast.makeText(AdminCheckNewShopAcceptance.this, "No new requests", Toast.LENGTH_SHORT).show();
+                }
                 adapter = new OwnerAdapter(AdminCheckNewShopAcceptance.this,list);
                 recyclerView.setAdapter(adapter);
             }

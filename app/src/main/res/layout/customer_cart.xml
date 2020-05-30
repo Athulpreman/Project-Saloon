@@ -8,12 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="bottom">
+        android:gravity="top">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Active Bookings"
             android:textSize="38dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:textColor="@color/textColor"
             android:textStyle="bold"
@@ -21,15 +22,15 @@
             android:layout_marginBottom="15dp"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="570dp"
             android:id="@+id/rvCart"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
-            android:gravity="center_vertical">
+            android:gravity="bottom">
 
             <LinearLayout
                 android:layout_width="match_parent"

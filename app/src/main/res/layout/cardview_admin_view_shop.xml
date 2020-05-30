@@ -1,0 +1,148 @@
+<androidx.cardview.widget.CardView android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="#4DB3B3B3"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TableLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:stretchColumns="1"
+        android:gravity="center"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TableRow >
+            <TextView android:text="Shop ID              :"
+                android:textColor="@color/textColor"
+                android:layout_marginRight="20dp"
+                android:textSize="18dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColor"
+                android:textSize="19dp"
+                android:editable="false"
+                android:gravity="center"
+                android:inputType="none"
+                android:background="@drawable/nothing"
+                android:padding="11dp"
+                android:id="@+id/showsshopID"/>
+        </TableRow>
+        <TableRow >
+            <TextView android:text="Shop Name       :"
+                android:textColor="@color/textColor"
+                android:layout_marginRight="20dp"
+                android:textSize="18dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColor"
+                android:textSize="19dp"
+                android:editable="false"
+                android:gravity="center"
+                android:inputType="none"
+                android:background="@drawable/nothing"
+                android:padding="11dp"
+                android:id="@+id/showshopName"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="Owner Name    :"
+                android:textColor="@color/textColor"
+                android:layout_marginRight="20dp"
+                android:textSize="18dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="45dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="#fff"
+                android:clickable="false"
+                android:textSize="19dp"
+                android:editable="false"
+                android:inputType="none"
+                android:background="@drawable/nothing"
+                android:padding="11dp"
+                android:id="@+id/showOwnerName"/>
+        </TableRow>
+        <TableRow >
+            <TextView android:text="Owner Mobile   :"
+                android:textColor="@color/textColor"
+                android:layout_marginRight="20dp"
+                android:textSize="18dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColor"
+                android:textSize="19dp"
+                android:editable="false"
+                android:inputType="none"
+                android:gravity="center"
+                android:background="@drawable/nothing"
+                android:padding="11dp"
+                android:id="@+id/showOwnerMobile"/>
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="15dp">
+            <TextView android:text="Shop Address   :"
+                android:textColor="@color/textColor"
+                android:layout_marginRight="20dp"
+                android:textSize="18dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:lines="4"
+                android:editable="false"
+                android:maxLines="4"
+                android:textColor="@color/textColor"
+                android:inputType="none"
+                android:padding="11dp"
+                android:gravity="center"
+                android:background="@drawable/nothing"
+                android:id="@+id/showAddress"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="Emp Name        :"
+                android:textColor="@color/textColor"
+                android:layout_marginRight="20dp"
+                android:textSize="18dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColor"
+                android:textSize="19dp"
+                android:editable="false"
+                android:inputType="none"
+                android:background="@drawable/nothing"
+                android:padding="11dp"
+                android:gravity="center"
+                android:id="@+id/showEmpName"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="Emp Mobile      :"
+                android:textColor="@color/textColor"
+                android:layout_marginRight="20dp"
+                android:textSize="18dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColor"
+                android:textSize="19dp"
+                android:editable="false"
+                android:inputType="none"
+                android:gravity="center"
+                android:background="@drawable/nothing"
+                android:padding="11dp"
+                android:id="@+id/showEmpMobile"/>
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.cardview.widget.CardView>

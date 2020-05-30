@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="bottom">
+        android:gravity="top">
 
 
 
@@ -24,12 +24,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <TabWidget
                     android:id="@android:id/tabs"
                     android:layout_width="match_parent"
                     android:outlineAmbientShadowColor="#000"
+                    android:layout_marginBottom="20dp"
                     android:outlineSpotShadowColor="#000"
                     android:layout_height="60dp" />
 
@@ -387,8 +389,8 @@
         <RelativeLayout
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:gravity="center_vertical">
+            android:layout_height="match_parent"
+            android:gravity="bottom">
 
             <LinearLayout
                 android:layout_width="match_parent"

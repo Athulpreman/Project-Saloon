@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 
 public class AdminPage extends AppCompatActivity
 {
-    Button CheckNewShop;
+    Button CheckNewShop,searchEdidShop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,6 +22,7 @@ public class AdminPage extends AppCompatActivity
 
 
         CheckNewShop=(Button)findViewById(R.id.checkForNewShop);
+        searchEdidShop=(Button)findViewById(R.id.searchshopA);
 
         CheckNewShop.setOnClickListener(new View.OnClickListener()
         {
@@ -29,6 +30,15 @@ public class AdminPage extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent=new Intent(getApplicationContext(),AdminCheckNewShopAcceptance.class);
+                startActivity(intent);
+            }
+        });
+        searchEdidShop.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent=new Intent(getApplicationContext(),SearchEditShop_Admin.class);
                 startActivity(intent);
             }
         });

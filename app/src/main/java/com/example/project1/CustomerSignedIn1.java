@@ -57,6 +57,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
     DatabaseReference refee1;
     AdapterCustomerHome adapter;
     Adapter_Search_Place adapter11;
+    String s="";
     int l,m,n;
     ArrayList<Owner>listimg;
 
@@ -105,6 +106,16 @@ public class CustomerSignedIn1 extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_signed_in1);
         this.setTitle("Home");
+
+        Intent intent=getIntent();
+        s=intent.getStringExtra("home");
+        /*if (s!=null||!s.equals("")||!s.equals(null)||s!="")
+        {
+            if (s.equals("4"))
+            {
+                decide(4);
+            }
+        }*/
 
         SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
         MobNoo=sharedPreferences.getString("MobNo",null);
@@ -171,15 +182,17 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     }
                     else
                     {
-                        slider();
+                        Log.d("sssss","aa1");
                         break;
                     }
                     if (k==dataSnapshot.getChildrenCount())
                     {
-                        slider();
+                        Log.d("sssss","aa2");
                         break;
                     }
+                    Log.d("sssss","aa");
                 }
+                Log.d("sssss","bb");
                 slider();
             }
             @Override
@@ -251,10 +264,11 @@ public class CustomerSignedIn1 extends AppCompatActivity
                 refer=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
                 refer.addValueEventListener(new ValueEventListener()
                 {
-                    int k=0,m=0;
+                    int k=0;
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                     {
+                        listimg.clear();
                         for (DataSnapshot snapshot:dataSnapshot.getChildren())
                         {
                             k++;
@@ -300,8 +314,9 @@ public class CustomerSignedIn1 extends AppCompatActivity
                             owner2 =snapOwnerName.getValue(Owner.class);
                             String Namee= owner2.ShopID;
                             shopList.add(Namee);
-                            shopmame();
                         }
+                        shopmame();
+                        Log.d("dddddd from","1");
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError)
@@ -905,11 +920,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
                     }
                     if (DateList2.isEmpty())
                     {
-                        Toast.makeText(CustomerSignedIn1.this, "empty lis", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(CustomerSignedIn1.this, "not empty", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CustomerSignedIn1.this, "", Toast.LENGTH_SHORT).show();
                     }
                     adaptercart = new AdapterCart(CustomerSignedIn1.this, DateList2);
                     recyclerViewcart.setAdapter(adaptercart);
@@ -1183,6 +1194,7 @@ public class CustomerSignedIn1 extends AppCompatActivity
     public void shopmame()
     {
 
+        Log.d("dddddd call","1");
         refee=FirebaseDatabase.getInstance().getReference().child("ShopOwners");
         refee.addListenerForSingleValueEvent(new ValueEventListener()
         {
@@ -1273,9 +1285,9 @@ public class CustomerSignedIn1 extends AppCompatActivity
     {
         SliderView sliderView = findViewById(R.id.imageSlider);
 
-        AdapterSlider adapter = new AdapterSlider(this);
-        adapter.renewItems(listimg);
-        sliderView.setSliderAdapter(adapter);
+        AdapterSlider adapter33 = new AdapterSlider(this);
+        adapter33.renewItems(listimg);
+        sliderView.setSliderAdapter(adapter33);
 
         sliderView.setIndicatorAnimation(IndicatorAnimations.WORM);
         //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!

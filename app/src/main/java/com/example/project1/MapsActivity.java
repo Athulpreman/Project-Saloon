@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -16,7 +17,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     String longi="",lati="";
-    long longitude,latitude;
+    float longitude,latitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         longi=intent.getStringExtra("longi");
         lati=intent.getStringExtra("lati");
 
-        longitude=Integer.parseInt(longi.replaceAll("[\\D]",""));
-        latitude=Integer.parseInt(lati.replaceAll("[\\D]",""));
+        longitude=Float.parseFloat(longi);
+        latitude=Float.parseFloat(lati);
+
+        Toast.makeText(this, String.valueOf(latitude), Toast.LENGTH_SHORT).show();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -37,7 +40,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng sydney = new LatLng(-longitude, latitude);
+        LatLng sydney = new LatLng(latitude,longitude);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Shop"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }

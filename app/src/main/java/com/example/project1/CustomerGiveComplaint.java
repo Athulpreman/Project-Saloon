@@ -74,6 +74,10 @@ public class CustomerGiveComplaint extends AppCompatActivity
                         {
                             CToast c=new CToast();
                             c.toast(getApplicationContext(),"Sucessfully forwarded",0);
+                            esubject.setText("");
+                            edesc.setText("");
+                            Intent intent1=new Intent(getApplicationContext(),Account_Booking_History.class);
+                            startActivity(intent1);
                         }
                     });
                 }

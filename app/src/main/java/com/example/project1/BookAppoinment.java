@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -127,6 +129,7 @@ public class BookAppoinment extends AppCompatActivity
                         cBookShop1=snapshot.getValue(CBookShop.class);
                         listActivity.add(cBookShop1.activity);
                     }
+                    refActivity.removeEventListener((ChildEventListener) getApplicationContext());
                 }
             }
             @Override
@@ -336,9 +339,13 @@ public class BookAppoinment extends AppCompatActivity
                                     progressBar.setVisibility(View.INVISIBLE);
                                     progressText.setVisibility(View.INVISIBLE);
 
+                                    refCheckCustomerBooked.removeEventListener((ChildEventListener) getApplicationContext());
+                                    refee.removeEventListener((ChildEventListener) getApplicationContext());
+                                    refee1.removeEventListener((ChildEventListener) getApplicationContext());
+                                    refActivity.removeEventListener((ChildEventListener) getApplicationContext());
+
                                     Intent intent1=new Intent(getApplicationContext(),Check_Availability_Of_Shop.class);
                                     startActivity(intent1);
-
                                 }
                             }
 

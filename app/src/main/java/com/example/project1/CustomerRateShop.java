@@ -189,4 +189,10 @@ public class CustomerRateShop extends AppCompatActivity
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(getApplicationContext(),Account_Booking_History.class);
+        startActivity(intent);
+    }
 }

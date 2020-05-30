@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -86,6 +87,7 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                     price=add.getPrice();
                     showPrice.setText(price);
                     showActivity.setText(sactivity);
+                    refePrice.removeEventListener((ChildEventListener) getApplicationContext());
                 }
             }
 
@@ -114,6 +116,7 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                     {
                         calcu();
                         checkFullBooked();
+                        reference.removeEventListener((ChildEventListener) getApplicationContext());
                     }
                 }
             }
@@ -189,6 +192,7 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                                     progressText.setVisibility(View.INVISIBLE);
                                     Intent intent00=new Intent(getApplicationContext(),Bookin_status_show.class);
                                     startActivity(intent00);
+                                    ref.removeEventListener((ChildEventListener) getApplicationContext());
                                 }
                             });
                         }

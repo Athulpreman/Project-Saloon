@@ -80,6 +80,7 @@ public class showbooking_Cart extends AppCompatActivity
 
         Intent intent=getIntent();
         date=intent.getStringExtra("Date");
+        Toast.makeText(this, date, Toast.LENGTH_SHORT).show();
         time=intent.getStringExtra("Time");
         shopID=intent.getStringExtra("shopID");
         Activity=intent.getStringExtra("Activity");
@@ -224,7 +225,9 @@ public class showbooking_Cart extends AppCompatActivity
                 {
                     progressText.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.VISIBLE);
-                    refecancelCutomer=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking");
+
+
+
                     refecancelOwner=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(shopID).child("Booking").child(date);
                     Query query2=refecancelOwner.orderByChild("time").equalTo(time);
                     query2.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -237,34 +240,38 @@ public class showbooking_Cart extends AppCompatActivity
                                     @Override
                                     public void onSuccess(Void aVoid)
                                     {
+                                        Toast.makeText(showbooking_Cart.this, "Cancelling", Toast.LENGTH_SHORT).show();
                                         progressText.setText("Canceling");
-                                        Query query3=refecancelCutomer.orderByChild("date").equalTo(date);
-                                        query3.addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                                            {
-                                                for (DataSnapshot snapshot1:dataSnapshot.getChildren())
-                                                {
-                                                    snapshot1.getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                        @Override
-                                                        public void onSuccess(Void aVoid)
-                                                        {
-                                                            Toast.makeText(showbooking_Cart.this, "Cancelled succesfully", Toast.LENGTH_SHORT).show();
-                                                            progressText.setVisibility(View.INVISIBLE);
-                                                            progressBar.setVisibility(View.INVISIBLE);
 
-                                                            Intent intent1=new Intent(getApplicationContext(),CustomerSignedIn1.class);
-                                                            startActivity(intent1);
-                                                        }
-                                                    });
-                                                }
-                                            }
+                                    }
+                                });
+                            }
+                        }
 
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                            }
-                                        });
+                        }
+                    });
+                    refecancelCutomer=FirebaseDatabase.getInstance().getReference().child("Customer").child(MobNoo).child("Booking");
+                    Query query3=refecancelCutomer.orderByChild("date").equalTo(date);
+                    query3.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                        {
+                            for (DataSnapshot snapshot1:dataSnapshot.getChildren())
+                            {
+                                snapshot1.getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid)
+                                    {
+                                        Toast.makeText(showbooking_Cart.this, "Cancelled succesfully", Toast.LENGTH_SHORT).show();
+                                        progressText.setVisibility(View.INVISIBLE);
+                                        progressBar.setVisibility(View.INVISIBLE);
+
+                                        Intent intent1=new Intent(getApplicationContext(),CustomerSignedIn1.class);
+                                        intent.putExtra("home","4");
+                                        startActivity(intent1);
                                     }
                                 });
                             }
@@ -291,7 +298,8 @@ public class showbooking_Cart extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
+                Intent ii=new Intent(getApplicationContext(),ShowPathInMap.class);
+                startActivity(ii);
             }
         });
 
