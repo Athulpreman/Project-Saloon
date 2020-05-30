@@ -1,7 +1,7 @@
 <androidx.cardview.widget.CardView android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:layout_margin="20dp"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="#4DB3B3B3"
     xmlns:android="http://schemas.android.com/apk/res/android">
