@@ -1,120 +1,124 @@
-<LinearLayout android:layout_height="match_parent"
+<ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <TextView
+    <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Scanned"
-        android:layout_margin="30dp"
-        android:textAlignment="center"
-        android:textSize="35dp"
-        android:fontFamily="@font/neo_latina_ap"
-        android:textStyle="bold"/>
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-        <TableRow android:layout_margin="10dp">
-            <TextView android:text="Name"
-                android:textSize="18dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="center"/>
-            <TextView android:layout_weight="1"
-                android:gravity="center"
-                android:id="@+id/scanName"
-                android:layout_gravity="center"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow android:layout_margin="10dp">
-            <TextView android:text="Mobile"
-                android:textSize="18dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="center"/>
-            <TextView android:layout_weight="1"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:id="@+id/scanMobile"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow android:layout_margin="10dp">
-            <TextView android:text="Date"
-                android:textSize="18dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="center"/>
-            <TextView android:layout_weight="1"
-                android:gravity="center"
-                android:id="@+id/scanDate"
-                android:layout_gravity="center"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow android:layout_margin="10dp">
-            <TextView android:text="Time"
-                android:textSize="18dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="center"/>
-            <TextView android:layout_weight="1"
-                android:gravity="center"
-                android:id="@+id/scanTime"
-                android:layout_gravity="center"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow android:layout_margin="10dp">
-            <TextView android:text="Status"
-                android:textSize="18dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="center"/>
-            <TextView android:layout_weight="1"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:id="@+id/scanStatus"
-                android:textSize="18dp"/>
-        </TableRow>
-        <TableRow android:layout_margin="10dp"
-            android:gravity="center"
-            android:layout_gravity="center">
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-            <ProgressBar android:id="@+id/scanProgressbar"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"/>
-            <TextView android:text="Checking Details"
-                android:textSize="18dp"
-                android:id="@+id/scanProgressText"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"/>
-        </TableRow>
-        <TableRow android:layout_margin="10dp">
-            <Button android:text="accept"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:textSize="18dp"
-                android:id="@+id/scanAcceptButton"
-                android:layout_width="150dp"
-                android:gravity="center"/>
-            <Button android:text="decline"
-                android:layout_margin="10dp"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:id="@+id/scanDeclineButton"
-                android:textSize="18dp"
-                android:layout_width="150dp"
-                android:gravity="center"/>
-        </TableRow>
-    </TableLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scanned"
+            android:layout_margin="30dp"
+            android:textAlignment="center"
+            android:textSize="35dp"
+            android:fontFamily="@font/neo_latina_ap"
+            android:textStyle="bold"/>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <TableRow android:layout_margin="10dp">
+                <TextView android:text="Name"
+                    android:textSize="18dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+                <TextView android:layout_weight="1"
+                    android:gravity="center"
+                    android:id="@+id/scanName"
+                    android:layout_gravity="center"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow android:layout_margin="10dp">
+                <TextView android:text="Mobile"
+                    android:textSize="18dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+                <TextView android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/scanMobile"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow android:layout_margin="10dp">
+                <TextView android:text="Date"
+                    android:textSize="18dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+                <TextView android:layout_weight="1"
+                    android:gravity="center"
+                    android:id="@+id/scanDate"
+                    android:layout_gravity="center"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow android:layout_margin="10dp">
+                <TextView android:text="Time"
+                    android:textSize="18dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+                <TextView android:layout_weight="1"
+                    android:gravity="center"
+                    android:id="@+id/scanTime"
+                    android:layout_gravity="center"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow android:layout_margin="10dp">
+                <TextView android:text="Status"
+                    android:textSize="18dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+                <TextView android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:id="@+id/scanStatus"
+                    android:textSize="18dp"/>
+            </TableRow>
+            <TableRow android:layout_margin="10dp"
+                android:gravity="center"
+                android:layout_gravity="center">
 
-    <ImageView
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:id="@+id/scanimgstatus"/>
+                <ProgressBar android:id="@+id/scanProgressbar"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"/>
+                <TextView android:text="Checking Details"
+                    android:textSize="18dp"
+                    android:id="@+id/scanProgressText"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"/>
+            </TableRow>
+            <TableRow android:layout_margin="10dp">
+                <Button android:text="accept"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:textSize="18dp"
+                    android:id="@+id/scanAcceptButton"
+                    android:layout_width="150dp"
+                    android:gravity="center"/>
+                <Button android:text="decline"
+                    android:layout_margin="10dp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:id="@+id/scanDeclineButton"
+                    android:textSize="18dp"
+                    android:layout_width="150dp"
+                    android:gravity="center"/>
+            </TableRow>
+        </TableLayout>
 
-</LinearLayout>
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:id="@+id/scanimgstatus"/>
+
+    </LinearLayout>
+</ScrollView>

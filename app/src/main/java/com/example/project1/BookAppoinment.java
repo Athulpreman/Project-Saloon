@@ -129,7 +129,6 @@ public class BookAppoinment extends AppCompatActivity
                         cBookShop1=snapshot.getValue(CBookShop.class);
                         listActivity.add(cBookShop1.activity);
                     }
-                    refActivity.removeEventListener((ChildEventListener) getApplicationContext());
                 }
             }
             @Override
@@ -208,12 +207,12 @@ public class BookAppoinment extends AppCompatActivity
                     progressBar.setVisibility(View.INVISIBLE);
                     progressText.setVisibility(View.INVISIBLE);
                 }
-                else if (dayOftheWeek.equals("sunday"))
+                /*else if (dayOftheWeek.equals("sunday"))
                 {
                     Toast.makeText(BookAppoinment.this, "Sunday is holiday \n Chose a different day", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                     progressText.setVisibility(View.INVISIBLE);
-                }
+                }*/
                 else
                 {
                     Calendar now1= Calendar.getInstance();
@@ -323,7 +322,7 @@ public class BookAppoinment extends AppCompatActivity
                                         }
                                     });
 
-                                    Toast.makeText(BookAppoinment.this, "Forwarding to pick the date", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(BookAppoinment.this, "Forwarding to pick time slot", Toast.LENGTH_LONG).show();
 
                                     SharedPreferences.Editor editor=getSharedPreferences("Book",MODE_PRIVATE).edit();
                                     editor.putString("date",getDate);
@@ -339,13 +338,15 @@ public class BookAppoinment extends AppCompatActivity
                                     progressBar.setVisibility(View.INVISIBLE);
                                     progressText.setVisibility(View.INVISIBLE);
 
-                                    refCheckCustomerBooked.removeEventListener((ChildEventListener) getApplicationContext());
-                                    refee.removeEventListener((ChildEventListener) getApplicationContext());
-                                    refee1.removeEventListener((ChildEventListener) getApplicationContext());
-                                    refActivity.removeEventListener((ChildEventListener) getApplicationContext());
 
                                     Intent intent1=new Intent(getApplicationContext(),Check_Availability_Of_Shop.class);
                                     startActivity(intent1);
+                                    //refActivity.removeEventListener((ChildEventListener) getApplicationContext());
+
+                                    /*refCheckCustomerBooked.removeEventListener((ChildEventListener) getApplicationContext());
+                                    refee.removeEventListener((ChildEventListener) getApplicationContext());
+                                    refee1.removeEventListener((ChildEventListener) getApplicationContext());
+                                    refActivity.removeEventListener((ChildEventListener) getApplicationContext());*/
                                 }
                             }
 
@@ -415,7 +416,7 @@ public class BookAppoinment extends AppCompatActivity
         //Creating dialog box
         AlertDialog alert = builder.create();
         //Setting the title manually
-        alert.setTitle("LOGOUT");
+        alert.setTitle("CANCEL");
         alert.show();
     }
 }

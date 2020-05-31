@@ -156,7 +156,7 @@ public class ScanQrResult extends AppCompatActivity
                         status.setText("Not on the currect DATE");
                         scanImg.setImageResource(R.drawable.vector_cross);
                         accept.setVisibility(View.INVISIBLE);
-                        decline.setVisibility(View.INVISIBLE);
+                        decline.setText("Home");
 
                         progressBar.setVisibility(View.INVISIBLE);
                         progreeText.setVisibility(View.INVISIBLE);
@@ -212,7 +212,6 @@ public class ScanQrResult extends AppCompatActivity
             });
             reff=FirebaseDatabase.getInstance().getReference().child("Customer").child(items[1]).child("Booking");
             Query query1=reff.orderByChild("date").equalTo(currentDate);
-            Log.d("aaaa","rrrr");
             query1.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -226,8 +225,54 @@ public class ScanQrResult extends AppCompatActivity
                             String []time = stime.split("-");
                             time[0]=time[0].trim();
                             time[1]=time[1].trim();
-                            if (time[0].equals(hour))
+                            Log.d("aaaaa1 hour",hour);
+                            Log.d("aaaaa2 time1",time[0]);
+                            Log.d("aaaaa3 time 2",time[1]);
+                            if (hour.equals("0"))
                             {
+                                Log.d("aaaa","rrrr1");
+                                if (time[0].equals("12"))
+                                {
+                                    Log.d("aaaa","rrrr1.111");
+                                    status.setText("On Time");
+                                    decline.setVisibility(View.INVISIBLE);
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    progreeText.setVisibility(View.INVISIBLE);
+                                    //scanImg.setImageResource(R.drawable.vector_pending_green);
+                                    scanImg.setImageDrawable(getResources().getDrawable(R.drawable.vector_pending_green));
+
+                                }
+                                else
+                                {
+                                    status.setText("not On Time");
+                                    acceptingStatus=1;
+                                    scanImg.setImageResource(R.drawable.vector_pending_green);
+                                }
+                            }
+                            else if (Integer.parseInt(time[0])>12)
+                            {
+                                Log.d("aaaa","rrrr2");
+                                int a=Integer.parseInt(time[0]);
+                                a=a-12;
+                                if (String.valueOf(a).equals(hour))
+                                {
+                                    status.setText("On Time");
+                                    decline.setVisibility(View.INVISIBLE);
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    progreeText.setVisibility(View.INVISIBLE);
+                                    scanImg.setImageResource(R.drawable.vector_pending_green);
+                                }
+                                else
+                                {
+                                    status.setText("not On Time");
+                                    acceptingStatus=1;
+                                    scanImg.setImageResource(R.drawable.vector_pending);
+                                }
+
+                            }
+                            else if (time[0].equals(hour))
+                            {
+                                Log.d("aaaa","rrrr3");
                                 status.setText("On Time");
                                 decline.setVisibility(View.INVISIBLE);
                                 progressBar.setVisibility(View.INVISIBLE);
@@ -236,6 +281,7 @@ public class ScanQrResult extends AppCompatActivity
                             }
                             else
                             {
+                                Log.d("aaaa","rrrr4");
                                 status.setText("not On Time");
                                 acceptingStatus=1;
                                 scanImg.setImageResource(R.drawable.vector_pending);
@@ -323,6 +369,9 @@ public class ScanQrResult extends AppCompatActivity
                                             {
                                                 Toast.makeText(ScanQrResult.this, "Sucess", Toast.LENGTH_SHORT).show();
                                                 scanImg.setImageResource(R.drawable.scan_tick_mark);
+
+                                                accept.setVisibility(View.INVISIBLE);
+                                                decline.setText("Home");
                                             }
                                         });
                                     }

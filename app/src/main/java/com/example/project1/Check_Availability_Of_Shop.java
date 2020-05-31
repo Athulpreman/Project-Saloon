@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -74,6 +75,8 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
         listBookingStatus= new int[]{0, 0, 0, 0, 0, 0, 0, 0};
         array=new String[]{"0","0","0","0","0","0","0","0","0"};
 
+        Log.d("aaaaaaaa",sshopID);
+
         refePrice=FirebaseDatabase.getInstance().getReference().child("ShopOwners").child(sshopID).child("Activity");
         Query query=refePrice.orderByChild("activity").equalTo(sactivity);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -87,7 +90,6 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                     price=add.getPrice();
                     showPrice.setText(price);
                     showActivity.setText(sactivity);
-                    refePrice.removeEventListener((ChildEventListener) getApplicationContext());
                 }
             }
 
@@ -116,7 +118,6 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                     {
                         calcu();
                         checkFullBooked();
-                        reference.removeEventListener((ChildEventListener) getApplicationContext());
                     }
                 }
             }
@@ -192,7 +193,6 @@ public class Check_Availability_Of_Shop extends AppCompatActivity
                                     progressText.setVisibility(View.INVISIBLE);
                                     Intent intent00=new Intent(getApplicationContext(),Bookin_status_show.class);
                                     startActivity(intent00);
-                                    ref.removeEventListener((ChildEventListener) getApplicationContext());
                                 }
                             });
                         }
