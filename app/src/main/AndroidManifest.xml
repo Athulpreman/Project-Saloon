@@ -32,7 +32,10 @@
         android:roundIcon="@drawable/hair"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminViewEditDeleteShop"></activity>
+        <activity android:name=".AdminViewFeedback"></activity>
+        <activity android:name=".ForgotPassword_Owner" />
+        <activity android:name=".ForgotPassword_Customer" />
+        <activity android:name=".AdminViewEditDeleteShop" />
         <activity android:name=".SearchEditShop_Admin" />
         <activity android:name=".Owner_About" />
         <!--

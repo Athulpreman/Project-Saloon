@@ -105,6 +105,17 @@ public class CustomerSignedIn1 extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_signed_in1);
+
+
+        SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
+        MobNoo=sharedPreferences.getString("MobNo",null);
+
+
+
+
+
+
+
         this.setTitle("Home");
 
         Intent intent=getIntent();
@@ -117,8 +128,6 @@ public class CustomerSignedIn1 extends AppCompatActivity
             }
         }*/
 
-        SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
-        MobNoo=sharedPreferences.getString("MobNo",null);
 
         bHome =(Button)findViewById(R.id.home);
         bSearch =(Button)findViewById(R.id.search);
@@ -1100,6 +1109,9 @@ public class CustomerSignedIn1 extends AppCompatActivity
 
                                     Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                                     startActivity(intent);
+
+
+
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {

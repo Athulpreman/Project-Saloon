@@ -207,12 +207,12 @@ public class BookAppoinment extends AppCompatActivity
                     progressBar.setVisibility(View.INVISIBLE);
                     progressText.setVisibility(View.INVISIBLE);
                 }
-                /*else if (dayOftheWeek.equals("sunday"))
+                else if (dayOftheWeek.equals("sunday"))
                 {
                     Toast.makeText(BookAppoinment.this, "Sunday is holiday \n Chose a different day", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                     progressText.setVisibility(View.INVISIBLE);
-                }*/
+                }
                 else
                 {
                     Calendar now1= Calendar.getInstance();

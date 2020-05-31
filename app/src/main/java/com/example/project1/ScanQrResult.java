@@ -202,7 +202,7 @@ public class ScanQrResult extends AppCompatActivity
                         mobile.setText(items[1]);
                         time.setText(items[3]);
                         date.setText(items[2]);
-                        scanImg.setImageResource(R.drawable.vector_cross);
+                        //scanImg.setImageResource(R.drawable.vector_cross);
                     }
                 }
                 @Override
@@ -256,11 +256,12 @@ public class ScanQrResult extends AppCompatActivity
                                 a=a-12;
                                 if (String.valueOf(a).equals(hour))
                                 {
+                                    Log.d("aaaa","rrrr2 inside");
                                     status.setText("On Time");
                                     decline.setVisibility(View.INVISIBLE);
                                     progressBar.setVisibility(View.INVISIBLE);
                                     progreeText.setVisibility(View.INVISIBLE);
-                                    scanImg.setImageResource(R.drawable.vector_pending_green);
+                                    scanImg.setImageDrawable(getResources().getDrawable(R.drawable.vector_pending_green));
                                 }
                                 else
                                 {

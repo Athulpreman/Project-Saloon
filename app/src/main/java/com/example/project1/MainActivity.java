@@ -54,11 +54,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         this.setTitle("Login");
 
-        SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
-        String value=sharedPreferences.getString("MobNo",null);
-
         SharedPreferences sharedPreference=getSharedPreferences("OwnerLogin",MODE_PRIVATE);
         String value1=sharedPreference.getString("shopID",null);
+
+
+        SharedPreferences sharedPreferences=getSharedPreferences("UserLogin",MODE_PRIVATE);
+        String value=sharedPreferences.getString("MobNo",null);
 
         if (value!=null)
         {

@@ -25,10 +25,8 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CustomerViewHo
 
     AdapterCart(Context context, ArrayList<CBookShop> itemList)
     {
-
         this.context = context;
         list = itemList;
-
     }
 
     @NonNull
@@ -44,7 +42,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CustomerViewHo
     @Override
     public void onBindViewHolder(@NonNull  final AdapterCart.CustomerViewHolder holder, final int position)
     {
-        holder.t1.setText(list.get(position).getShopID());
+        holder.t1.setText(list.get(position).getShopName());
         holder.t2.setText(list.get(position).getDate());
         holder.t3.setText(list.get(position).getTime());
         holder.t5.setText(list.get(position).getPrice());
